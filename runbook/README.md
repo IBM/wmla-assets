@@ -37,7 +37,7 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 8.	Call it GPUHosts:
 
-![](images/image008.png)
+![](images/image008.png?raw=true)
 
 9.	The number of slots should use the advanced formula and equals the number of GPUs on the systems by using the keywork ngpus:
 
