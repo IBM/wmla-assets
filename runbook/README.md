@@ -493,7 +493,7 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 14.	Scroll down to the “Resource Groups and Plans” section and change “Spark Executors (GPU slots):” to the GPUHosts resource group. Do not change anything else.
 
-<img src="images/image084.png" width="50%">
+<img src="images/image078.png" width="50%">
 
 15.	Click on “Create and Deploy Instance Group”.
 
