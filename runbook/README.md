@@ -440,5 +440,61 @@ This guide also contains the tests that Lab Services performs in order to declar
 17.	Watch as your instance group gets deployed.
 
 
+## Step 9: Create an instance group for Deep Learning Impact 
 
+1.	Go to “Workload -> Spark -> Spark Instance Groups”:
 
+<img src="images/image055.png" width="50%">
+
+2.	Click on “New”:
+
+<img src="images/image068.png" width="50%">
+
+3.	Click on “Templates”:
+
+<img src="images/image69.png" width="50%">
+
+4.	Select “Use” for the dli-sig-template template:
+
+<img src="images/image070.png" width="50%">
+
+5.	Fill in the following information:
+*	Instance Group name: DLI-DemoConsumer
+*	Spark deployment directory: /cwslocal/demoexec/dli-democonsumer
+*	Execution user: demoexec
+
+<img src="images/image079.png" width="50%">
+
+6.	Click on the Spark configuration link as shown in the picture above as well.
+
+7.	In the “search” field, search for Java, and then fill in the JAVA_HOME environment variable with a proper directory that holds a java system of yours, for example: /usr/lib/jvm/jre-1.8.0
+
+<img src="images/image072.png" width="50%">
+
+8.	Click on “Save” as shown above.
+
+9.	Scroll down to the “Consumer” section and click on the standard consumer name that the process would try to create:
+
+<img src="images/image080.png" width="50%">
+
+10.	Click on the “X” for “DLI-DemoConsumer”:
+
+<img src="images/image081.png" width="50%">
+
+11.	Now select the “DemoConsumer” consumer and create a child consumer named “DLI-EDT-DemoConsumer”:
+
+<img src="images/image082.png" width="50%">
+
+12.	Click on “Create” and then on “Select”.
+
+13.	Your new consumer should look like what’s show below:
+
+<img src="images/image083.png" width="50%">
+
+14.	Scroll down to the “Resource Groups and Plans” section and change “Spark Executors (GPU slots):” to the GPUHosts resource group. Do not change anything else.
+
+<img src="images/image084.png" width="50%">
+
+15.	Click on “Create and Deploy Instance Group”.
+
+16.	Watch as your instance group gets deployed.
