@@ -498,3 +498,8 @@ This guide also contains the tests that Lab Services performs in order to declar
 15.	Click on “Create and Deploy Instance Group”.
 
 16.	Watch as your instance group gets deployed.
+
+
+## Exercises / Tests
+
+(To be completed)
