@@ -66,4 +66,26 @@ This guide also contains the tests that Lab Services performs in order to declar
 ![](images/image015.png)
 
 
+## Step 2: Configure the roles
+
+1.	To start with, we create a role of a Chief Data Scientist. The reason for such is so that we create a role with intermediate privileges between an Admin account and a Data Scientist account. This Chief Data scientist role has the authority of a data scientist plus additional privileges to start/stop instance groups. The idea is that users do not need to go up to a cluster Admin in order to start/stop their instance groups, instead they have the Chief Data Scientist do so.
+
+2.	Go to Systems & Services -> Users -> Roles:
+
+![](images/image016.png)
+
+3.	Select the “Data Scientist” role and duplicate it by clicking the duplicate button:
+
+![](images/image016.png)
+
+4.	Call the new role “Chief Data Scientist”:
+
+![](images/image017.png)
+
+5.	Select the “Chief Data Scientist” role and add a couple privileges: 
+  a.	Conductor -> Spark Instance Groups -> Control
+  b.	Ego Services -> Services -> Control (exemplified below)
+  c.	Consumers and Resource Plans  -> Resource Plans -> View
+
+![](images/image018.png)
 
