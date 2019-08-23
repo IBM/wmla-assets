@@ -376,7 +376,68 @@ This guide also contains the tests that Lab Services performs in order to declar
 16.	Your notebooks should show up as Started after a while
 
 
+## Step 8: Create an instance group for Deep Learning Impact with Elastic Distributed Search (EDT)
 
+1.	Go to “Workload -> Spark -> Spark Instance Groups”:
+
+<img src="images/image068.png" width="50%">
+
+2.	Click on “New”:
+
+<img src="images/image069.png" width="50%">
+
+3.	Click on “Templates”:
+
+<img src="images/image070.png" width="50%">
+
+4.	Select “Use” for the dli-sig-template-2-2-0 template:
+
+<img src="images/image071.png" width="50%">
+
+5.	Fill in the following information:
+*	Instance Group name: DLI-EDT-DemoConsumer
+*	Spark deployment directory: /cwslocal/demoexec/dli-edt-democonsumer
+*	Execution user: demoexec
+
+<img src="images/image072.png" width="50%">
+
+6.	Click on the Spark configuration link as shown in the picture above as well.
+
+7.	In the “search” field, search for Java, and then fill in the JAVA_HOME environment variable with a proper directory that holds a java system of yours, for example: /usr/lib/jvm/jre-1.8.0
+
+<img src="images/image073.png" width="50%">
+
+8.	Then look for “SPARK_EGO_APP_SCHEDULE_POLICY” and change it to “fairshare”. 
+
+<img src="images/image074.png" width="50%">
+
+9.	Click on “Save” as shown above.
+
+10.	Scroll down to the “Consumer” section and click on the standard consumer name that the process would try to create:
+
+<img src="images/image075.png" width="50%">
+
+11.	Click on the “X” for “DLI-EDT-DemoConsumer”:
+
+<img src="images/image076.png" width="50%">
+
+12.	Now select the “DemoConsumer” consumer and create a child consumer named “DLI-EDT-DemoConsumer”:
+
+<img src="images/image077.png" width="50%">
+
+13.	Click on “Create” and then on “Select”.
+
+14.	Your new consumer should look like what’s show below:
+
+<img src="images/image078.png" width="50%">
+
+15.	Scroll down to the “Resource Groups and Plans” section and change “Spark Executors (GPU slots):” to the GPUHosts resource group. Do not change anything else.
+
+<img src="images/image079.png" width="50%">
+
+16.	Click on “Create and Deploy Instance Group”.
+
+17.	Watch as your instance group gets deployed.
 
 
 
