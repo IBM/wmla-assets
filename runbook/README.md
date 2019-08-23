@@ -82,9 +82,12 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 ![](images/image018.png)
 
-5.	Select the “Chief Data Scientist” role and add a couple privileges: 
+5.	Select the “Chief Data Scientist” role and add a couple privileges:
+
 &nbsp;&nbsp;&nbsp;&nbsp;a.	Conductor -> Spark Instance Groups -> Control
+
 &nbsp;&nbsp;&nbsp;&nbsp;b.	Ego Services -> Services -> Control (exemplified below)
+
 &nbsp;&nbsp;&nbsp;&nbsp;c.	Consumers and Resource Plans  -> Resource Plans -> View
 
 ![](images/image019.png)
