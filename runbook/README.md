@@ -140,5 +140,29 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 ## Step 4: Create a user
 
+1.	Go to “Systems & Services -> Users -> Accounts” 
+
+<img src="images/image027.png" width="50%">
+
+2.	Click on “Create New user account”:
+
+<img src="images/image028.png" width="50%">
+
+3.	Create a demonstration account called “DemoUser”:
+
+<img src="images/image029.png" width="50%">
+
+4.	Go to “Systems & Services -> Users -> Roles”:
+
+<img src="images/image030.png" width="50%">
+
+5.	Select your newly defined user (make sure you do NOT unselect Admin in the process) and then assign it to the “DemoConsumer” consumer you created in step 2:
+
+<img src="images/image031.png" width="50%">
+
+6.	Click OK and then Apply to commit the changes. Do not forget to click on Apply!!! 
+
+
+## Step 4: Create an instance group for Spark workloads
 
 
