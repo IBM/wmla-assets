@@ -13,7 +13,7 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 2.	Open up the Resource Group configuration:
 
-<img src="images/image003" width="40%">
+<img src="images/image003.png" width="40%">
 
 
 3.	Select the ComputeHosts resource group:
