@@ -13,7 +13,7 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 2.	Open up the Resource Group configuration:
 
-![](images/image003.png|width=100)
+![](images/image003.png | width=200)
 
 
 
