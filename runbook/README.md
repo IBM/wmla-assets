@@ -101,3 +101,39 @@ This guide also contains the tests that Lab Services performs in order to declar
  *	groupadd demoexec
  *	useradd -g demoexec -m demoexec
 
+2.	The GID and UID of the created user / group MUST be the same on all nodes.
+
+3.	Now go to Resources -> Consumers
+
+![](images/image020.png)
+
+4.	Click on “create a consumer”:
+
+![](images/image021.png)
+
+5.	Name your consumer “DemoConsumer” (for best practices, use starting capital letters), and use “demoexec” in the list of users:
+
+![](images/image022.png)
+
+6.	Further scroll down and input “demoexec” as the OS user for execution, and select the Management, Compute and GPU resource groups:
+
+![](images/image023.png)
+
+7.	Click create to save.
+
+8.	On the left side column, click on the “DemoConsumer” consumer you just created, and then click on “Create a consumer”:
+
+![](images/image024.png)
+
+9.	Name your consumer “Anaconda3-DemoConsumer” (for best practices, use starting capital letters). Leave the “Inherit the user list and group list from parent consumer” selected:
+
+![](images/image025.png)
+
+10.	Further scroll down and use “demoexec” as the operating system user for workload execution, and make sure all resource groups are selected:
+
+![](images/image026.png)
+
+11.	Your “Anaconda3-DemoConsumer” should now appear as a child of “DemoConsumer”.
+
+
+
