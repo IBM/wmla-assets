@@ -13,59 +13,59 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 2.	Open up the Resource Group configuration:
 
-<img src="images/image003.png" width="40%">
+<img src="images/image003.png" width="50%">
 
 
 3.	Select the ComputeHosts resource group:
 
-![](images/image004.png)
+<img src="images/image004.png" width="50%">
 
 
 4.	Properly configure the number of slots to a value that makes sense. If the server is an 8-thread capable system, use 7 * number of processors. If it’s a 4-thread capable system, go with 3 * number of processors:
 
-![](images/image005.png)
+<img src="images/image005.png" width="50%">
 
 5.	Optional, but recommended, change the resource selection method to static, and then select only the servers which will provide computing power (processor power) to the cluster:
 
-![](images/image006.png)
+<img src="images/image006.png" width="50%">
 
 6.	Click Apply to commit the changes.
 
 7.	Create a new resource group:
 
-![](images/image007.png)
+<img src="images/image007.png" width="50%">
 
 8.	Call it GPUHosts:
 
-![](images/image008.png)
+<img src="images/image008.png" width="50%">
 
 9.	The number of slots should use the advanced formula and equals the number of GPUs on the systems by using the keywork ngpus:
 
-![](images/image009.png)
+<img src="images/image009.png" width="50%">
 
 10.	Optionally, but recommended, change the resource selection method to static and select the nodes which are GPU-capable:
 
-![](images/image010.png)
+<img src="images/image010.png" width="50%">
 
-![](images/image011.png)
+<img src="images/image011.png" width="50%">
 
 11.	Under the “Members Host” column, click on “preferences” and select the attribute “ngpus” to be displayed:
 
-![](images/image012.png)
+<img src="images/image012.png" width="50%">
 
 12.	Click on “Apply” and validate that the “Members Host” column now displays ngpus:
 
-![](images/image013.png)
+<img src="images/image013.png" width="50%">
 
 13.	Finish the creation of the resource group by clicking on “Create”
 
 14.	Go to Resources -> Resource Planning (slot) -> Resource Plan:
 
-![](images/image014.png)
+<img src="images/image014.png" width="50%">
 
 15.	Change the allocation policy of the “ComputeHosts” resource group to balanced:
 
-![](images/image015.png)
+<img src="images/image015.png" width="50%">
 
 
 ## Step 2: Configure the roles
@@ -74,15 +74,15 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 2.	Go to Systems & Services -> Users -> Roles:
 
-![](images/image016.png)
+<img src="images/image016.png" width="50%">
 
 3.	Select the “Data Scientist” role and duplicate it by clicking the duplicate button:
 
-![](images/image017.png)
+<img src="images/image017.png" width="50%">
 
 4.	Call the new role “Chief Data Scientist”:
 
-![](images/image018.png)
+<img src="images/image018.png" width="50%">
 
 5.	Select the “Chief Data Scientist” role and add a couple privileges:
 
@@ -92,7 +92,7 @@ This guide also contains the tests that Lab Services performs in order to declar
 
  *	Consumers and Resource Plans  -> Resource Plans -> View
 
-![](images/image019.png)
+<img src="images/image019.png" width="50%">
 
 6.	Click Apply to commit the changes.
 
@@ -107,33 +107,33 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 3.	Now go to Resources -> Consumers
 
-![](images/image020.png)
+<img src="images/image020.png" width="50%">
 
 4.	Click on “create a consumer”:
 
-![](images/image021.png)
+<img src="images/image021.png" width="50%">
 
 5.	Name your consumer “DemoConsumer” (for best practices, use starting capital letters), and use “demoexec” in the list of users:
 
-![](images/image022.png)
+<img src="images/image022.png" width="50%">
 
 6.	Further scroll down and input “demoexec” as the OS user for execution, and select the Management, Compute and GPU resource groups:
 
-![](images/image023.png)
+<img src="images/image023.png" width="50%">
 
 7.	Click create to save.
 
 8.	On the left side column, click on the “DemoConsumer” consumer you just created, and then click on “Create a consumer”:
 
-![](images/image024.png)
+<img src="images/image024.png" width="50%">
 
 9.	Name your consumer “Anaconda3-DemoConsumer” (for best practices, use starting capital letters). Leave the “Inherit the user list and group list from parent consumer” selected:
 
-![](images/image025.png)
+<img src="images/image025.png" width="50%">
 
 10.	Further scroll down and use “demoexec” as the operating system user for workload execution, and make sure all resource groups are selected:
 
-![](images/image026.png)
+<img src="images/image026.png" width="50%">
 
 11.	Your “Anaconda3-DemoConsumer” should now appear as a child of “DemoConsumer”.
 
