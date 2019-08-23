@@ -279,14 +279,31 @@ This guide also contains the tests that Lab Services performs in order to declar
 15.	Watch as your environment gets created.
 
 
+## Step 6: Create a notebook environment
 
+1.	We leverage the IBM Spectrum Conductor-provided notebook. You can see it in “Workload -> Spark -> Notebook Management”.
 
+<img src="images/image051.png" width="50%">
 
+2.	Notice that there is a notebook called Jupyter, version 5.4.0. If you select it and click on “Configure” you can view the settings for this notebook:
 
+<img src="images/image052.png" width="50%">
 
+3.	The settings show properties such as:
+*	the notebook package name
+*	the scripts in use
+*	Use (or not) of SSL
+*	Anaconda required      (make sure this setting is selected!)
 
+<img src="images/image053.png" width="50%">
 
+4.	At the moment, due to a change on how Anaconda 2019-03 works, we need to apply a patch to the standard Jupyter 5.4.0 notebook’s deploy.sh script. This patched notebook can be found in: 
 
+*	https://ibm.box.com/s/ps486rawe9o8sy21cyn2uxcv41sbhrql
 
+*	Download this notebook to your workstation and replace the one that comes with Conductor by clicking on the “Browse” button and selecting the patched notebook:
 
+<img src="images/image054.png" width="50%">
+
+5.	Click on the “Update Notebook” button.
 
