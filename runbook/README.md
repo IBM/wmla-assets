@@ -307,3 +307,77 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 5.	Click on the “Update Notebook” button.
 
+
+## Step 7: Create an instance group for notebook use
+
+1.	On either node, create the data directory for the execution user within the shared filesystem:
+* mkdir -p /cwsshare/demoexec/
+* chown -R demoexec:demoexec /cwsshare/demoexec/
+
+2.	Go to “Workload -> Spark -> Spark Instance Groups”:
+
+<img src="images/image055.png" width="50%">
+
+3.	Click on “New”:
+
+<img src="images/image056.png" width="50%">
+
+4.	Fill in the information with the following values:
+*	Instance group name: Notebook-DemoConsumer
+*	Deployment directory: /cwslocal/demoexec/notebook-democonsumer
+*	Spark version: use the latest one available
+
+<img src="images/image057.png" width="50%">
+
+5.	Select the Jupyter 5.4.0 notebook and set the following properties:
+*	data directory to: /cwsshare/demoexec/notebook-democonsumer
+*	select the anaconda environment you created in Step 5 of this guide
+
+<img src="images/image058.png" width="50%">
+
+6.	Scroll down and click on the standard consumer which the process creates, we need to change it:
+
+<img src="images/image059.png" width="50%">
+
+7.	Scroll down until you find the standard suggested consumer name and click on the “X” to delete it:
+
+<img src="images/image060.png" width="50%">
+
+8.	Look for the “DemoConsumer” consumer, select it and create a child named “Notebook-DemoConsumer”. Click on “Create” and then on “Select”:
+
+<img src="images/image061.png" width="50%">
+
+9.	Your consumer should now look like something such as:
+
+<img src="images/image062.png" width="50%">
+
+10.	Scroll down and select the “GPUHosts” resource group for “Spark Executors (GPU slots)”. Do not change anything else.
+
+<img src="images/image063.png" width="50%">
+
+11.	Create on “Create and Deploy Instance Group” at the bottom of the page.
+
+12.	Watch as your instance group gets deployed.
+
+<img src="images/image064.png" width="50%">
+
+13.	Once the instance group is deployed, start it by clicking on the “Start” button:
+
+<img src="images/image065.png" width="50%">
+
+14.	Once started, click on the “Notebook” tab and then on “Create notebook for users”:
+
+<img src="images/image066.png" width="50%">
+
+15.	Select the users you want to create a notebook for and click on “Create”:
+
+<img src="images/image067.png" width="50%">
+
+16.	Your notebooks should show up as Started after a while
+
+
+
+
+
+
+
