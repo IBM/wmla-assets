@@ -14,16 +14,8 @@ This guide also contains the tests that Lab Services performs in order to declar
 2.	Open up the Resource Group configuration:
 
 ![](images/image003.png)
-
-
-
-
-
-
-
-
-
-
+<br/>
+<br/>
 3.	Select the ComputeHosts resource group:
 
 ![](images/image004.png)
