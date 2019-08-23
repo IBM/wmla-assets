@@ -165,4 +165,52 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 ## Step 4: Create an instance group for Spark workloads
 
+1.	On EVERY cluster node, create the instance groups deployment directory structure. All commands are run as root:
+*	mkdir -p /cwslocal/demoexec/
+*	chown egoadmin:egoadmin /cwslocal/
+*	chown demoexec:demoexec /cwslocal/demoexec/
+
+2.	Go to “Workload -> Spark -> Spark Instance groups” 
+
+<img src="images/image032.png" width="50%">
+
+3.	Click on “Create a Spark Instance Group” to create your first instance group:
+
+<img src="images/image033.png" width="50%">
+
+4.	Name your instance group “Spark-DemoConsumer” (as a best  practice, use capital starting letters), choose “/cwslocal/demoexec/spark-democonsumer” (as a best practice, use all lowercase) as the deployment directory, “demoexec” as the OS execution user, and the latest available spark version:
+
+<img src="images/image034.png" width="50%">
+
+5.	Scroll down and click on the default consumer name that Conductor would create for you:
+
+<img src="images/image035.png" width="50%">
+
+6.	Click on the “X” to  delete that default consumer:
+
+<img src="images/image036.png" width="50%">
+
+7.	Select the “DemoConsumer” consumer and create a child consumer with the same consumer name as the one you just deleted on the previous step:
+
+<img src="images/image037.png" width="50%">
+
+8.	Click on “Create”, then on “Select”. Your consumer should now list something similar to what you see here:
+
+<img src="images/image038.png" width="50%">
+
+9.	Scroll down and select the “GPUHosts” resource group for the “Spark executors (GPU slots)”. Do not change any other configuration there.
+
+<img src="images/image039.png" width="50%">
+
+10.	Click on Create and Deploy Instance group. 
+
+11.	Click on Continue to Instance Group
+
+12.	Watch as your instance group gets deployed
+
+<img src="images/image040.png" width="50%">
+
+
+
+
 
