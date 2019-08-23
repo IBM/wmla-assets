@@ -45,21 +45,25 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 ![](images/image010.png)
 
+![](images/image011.png)
+
 11.	Under the “Members Host” column, click on “preferences” and select the attribute “ngpus” to be displayed:
 
-![](images/image011.png)
+![](images/image012.png)
 
 12.	Click on “Apply” and validate that the “Members Host” column now displays ngpus:
 
-![](images/image012.png)
+![](images/image013.png)
 
 13.	Finish the creation of the resource group by clicking on “Create”
 
 14.	Go to Resources -> Resource Planning (slot) -> Resource Plan:
 
-![](images/image013.png)
+![](images/image014.png)
 
 15.	Change the allocation policy of the “ComputeHosts” resource group to balanced:
 
-![](images/image014.png)
+![](images/image015.png)
+
+
 
