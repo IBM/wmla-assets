@@ -17,6 +17,13 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 
 
+
+
+
+
+
+
+
 3.	Select the ComputeHosts resource group:
 
 ![](images/image004.png)
