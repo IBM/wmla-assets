@@ -36,4 +36,34 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 ![](images/image007.png)
 
+8.	Call it GPUHosts:
+
+![](images/image008.png)
+
+
+9.	The number of slots should use the advanced formula and equals the number of GPUs on the systems by using the keywork ngpus:
+
+![](images/image009.png)
+
+10.	Optionally, but recommended, change the resource selection method to static and select the nodes which are GPU-capable:
+
+![](images/image010.png)
+
+11.	Under the “Members Host” column, click on “preferences” and select the attribute “ngpus” to be displayed:
+
+![](images/image011.png)
+
+12.	Click on “Apply” and validate that the “Members Host” column now displays ngpus:
+
+![](images/image012.png)
+
+13.	Finish the creation of the resource group by clicking on “Create”
+
+14.	Go to Resources -> Resource Planning (slot) -> Resource Plan:
+
+![](images/image013.png)
+
+15.	Change the allocation policy of the “ComputeHosts” resource group to balanced:
+
+![](images/image014.png)
 
