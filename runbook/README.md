@@ -211,6 +211,82 @@ This guide also contains the tests that Lab Services performs in order to declar
 <img src="images/image040.png" width="50%">
 
 
+## Step 5: Import an Anaconda installer and create an anaconda environment
+
+1.	Download The following file to your workstation:
+*	https://repo.continuum.io/archive/Anaconda3-2019.03-Linux-ppc64le.sh
+
+2.	Go to “Workload -> Spark -> Anaconda Management”.
+
+<img src="images/image041.png" width="50%">
+
+3.	Click on “Add”:
+
+<img src="images/image042.png" width="50%">
+
+4.	Fill out the information required:
+*	Distribution name: Anaconda3
+*	Select the anaconda file you downloaded at step 1 and upload it here
+*	Anaconda version: 2019.03
+*	Python version: 3
+*	Operating system: Linux on Power 64-bit little endian (LE)
+
+<img src="images/image043.png" width="50%">
+
+5.	Click on “Add”.
+
+6.	On all nodes, create a directory for an anaconda deployment for the proper execution user:
+* mkdir -p /cwslocal/demoexec/anaconda
+*	chown demoexec:demoexec /cwslocal/demoexec/anaconda
+
+7.	Now select the distribution you just created and click on “Deploy”:
+
+<img src="images/image044.png" width="50%">
+
+8.	Fill in the information required:
+*	Instance name: Anaconda3-DemoConsumer-PowerAI
+*	Deployment directory: /cwslocal/demoexec/anaconda
+*	Consumer: Anaconda3-DemoConsumer (which you created on step 2)
+*	Resource group: compute hosts
+*	Execution user: demoexec
+
+<img src="images/image045.png" width="50%">
+
+9.	Click on “Environment Variables”:
+
+<img src="images/image046.png" width="50%">
+
+10.	Click on “Add variable” and add variable “PATH” with the contents of “$PATH:/usr/bin”. This is mandatory due to bug #7649. Also, add a variable called “IBM_POWERAI_LICENSE_ACCEPT” with the contents of “yes”:
+
+<img src="images/image047.png" width="50%">
+
+11.	Click on “Deploy”. Watch as your anaconda environment gets deployed.
+
+<img src="images/image047.png" width="50%">
+
+12.	Create a powerai161.yml file on your workstation with the following content (notice the tabulation in the file!):
+
+<img src="images/image048.png" width="50%">
+
+13.	Now click on “Add” to add a conda environment:
+
+<img src="images/image049.png" width="50%">
+
+14.	Create a new environment from the powerai16.yml file you created, then click “Add”:
+
+<img src="images/image050.png" width="50%">
+
+15.	Watch as your environment gets created.
+
+
+
+
+
+
+
+
+
+
 
 
 
