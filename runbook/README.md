@@ -92,3 +92,12 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 ![](images/image019.png)
 
+6.	Click Apply to commit the changes.
+
+
+## Step 3: Configure the Consumer
+
+1.	At the OS level, as root, on all nodes, create an OS group and user for the OS execution user: 
+ *	groupadd demoexec
+ *	useradd -g demoexec -m demoexec
+
