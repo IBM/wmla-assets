@@ -13,7 +13,7 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 2.	Open up the Resource Group configuration:
 
-![](images/image003.png)
+<img src="images/image003" width="40%">
 
 
 3.	Select the ComputeHosts resource group:
@@ -35,7 +35,9 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 ![](images/image007.png)
 
-8.	Call it GPUHosts
+8.	Call it GPUHosts:
+
+![](images/image008.png)
 
 9.	The number of slots should use the advanced formula and equals the number of GPUs on the systems by using the keywork ngpus:
 
@@ -134,6 +136,9 @@ This guide also contains the tests that Lab Services performs in order to declar
 ![](images/image026.png)
 
 11.	Your “Anaconda3-DemoConsumer” should now appear as a child of “DemoConsumer”.
+
+
+## Step 4: Create a user
 
 
 
