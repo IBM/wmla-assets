@@ -76,16 +76,16 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 3.	Select the “Data Scientist” role and duplicate it by clicking the duplicate button:
 
-![](images/image016.png)
+![](images/image017.png)
 
 4.	Call the new role “Chief Data Scientist”:
 
-![](images/image017.png)
+![](images/image018.png)
 
 5.	Select the “Chief Data Scientist” role and add a couple privileges: 
-  a.	Conductor -> Spark Instance Groups -> Control
-  b.	Ego Services -> Services -> Control (exemplified below)
-  c.	Consumers and Resource Plans  -> Resource Plans -> View
+&nbsp;&nbsp;&nbsp;&nbsp;a.	Conductor -> Spark Instance Groups -> Control
+&nbsp;&nbsp;&nbsp;&nbsp;b.	Ego Services -> Services -> Control (exemplified below)
+&nbsp;&nbsp;&nbsp;&nbsp;c.	Consumers and Resource Plans  -> Resource Plans -> View
 
-![](images/image018.png)
+![](images/image019.png)
 
