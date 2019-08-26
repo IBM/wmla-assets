@@ -502,4 +502,8 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 ## Exercises / Tests
 
-(To be completed)
+### Exercise 1: Submitting a spark-based workload
+
+This first session instructs you on how to access the conductor cluster, log onto it, locate the spark instance group and submit an application.
+
+#### Downloading the test code
