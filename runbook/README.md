@@ -635,3 +635,57 @@ Conductor is able to manage Jupyter Notebooks within it and makes it easy to acc
 
 <img src="images/image103.png" width="50%">
 
+2.	You will see a list of your submitted applications, but also notice that there is a green button on the top right which reads “Open Notebook”, as shown in the figure below.
+
+<img src="images/image104.png" width="50%">
+
+3.	Click on the “Open Notebook” pane. In case you have more than one Jupyter instance available to you, Conductor shows you the list of the available ones. For this exercise, in case you have more than one, select the Jupyter 5.4.0 one from instance group Notebook-DemoConsumer.
+
+<img src="images/image105.png" width="50%">
+
+4.	Once you open your notebook, notice that a new browser window opens. Its URL points to the compute node where your Jupyter instance is running along with a port number.
+
+<img src="images/image106.png" width="50%">
+
+5.	Log on with the username and password you’ve been using for Conductor.
+
+6.	Once you open it, you should see an interface such as the one below.
+
+<img src="images/image107.png" width="50%">
+
+7.	Download an example notebook from https://ibm.box.com/shared/static/v5jk857igxd7s5u71oya57pvlfthrew8.ipynb and save it to your workstation.
+
+8.	Upload that example notebook to files list. Click the “Upload button” and upload it to Jupyter.
+
+<img src="images/image108.png" width="50%">
+
+9.	Don’t forget to click the upload button, or your notebook won’t be sent to Jupyter.
+
+<img src="images/image109.png" width="50%">
+
+10.	Click on your notebook to open it, then run through it. 
+
+<img src="images/image110.png" width="50%">
+
+Notice: if you’re behind a proxy or your system has no access to the internet, call out to the instructor for instructions.
+
+The notebook itself uses the MNIST dataset (images of numbers) to create a neural network, train it with that dataset, test its trained accuracy, and then infer on some additional images. Understanding the algorithm on its own is not part of the scope of this exercise. The goal is simply to have you open and use a notebook.
+
+11.	Once done running the notebook, go back to Jupyter’s main interface by clicking on the Jupyter logo:
+
+<img src="images/image111.png" width="50%">
+
+12.	Turn off your notebook kernel by selecting the notebook and clicking on “Shutdown”:
+
+<img src="images/image112.png" width="50%">
+
+13.	Now, create a new notebook instance by following “New -> Python3” on the drop-down box on the right:
+
+<img src="images/image113.png" width="50%">
+
+14.	Feel free to test anything you wish in there, such as importing diverse WML-CE frameworks such as tensorflow, torch, caffe, and as well as RAPIDS frameworks such as cudf and cuml.
+
+<img src="images/image114.png" width="50%">
+
+Congratulations, you have completed exercise 2! Feel free to upload notebooks of your own into your Jupyter environment and play around with them.
+
