@@ -597,3 +597,39 @@ You can also submit a program by navigating the Web Interface through “Workloa
 
 END of the pi.py exercise. But keep going, we’re not done just yet :-D
 
+19.	Let’s now submit a wordcount.py application that counts how many times a given word appears on a file. The application you’ll submit is called wordcount.py and uses the text.txt file as an argument. Go back to step 10 to open the application submission window. This time, fill it out with two arguments: the full path of where your wordcount.py file is on shared storage and the full path of where your text.txt file is on shared storage:
+
+<img src="images/image097.png" width="50%">
+
+20.	Submit the application and keep clicking on the “refresh” button. Notice how many CPU slots it uses, but also notices that it doesn’t use any GPU slots.
+
+<img src="images/image098.png" width="50%">
+
+21.	Once finished, click on the application link and check the output. Feel free to download the full standard output if you wish.
+
+<img src="images/image099.png" width="50%">
+
+Finally, for this first part of the exercise guide, you’ll run the GPU version of the wordcount example. 
+
+The application name is now wordcount_gpu.py, and it requires two arguments: the first is the text file and the second is an *UNEXISTING* output directory where the result will be sent to. This program does not output to standard output.
+
+22. Go back to step 10 and this time input the full path to the wordcount_gpu.py file, the full path to the text.txt file, and the full path to the output directory. Remember, they all need to be on the shared filesystem.
+
+<img src="images/image100.png" width="50%">
+
+23.	After submitting your application, keep clicking on the “refresh” button and check how many slots it uses. Notice that this time this application will consume GPU slots.
+
+<img src="images/image101.png" width="50%">
+
+24. Compare the python code between wordcount.py and wordcount_gpu.py to see how wordcount_gpu.py is requesting spark for a GPU resource. Remember, it’s up to your code to request for a GPU slot in the cluster.
+
+Congratulations! You’re done with the first exercise! Feel free to play around and try to submit other spark-based applications you may have handy.
+
+### Exercise 2: Using Jupyter Notebooks in Conductor
+
+Conductor is able to manage Jupyter Notebooks within it and makes it easy to access them. For the sake of this exercise, we’ll open Jupyter, upload a notebook to it and run it.
+
+1.	First, access the Conductor web interface and follow the panes “Workload” -> Spark -> My Applications and Notebooks”, as seen below.
+
+<img src="images/image102.png" width="50%">
+
