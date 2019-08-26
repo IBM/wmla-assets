@@ -507,3 +507,34 @@ This guide also contains the tests that Lab Services performs in order to declar
 This first session instructs you on how to access the conductor cluster, log onto it, locate the spark instance group and submit an application.
 
 #### Downloading the test code
+
+1.	Go to https://ibm.box.com/s/wnkyp42a7yxnq3zm3aji4icad7q014qy and download the file spark_apps.tar.gz
+
+2.	Send file spark_apps.tar.gz to /cwsshare/demoexec/ on either node of your cluster. Use your favorite SCP client to do so. Remember to use “demoexec” as the user when transferring the file.
+
+3.	As demoexec, uncompress the file:
+*	cd /cwsshare/demoexec/            (read NOTE below)
+*	chown demoexec:demoexec spark_apps.tar.gz   (in case you copied as some other user)
+*	tar xvzf spark_apps.tar.gz
+
+NOTE: if you’re running this in a lab environment with more students, create a folder for yourself within /cwsshare/demoexec/ and work from within it.
+
+#### Connecting to the Conductor cluster
+
+Conductor’s interface is reached by connecting your browser (chrome / firefox / IE) to its Web User Interface. Follow the next few steps in order to accomplish it.
+
+4.	Open your browser and use the URL provided to you to access your Conductor cluster.  You should see a logon screen similar to what’s displayed below.
+
+<img src="images/image084.png" width="50%">
+
+5.	If your Conductor cluster uses SSL certificates and you’re getting SSL certificate errors, please call out to the instructor to get that fixed before you continue. A misconfigured SSL environment between your laptop and the cluster might cause you trouble down the road. The SSL certificate is under /opt/ibm/spectrumcomputing/security named cacert.pem. In order to install that certificate into your browser, download it do your workstation (use scp, filezilla, which ever scp client you have) and follow the instructions from step 7 of this link: 
+*	https://www.ibm.com/support/knowledgecenter/en/SSZU2E_2.3.0/manage_cluster/security_https_pmc_enabling_dev.html
+
+
+6.	Log onto the web interface by using the credentials provided to you.
+
+7.	Once logged on, navigate to the list of instance groups by following the path: Workloads -> Spark -> Spark Instance Groups
+
+<img src="images/image085.png" width="50%">
+
+
