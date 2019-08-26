@@ -689,3 +689,171 @@ The notebook itself uses the MNIST dataset (images of numbers) to create a neura
 
 Congratulations, you have completed exercise 2! Feel free to upload notebooks of your own into your Jupyter environment and play around with them.
 
+### Exercise 3: Using datasets and models in DLI
+
+This third session instructs you on how to navigate the DLI interface to import datasets, models and train those. It also guides you through hyperparameter search.
+
+1.	Download the models and datasets from https://ibm.box.com/shared/static/ltjccubutz5526d9yn3py3ejhoejurws.gz to your workstation.
+
+The official web-site for the models is https://git.ng.bluemix.net/ibmconductor-deep-learning-impact . This link contains many more models for the supported frameworks.
+
+2.	Copy the tarball to /cwsshare/demoexec on either node. Use demoexec as the user. Then, uncompress the tarball. Read the NOTE below if you’re using this environment as a multi-student Lab.
+
+*	chown demoexec:demoexec models_datasets.tar.gz
+*	tar xvzf models_datasets.tar.gz
+
+This creates a folder named /cwsshare/demoexec/dli_datasets_models.
+
+NOTE: if you’re working with an environment with lots of other students, create a folder for yourself only, such as /cwsshare/demoexec/student then place and use the tarball inside it.
+
+3.	Log onto Conductor and use the Workload tab to navigate to Deep Learning as shown below:
+
+<img src="images/image115.png" width="50%">
+
+4.	You’ll get to the DLI interface where you can work with datasets and models:
+
+<img src="images/image116.png" width="50%">
+
+Use the location of the datasets and models provided to you by your instructor. There’s a dataset and a model for Cifar10 for both Tensorflow and Caffe. Familiarize yourself with the location of these files in the filesystem. In this example, step 2 instructed you to place those under /cwsshare/demoexec/dli_datasets_models.
+
+5.	User egoadmin has to be part of the execution user group and have proper permission to read the models and datasets. On all nodes, as root, run:
+
+*	usermod -a -G demoexec,<other groups egoadmin already belongs to> egoadmin
+
+6.	Once in the datasets tab, click on “New” and select the proper dataset format. For this first piece of the exercise, we’ll be using Tensorflow Records:
+
+<img src="images/image117.png" width="50%">
+
+7.	Fill out the dataset information with meaningful names for the dataset name. Then make sure you select the DLI-DemoConsumer instance group to work with, and finally fill out the information for the training and test folders accordingly:
+
+<img src="images/image118.png" width="50%">
+
+8.	Once the dataset is created, you should see something like this:
+
+<img src="images/image119.png" width="50%">
+
+9.	Now, go to the “Models” tab and import the corresponding Cifar10 model for Tensorflow. Click on “New” and then “Add location”:
+
+<img src="images/image120.png" width="50%">
+
+10.	Input the directory folder where the Cifar10 Tensorflow model is, and make sure you select “Tensorflow” as the framework. Use a meaningful name for the model location.
+
+<img src="images/image121.png" width="50%">
+
+11.	Click on add as shown above, then on Next:
+
+<img src="images/image122.png" width="50%">
+
+12. At this step, give your model a name (use something meaningful), select the training engine you’d like to use (hint: start with single node for testing purposes), and select the dataset you created in the previous steps. Select your hyperparameters value, use a number of iterations that makes sense to a test (more people might be using the cluster  ) and use a batch size of 10. Once complete, click “Add”.
+
+<img src="images/image123.png" width="50%">
+
+13.	Select your model and click on “Train”:
+
+<img src="images/image124.png" width="50%">
+
+14.	Select the number of workers and GPUs per worker, then click on “Start training”:
+
+<img src="images/image125.png" width="50%">
+
+15.	To check how your training is going, click on your model, then go to the “training” tab, and check the “Insights”:
+
+<img src="images/image126.png" width="50%">
+
+16.	In case you selected a set of hyperparameters that is not optimal, Conductor is able to suggest some simple optimizations even before the training ends. These are shown if you click on the red “Optimize” button as show in the previous figure. Clicking on it reveals the optimization suggestion:
+
+<img src="images/image127.png" width="50%">
+
+17.	Once your model finishes, check the accuracy, loss and other charts.
+
+<img src="images/image128.png" width="50%">
+
+18.	As a next step, try running a hyperparameter search on your model. Click on the hyperparameter tuning tab, and then “New”:
+
+<img src="images/image129.png" width="50%">
+
+19.	Select the algorithm type you’d like to use and choose a value for the other properties. Then, scroll down and select which hyperparameters will be part of this search (learning rate, optimizer). Then click on “start tuning”.
+
+<img src="images/image130.png" width="50%">
+
+20.	Once your hyperparameter search finishes, click on “More” and then navigate to the “best” tab:
+
+<img src="images/image131.png" width="50%">
+
+21.	You may then decide to update the current model with the best values found or copy those onto a new model.
+
+<img src="images/image132.png" width="50%">
+
+22. Now try to repeat the exercise using the Caffe LMDB dataset and the Caffe model for Cifar. Go to the datasets tab as explained on step 6, click “New” and this time select LMDB as the dataset source. Then fill out the information required. Use the DLI-DemoConsumer SIG and point to your dataset’s train and test folder, similarly as to what’s shown in the figure below.
+
+<img src="images/image133.png" width="50%">
+
+23. Once the dataset gets created, go to the Models tab and create a new model by clicking on “New”. Click “Add location” and fill out the required info, including the path to your model. Make sure the framework selected says “Caffe”.
+
+<img src="images/image134.png" width="50%">
+
+24. Select your model source and click on “Next” to proceed:
+
+<img src="images/image135.png" width="50%">
+
+25. On the following screen, give your model a name, select the training engine, select the dataset you created for cifar using the LMDB data, select your hyperparameters, and click “Add”. For batch size, use 10. For number of iterations, mind that the more you use the longer it takes for the training to complete, but the better the accuracy might be.
+
+<img src="images/image136.png" width="50%">
+
+26. Next, select your model and click on “Train”
+
+<img src="images/image137.png" width="50%">
+
+27. Depending on whether your model uses a single node engine or a distributed training engine, select the proper parameters and then start your training.
+
+<img src="images/image138.png" width="50%">
+
+28. To check the status of your training, click on your model, then on the “Training” tab, then on “Insights”:
+
+<img src="images/image139.png" width="50%">
+
+29. Now we’re going to run a Pytorch model with the Elastic Distributed Search SIG DLI-EDT-DemoConsumer. Go to the datasets tab as explained on step 6, click “New” and this time select “Any” as the data type
+
+<img src="images/image140.png" width="50%">
+
+25. Next, fill in the information as follows:
+	
+*	Dataset name: a meaningful name of your choice
+*	Create in Spark Instance Group: DLI-EDT-DemoConsumer
+*	Type: COPY
+*	Training folder: /cwsshare/demoexec/dli_datasets_models/datasets/cifar-Pytorch-Any/train_db
+* Test folder: /cwsshare/demoexec/dli_datasets_models/datasets/cifar-Pytorch-Any/test_db
+
+Then click the “Create” button:
+
+<img src="images/image141.png" width="50%">
+
+26. Now import the Cifar1o Pytorch model into DLI. Go to the “Models” tab and click “New”. Then add the location of the pytorch models as shown below using:
+
+*	Framework: Pytorch
+*	Path: the path to the model (/cwsshare/demoexec/dli_datasets_models/models/Pytorch/cifar10)
+
+Then click on “Add”:
+
+<img src="images/image142.png" width="50%">
+
+
+27. Select the Pytorch model location and click on “Next”:
+
+<img src="images/image143.png" width="50%">
+
+28. Fill in the info:
+
+*	Model name:  Cifar10-Pytorch-Model-DemoUser
+*	Training engine: Elastic Distributed Training
+*	Training Dataset: Cifar10-Pytorch-DemoUser
+*	Choose whichever hyper parameters you want
+
+
+Then click on “Add”:
+
+<img src="images/image144.png" width="50%">
+
+29. Select the Pytorch model and click on “Train”:
+
+
