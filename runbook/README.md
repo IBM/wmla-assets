@@ -537,4 +537,63 @@ Conductor’s interface is reached by connecting your browser (chrome / firefox 
 
 <img src="images/image085.png" width="50%">
 
+8.	You should see a list of instance groups you might use. The exact ones vary from environment to environment, depending on the use cases set up by IBM for you. You should see a list similar to what’s shown below.
+
+<img src="images/image086.png" width="50%">
+
+This first exercise will focus only on the instance groups created for the sake of submitting spark batch jobs. The Notebook and DLI instance groups will be used at a later point in time.
+
+9.	Select the spark instance group by clicking on its name. Once you click on the instance group, you should see something similar to:
+
+<img src="images/image087.png" width="50%">
+
+10.	Click on the applications tab of your instance group. You should see something similar to what’s shown below.
+
+<img src="images/image088.png" width="50%">
+
+11.	Click on the “Run application” button, and you should be given the prompt below:
+
+<img src="images/image089.png" width="50%">
+
+You’ll be submitting a simple python spark code that estimates the value of pi. 
+
+For illustrating this guide, the author placed the pi.py program under /cwsshare/demoexec/spark_apps/pi.py. So, he used this full path in the “Other options” screen, as shown below.
+
+<img src="images/image090.png" width="50%">
+
+12.	Click on the submit button
+
+This brings you back to the previous screen with the list of running, submitted, finished or failed applications. Locate your application and check its status. Use the refresh button at the top every one or two seconds to check the status of your application in real time.
+
+<img src="images/image091.png" width="50%">
+
+13.	Once your job finishes, click on it to open an overview of it. You should see something similar to the figure below.
+
+<img src="images/image092.png" width="50%">
+
+Any spark program that sends anything to the standard output will have the last few lines of it displayed as shown above. Our pi.py program last statement is printing the result for estimating pi. As you can see above, the result was 3.149240. Remember, this program is just a spark example that uses spark to estimate the value of pi. The correct value should be closer to 3.1415926535897932….
+
+If you click on the download arrow to the right of the standard output, you can download the whole standard output to your laptop.
+
+14. Click on the “Resource Usage” tab if you’re interested in checking how many resources your program used.
+
+<img src="images/image093.png" width="50%">
+
+You can also submit a program by navigating the Web Interface through “Workload -> Spark -> My applications and Notebooks”, as shown below:
+
+<img src="images/image094.png" width="50%">
+
+15.	Now try to schedule an application to run at any given time. Go back to step 10, but this time click on the “Application Schedules” tab, as shown below.
+
+<img src="images/image095.png" width="50%">
+
+16.	Use the “Schedule application” button to schedule the pi.py application to run. Give it a name and select a time for it to run in a few minutes from now, then click next.
+
+<img src="images/image096.png" width="50%">
+
+17.	Fill out the path to the pi.py application similarly to step 11.
+
+18.	After your application runs, it will be accessible back in the “Submitted Applications” tab. Click on that job and validate on the right-column info that it was the one you scheduled under the name you used for it (in the  example here, Scheduled-Pi).
+
+END of the pi.py exercise. But keep going, we’re not done just yet :-D
 
