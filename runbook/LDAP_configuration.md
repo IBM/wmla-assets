@@ -26,9 +26,11 @@ The LDAP data generated when you create a schema, a user or a group should be pe
 
 ## Create LDIF File
 Create a LDIF file containing LDAP entries for groups and users. The default password set in ldif file for users (LOB{x}_user{y}) is passw0rd. Passwords are SSHA encrypted and you can set your own passwords by copying the output of the following command:
+
 `# slappasswd -h {SSHA} -s <password>`
 
-If slappasswd utility is missing on your system, you can use the one provided by the LDAP docker image.
+If `slappasswd` utility is missing on your system, you can use the one provided by the LDAP docker image.
+
 `# docker run --rm siji/openldap-ppc64le:2.4.42 slappasswd -h {SSHA} -s <password>`
 
 
@@ -140,23 +142,24 @@ To verify the server is running well and LDAP entries were correctly imported, r
 `# ldapsearch -x -h 10.3.64.216 -b 'dc=mycluster,dc=wmla' '(objectclass=*)'|grep dn|grep wmla`
 ## Enable LDAP user authentication on all the wmla cluster nodes. 
 
-Repeat the 2 steps below for all the nodes of your WMLA cluster
+Repeat the steps below for all the nodes (master and compute) of your WMLA cluster
 
 `# yum -y install openldap-clients nss-pam-ldapd`<br>
-`# authconfig --enableldap --enableldapauth --enablemd5 --ldapserver=10.3.64.216 --ldapbasedn="dc=mycluster,dc=wmla" --enablemkhomedir –update`
+`# authconfig --enableldap --enableldapauth --enablemd5 --ldapserver=10.3.64.216 --ldapbasedn="dc=mycluster,dc=wmla" --enablemkhomedir –update`<br>
 `# echo "session     optional      pam_mkhomedir.so" >> /etc/pam.d/password-auth` 
 
 
 ## Verify LDAP client is enabled on the cluster nodes
 
-Check if you can list LDAP users from any nodes of the WMLA cluster LDAP users should be in the user list. If not going to the troubleshooting section
-For example:
-`# getent passwd | grep LOB`
+Check if you can list LDAP users from any nodes of the WMLA cluster LDAP users should be in the user list. If not going to the troubleshooting section<br>
+For example:<br>
+`# getent passwd | grep LOB`<br>
+~~~~
 LOB1_user1:*:1011:500:LOB1_user1:/home/lob1user1:/bin/bash
 LOB1_user2:*:1012:500:LOB1_user2:/home/lob1user2:/bin/bash
 LOB2_user1:*:1021:500:LOB2_user1:/home/lob2user1:/bin/bash
 LOB2_user2:*:1022:500:LOB2_user2:/home/lob2user2:/bin/bash
-
+~~~~
 
 Check also remote access on different nodes of the cluster with LDAP users
 
