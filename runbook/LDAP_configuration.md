@@ -186,8 +186,20 @@ EGO_SEC_PLUGIN=sec_ego_pam_default
 EGO_SEC_CONF=/opt/ibm/spectrumcomputing/kernel/conf,0,INFO,/opt/ibm/spectrumcomputing/kernel/log
 ~~~~
 
-2) Start up the cluster as usual (run 'egosh ego start' on all the wmla host)
-3) Check if the users are correctly retrieved by wmla
-#. /opt/ibm/spectrumcomputing/profile.platform 
-# egosh user list
+2) Start up the cluster as usual (run `egosh ego start` on all the wmla hosts)
+3) Check if the users are correctly retrieved by wmla with command
+
+`# egosh user list`
+
+~~~~
+Admin
+egoadmin
+Guest
+lob1_admin     lob1_admin
+lob1_user1     lob1_user1
+lob1_user2     lob1_user2
+lob2_admin     lob2_admin
+lob2_user1     lob2_user1
+lob2_user2     lob2_user2
+~~~~
 
