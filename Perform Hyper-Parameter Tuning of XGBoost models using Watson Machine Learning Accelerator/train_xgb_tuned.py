@@ -7,11 +7,11 @@ params = {
   'tree_method': 'gpu_hist',
   'max_bin': 64,
   'objective': 'binary:logistic',
-  'learning_rate': 0.6181877638234499,
-  'num_rounds': 491,
-  'max_depth':13,
-  'lambda':51762.958983821656,
-  'colsample_bytree':0.33,
+  'learning_rate': 0.45578172714493875,
+  'num_rounds': 773,
+  'max_depth':14,
+  'lambda':60621.289402472976,
+  'colsample_bytree':0.84,
 }
 
 # Load data
