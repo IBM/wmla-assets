@@ -162,3 +162,16 @@ $> egosh service start dlpd
 * Click on “Consumer User” > “wml-user” > “wml-ig” and “wml-ig-edt” and click “Apply”
 
 <img src="OneAI_install_images/image017.jpg" width="50%">
+
+#### Step 13. Enable EGO_ENABLE_CONSUMER_LEVEL_EXCLUSIVE. In Master host command line interface, do the following:
+
+* Open the $EGO_CONFDIR/ego.conf file for editing.
+* `EGO_ENABLE_CONSUMER_LEVEL_EXCLUSIVE=Y`
+* Save your changes
+* Restart the cluster:
+    ```
+    egosh service stop all
+    egosh ego shutdown
+    egosh ego start all
+    ```
+         
