@@ -5,5 +5,5 @@ So the below steps outlined are followed based on this assumption.
 
 ##  Installation/Configuration of Watson Machine Learning 2.0 
 
-1. Download the IBM Watson Machine Learning add-on Evaluation software (wml_module.tar) from the <IBM Software Repository>. This downloadable package is around 16GB in size and requires IBM ID to download.
+1.  Download the IBM Watson Machine Learning add-on Evaluation software (wml_module.tar) from the <IBM Software Repository>. This downloadable package is around 16GB in size and requires IBM ID to download.
 
