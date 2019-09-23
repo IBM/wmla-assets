@@ -76,47 +76,47 @@ $> egosh service start dlpd
     ```
 * Navigate to the Watson Machine Learning Accelerator GUI and logon.
 
-<img src="OneAI_install_images/image002.png" width="50%">
+<img src="OneAI_install_images/image002.jpg" width="50%">
 
 #### Step 8. Create GPU resource group.
 
 * Click on “Resources”> “Resource Planning (Slot)” > “Resource Groups”
 
-<img src="OneAI_install_images/image003.png" width="50%">
+<img src="OneAI_install_images/image003.jpg" width="50%">
 
 * Click on “Global Actions”> “Create a Resource Group”
 
-<img src="OneAI_install_images/image004.png" width="50%">
+<img src="OneAI_install_images/image004.jpg" width="50%">
 
 * Fill in the “Resource group name”, “Advanced Formula” to “ngpus” and then click “Create”
 
-<img src="OneAI_install_images/image005.png" width="50%">
+<img src="OneAI_install_images/image005.jpg" width="50%">
 
 #### Step 9. Create wml-ig.
 
 * Click on “Workload”> “Spark” > “Spark Instance Groups”
 
-<img src="OneAI_install_images/image006.png" width="50%">
+<img src="OneAI_install_images/image006.jpg" width="50%">
 
 * Click on “Create a Spark instance Group”
 
-<img src="OneAI_install_images/image007.png" width="50%">
+<img src="OneAI_install_images/image007.jpg" width="50%">
 
 *	Click on “Templates”
 
-<img src="OneAI_install_images/image008.png" width="50%">
+<img src="OneAI_install_images/image008.jpg" width="50%">
 
 * Click on “wmla-ig-template-2-3-1 use”
 
-<img src="OneAI_install_images/image009.png" width="50%">
+<img src="OneAI_install_images/image009.jpg" width="50%">
 
 * Fill in “Instance group name” to “wml-ig”, “Spark deployment directory”, “Execution user for instance group” to “wml-user”. Ensure “Spark deployment directory” is accessible to “wml-user” across all nodes.
 
-<img src="OneAI_install_images/image010.png" width="50%">
+<img src="OneAI_install_images/image010.jpg" width="50%">
 
 * Select the GPU resource group you just created in step 8 of this tutorial and click “Create and Deploy Instance Group”
 
-<img src="OneAI_install_images/image011." width="50%">
+<img src="OneAI_install_images/image011.jpg" width="50%">
 
 
 
