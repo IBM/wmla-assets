@@ -45,18 +45,20 @@ So the below steps outlined are followed based on this assumption.
 
 Get DLI_JWT_SECRET_KEY from Watson Studio Local and save DLI_JWT_SECRET_KEY to a shared file system accessible across all nodes. You would need to export DLI_JWT_SECRET_KEY file path when installing Watson Machine Learning Accelerator 1.2.1.
 
-1. `$>wget --no-check-certificate https://<watson_studion_local_host>:<ws_port>/auth/jwtcert`
-2. `$>openssl x509 -pubkey -in jwtcert -noout >ws_local.pem`
+1. `$> wget --no-check-certificate https://<watson_studion_local_host>:<ws_port>/auth/jwtcert`
+2. `$> openssl x509 -pubkey -in jwtcert -noout >ws_local.pem`
 3.	Edit dlpd.conf file ($EGO_TOP/dli/conf/dlpd/dlpd.conf) and update DLI_JWT_SECRET_KEY value to the location of newly generated ws_local.pem file
 
      *	Copy and paste DLI_JWT_SECRET_KEY to /shared_nfs4/icp4d_key.pem
      *  `#chmod 777 /shared_nfs4/icp4d_key.pem`
 4. restart dlpd service
-```source /opt/wmla/ego_top/profile.platform
+```
+$> source /opt/wmla/ego_top/profile.platform
 $> egosh user logon -u Admin -x Admin
-$>egosh service stop dlpd
-$>sleep 5
-$>egosh service start dlpd```
+$> egosh service stop dlpd
+$> sleep 5
+$> egosh service start dlpd
+```
 
 
 
