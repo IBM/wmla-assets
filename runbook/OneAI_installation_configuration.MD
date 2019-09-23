@@ -34,3 +34,29 @@ So the below steps outlined are followed based on this assumption.
 
 * Download the IBM Watson Machine Learning Accelerator Evaluation software from the IBM Software Repository. This is a 4.9 GB download and requires an IBM ID.
 
+#### Read and follow "Set up your system" and make sure your system meets all the perquisites before you proceed to install Watson Machine Learning Accelerator 1.2.1. 
+
+* DLI_SHARED_FS is supported in NFS3. You would need to export DLI_SHARED_FS when installing Watson Machine Learning Accelerator 1.2.0.
+* DLI_RESULT_FS and DLI_DATA_FS are supported in NFS4. You would need to export DLI_RESULT_FS and DLI_DATA_FS when installing Watson Machine Learning Accelerator 1.2.1.
+
+#### Step 4. Install Watson Machine Learning Accelerator 1.2.1 using the instructions given in the IBM Knowledge Center. 
+
+#### Step 5. Configuration of Watson Machine Learning Accelerator with Watson Studio token authentication 
+
+Get DLI_JWT_SECRET_KEY from Watson Studio Local and save DLI_JWT_SECRET_KEY to a shared file system accessible across all nodes. You would need to export DLI_JWT_SECRET_KEY file path when installing Watson Machine Learning Accelerator 1.2.1.
+
+1. `$>wget --no-check-certificate https://<watson_studion_local_host>:<ws_port>/auth/jwtcert`
+2. `$>openssl x509 -pubkey -in jwtcert -noout >ws_local.pem`
+3.	Edit dlpd.conf file ($EGO_TOP/dli/conf/dlpd/dlpd.conf) and update DLI_JWT_SECRET_KEY value to the location of newly generated ws_local.pem file
+
+     *	Copy and paste DLI_JWT_SECRET_KEY to /shared_nfs4/icp4d_key.pem
+     *  `#chmod 777 /shared_nfs4/icp4d_key.pem`
+4. restart dlpd service
+```source /opt/wmla/ego_top/profile.platform
+$> egosh user logon -u Admin -x Admin
+$>egosh service stop dlpd
+$>sleep 5
+$>egosh service start dlpd```
+
+
+
