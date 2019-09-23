@@ -118,5 +118,30 @@ $> egosh service start dlpd
 
 <img src="OneAI_install_images/image011.jpg" width="50%">
 
+#### Step 10: Create wml-ig-edt.
+
+* Click on “Workload”> “Spark” > “Spark Instance Groups”
+
+<img src="OneAI_install_images/image012.jpg" width="50%">
+
+* Click on "New"
+<img src="OneAI_install_images/image013.jpg" width="50%">
+
+* Click on “Templates”
+
+<img src="OneAI_install_images/image014.jpg" width="50%">
+
+* Click on “wmla-ig-edt-template-2-3-1 use”
+
+<img src="OneAI_install_images/image015.jpg" width="50%">
+
+* Fill in “Instance group name” to “wml-ig-edt”, “Spark deployment directory”, “Execution user for instance group” to “wml-user”. Ensure “Spark deployment directory” is accessible to “wml-user” across all nodes.
+
+<img src="OneAI_install_images/image016.jpg" width="50%">
+
+* Select the GPU resource group you just created in step 8 of this tutorial and click “Create and Deploy Instance Group”
+
+<img src="OneAI_install_images/image017.jpg" width="50%">
+
 
 
