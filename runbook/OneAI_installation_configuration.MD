@@ -67,4 +67,6 @@ $> egosh service start dlpd
 #### Step 7. Ensure that GPU is enabled for deep learning workloads. If you do not have GPU enabled, enable GPU by running one of these scripts on the master host command line interface:
 
 * To run with user interaction: 
-                          # $EGO_TOP/conductorspark/2.3.0/etc/gpuconfig.sh enable
+    ```
+    $EGO_TOP/conductorspark/2.3.0/etc/gpuconfig.sh enable
+    ```
