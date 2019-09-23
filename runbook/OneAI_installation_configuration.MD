@@ -222,9 +222,13 @@ $> egosh service start dlpd
 
 
       Example:
-      `/updateWMLClusterdetails.sh 10.15.112.32 9243 wml-ig wml-ig-edt 169.224.121.54`
+      ```
+      /updateWMLClusterdetails.sh 10.15.112.32 9243 wml-ig wml-ig-edt 169.224.121.54
+      ```
       or:
-      `./updateWMLClusterdetails.sh some-wmla-host.ibm.com 9243 wml-ig wml-ig-edt some-ws-host.ibm.com`
+      ```
+      ./updateWMLClusterdetails.sh some-wmla-host.ibm.com 9243 wml-ig wml-ig-edt some-ws-host.ibm.com
+      ```
 
 
 
