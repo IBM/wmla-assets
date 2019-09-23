@@ -11,5 +11,5 @@ So the below steps outlined are followed based on this assumption.
 
 3. Now we are all set deploy the IBM Watson Machine Learning add-on package. Go to /ibm/InstallPackage/components directory and execute the below command
 
-        ```cd /ibm/InstallPackage/components```
+        `cd /ibm/InstallPackage/components`
 
