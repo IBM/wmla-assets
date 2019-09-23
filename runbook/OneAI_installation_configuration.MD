@@ -15,3 +15,9 @@ So the below steps outlined are followed based on this assumption.
         ./deploy.sh /ibm/InstallPackage/modules/ wml_module.tar
    It asks for License acceptance and once you accept the license terms the above deployment might take around 30 minutes to complete.
 
+4. Post successful IBM Watson Machine Learning add-on package, execute following command to verify if the add-on package deployment was successful 
+        
+        helm list --tls | grep wml 
+   The above command will list the WML package with deployment Status (if its Successful it would display DEPLOYED).
+   
+<img src="OneAI_install_images/image001.png" width="50%">
