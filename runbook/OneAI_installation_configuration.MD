@@ -50,7 +50,7 @@ Get DLI_JWT_SECRET_KEY from Watson Studio Local and save DLI_JWT_SECRET_KEY to a
 3.	Edit dlpd.conf file ($EGO_TOP/dli/conf/dlpd/dlpd.conf) and update DLI_JWT_SECRET_KEY value to the location of newly generated ws_local.pem file
 
      *	Copy and paste DLI_JWT_SECRET_KEY to /shared_nfs4/icp4d_key.pem
-     *  `#chmod 777 /shared_nfs4/icp4d_key.pem`
+     *  `# chmod 777 /shared_nfs4/icp4d_key.pem`
 4. restart dlpd service
 ```
 $> source /opt/wmla/ego_top/profile.platform
@@ -60,5 +60,10 @@ $> sleep 5
 $> egosh service start dlpd
 ```
 
+#### Step 6. Create local OS user "wml-user” across all nodes. This will be the instance groups’ execution user. Create local OS user user where the name corresponds to the Watson Studio Local User who will submit workload.
+
+`useradd -m -u 20005 wml-user`
+
+#### Step 7. Ensure that GPU is enabled for deep learning workloads. If you do not have GPU enabled, enable GPU by running one of these scripts on the master host command line interface:
 
 
