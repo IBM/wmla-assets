@@ -27,10 +27,10 @@ So the below steps outlined are followed based on this assumption.
 
 ## Steps
 
-### Step 1. Install PowerAI 1.6.1 by following Knowledge Center
+#### Step 1. Install PowerAI 1.6.1 by following Knowledge Center
 
 
-### Step 2. Download IBM Watson Machine Learning Accelerator 1.2.1 Evaluation
+#### Step 2. Download IBM Watson Machine Learning Accelerator 1.2.1 Evaluation
 
 * Download the IBM Watson Machine Learning Accelerator Evaluation software from the IBM Software Repository. This is a 4.9 GB download and requires an IBM ID.
 
