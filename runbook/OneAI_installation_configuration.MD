@@ -116,7 +116,7 @@ $> egosh service start dlpd
 
 * Select the GPU resource group you just created in step 8 of this tutorial and click “Create and Deploy Instance Group”
 
-<img src="OneAI_install_images/image011.png" width="50%">
+<img src="OneAI_install_images/image011." width="50%">
 
 
 
