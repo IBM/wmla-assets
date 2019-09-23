@@ -141,7 +141,24 @@ $> egosh service start dlpd
 
 * Select the GPU resource group you just created in step 8 of this tutorial and click “Create and Deploy Instance Group”
 
+<img src="OneAI_install_images/image011.jpg" width="50%">
+
+#### Step 11. Create EGO user corresponding to all OS user created in step 6 of this tutorial
+
+* Click on “System & Services” > “Users” > “Accounts” 
+
 <img src="OneAI_install_images/image015.jpg" width="50%">
 
+* Click on “Global Actions” > “Create New User Account”
 
+<img src="OneAI_install_images/image016.jpg" width="50%">
 
+* Fill in the “User Name”, “Password” and click create
+
+#### Step 12. Step Assign the created EGO user consumer role for wml-ig and wml-ig-edt
+
+* Click on “System & Services” > “Users” > “Roles” 
+
+* Click on “Consumer User” > “wml-user” > “wml-ig” and “wml-ig-edt” and click “Apply”
+
+<img src="OneAI_install_images/image017.jpg" width="50%">
