@@ -12,4 +12,6 @@ So the below steps outlined are followed based on this assumption.
 3. Now we are all set deploy the IBM Watson Machine Learning add-on package. Go to /ibm/InstallPackage/components directory and execute the below command
 
         cd /ibm/InstallPackage/components
+        ./deploy.sh /ibm/InstallPackage/modules/ wml_module.tar
+   It asks for License acceptance and once you accept the license terms the above deployment might take around 30 minutes to complete.
 
