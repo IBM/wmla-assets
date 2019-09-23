@@ -190,3 +190,48 @@ $> egosh service start dlpd
 
 <img src="OneAI_install_images/image020.jpg" width="50%">
 
+* Set “Reclaim Grace Period” to “596 hours” in consumer level for wml-ig and for each child consumer belonging to wml-ig as shown below:
+
+<img src="OneAI_install_images/image021.jpg" width="50%">
+
+* Set “Reclaim Grace Period” to “120 seconds” in consumer level for wml-ig-edt as shown below:
+
+<img src="OneAI_install_images/image022.jpg" width="50%">
+
+#### Step 16. Configure GPU mode to exclusive across all nodes. In command line interface run:
+
+* `nvidia-smi -c 1` to set GPU mode to exclusive process mode
+* `nvidia-smi` command to ensure GPU mode is set to exclusive process mode
+* restart ego
+
+<img src="OneAI_install_images/image023.jpg" width="50%">
+
+#### Step 17:   Connect Watson Machine Learning with Watson Machine Learning Accelerator
+
+1. Access  Watson Machine Learning host (via SSH) on Master node
+
+2. `$> cd /ibm/InstallPackage/components/modules/wml`
+
+3. run `$> ./updateWMLClusterdetails.sh <wmla_host> <wmla_ port> <wmla_default_ig> <wmla_default_edt_ig> <wml_external host adress>`
+  where:
+  * <wmla _host> – is the ip address that can be accessed from WML cluster in WMLA cluster master node
+  * <wmla_ port> - the port exposed by WMLA for DLI rest API. Usually this is 9243
+  * <wmla_default_ig> - the instance group name created in WMLA for regular jobs. Usually this value is wml-ig
+  * <wmla_default_edt_ig> - ihe instance group created in WMLA for Elastic Distributed Training jobs. Usually this value is wml-ig-edt
+  * <wml_external_host> - The external host name or IP address of WML that can be accessed from WMLA.(This is the same as Watson Studio host name)
+
+
+      Example:
+      `/updateWMLClusterdetails.sh 10.15.112.32 9243 wml-ig wml-ig-edt 169.224.121.54`
+      or:
+      `./updateWMLClusterdetails.sh some-wmla-host.ibm.com 9243 wml-ig wml-ig-edt some-ws-host.ibm.com`
+
+
+
+
+
+
+
+
+
+
