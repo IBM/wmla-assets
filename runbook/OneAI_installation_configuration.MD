@@ -10,5 +10,6 @@ So the below steps outlined are followed based on this assumption.
 2. You can download the Watson Machine Learning software add-on package to the /ibm/InstallPackage/modules directory. On successful download the file exists as /ibm/InstallPackage/modules/wml_module.tar  
 
 3. Now we are all set deploy the IBM Watson Machine Learning add-on package. Go to /ibm/InstallPackage/components directory and execute the below command
+
         ```cd /ibm/InstallPackage/components```
 
