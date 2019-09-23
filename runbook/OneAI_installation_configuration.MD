@@ -174,4 +174,19 @@ $> egosh service start dlpd
     egosh ego shutdown
     egosh ego start all
     ```
-         
+#### Step 14. Enable the following so that for non-EDT jobs, if a job allocates 4 GPUs then it allocates the whole host exclusively. Configure wml-ig and wml-ig-edt GPU resource plan.
+ 
+* Click on “Resource”> “Resource Group Planning (Slot)” > “Resource Plan”
+
+<img src="OneAI_install_images/image018.jpg" width="50%">
+
+* Configure resource plan for wml-ig and wml-ig-edt as following:
+
+<img src="OneAI_install_images/image019.png" width="50%">
+
+#### Step 15. Set “Reclaim Grace Period” for wml-ig and wml-ig-edt.
+
+* Click on “Resources”> “Consumers”
+
+<img src="OneAI_install_images/image020.jpg" width="50%">
+
