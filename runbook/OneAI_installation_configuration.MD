@@ -137,7 +137,7 @@ $> egosh service start dlpd
 
 <img src="OneAI_install_images/image013.jpg" width="50%">
 
-* Fill in “Instance group name” to “wml-ig-edt”, “Spark deployment directory”, “Execution user for instance group” to “wml-user”. Ensure “Spark deployment directory” is accessible to “wml-user” across all nodes.
+* Fill in “Instance group name” to “wml-ig-edt”, “Spark deployment directory”, “Execution user for instance group” to “wml-user”. Ensure “Spark deployment directory” is accessible to “wml-user” across all nodes.   Please make sure the parent directory "/opt/wmla-ig" pre-exists and "wml-user" has write access to this parent directory.
 
 <img src="OneAI_install_images/image014.jpg" width="50%">
 
@@ -188,6 +188,17 @@ $> egosh service start dlpd
 
 <img src="OneAI_install_images/image019.png" width="50%">
 
+There is known issue -> https://www.ibm.com/support/knowledgecenter/en/SSFHA8_1.2.0/release_note_s/known_issues_limitations.html
+
+  ```
+Cluster fails to respond when saving changes to a Spark instance group that was created using the wmla-ig-template-2-3-1 template
+    When configuring a Spark instance group and setting EGO_ENABLE_CONSUMER_LEVEL_EXCLUSIVE=Y in the ego.conf file, the following error message is displayed when saving your changes: Error 500: javax.servlet.ServletException: The cluster is not responding.
+
+    To resolve this issue, try saving the resource group plan again.
+  ```
+
+
+
 #### Step 15. Set “Reclaim Grace Period” for wml-ig and wml-ig-edt.
 
 * Click on “Resources”> “Consumers”
@@ -208,7 +219,7 @@ $> egosh service start dlpd
 * `nvidia-smi` command to ensure GPU mode is set to exclusive process mode
 * restart ego
 
-<img src="OneAI_install_images/image023.jpg" width="50%">
+<img src="OneAI_install_images/nvidia-smi.png" width="50%">
 
 #### Step 17:   Connect Watson Machine Learning with Watson Machine Learning Accelerator
 
