@@ -211,7 +211,7 @@ Cluster fails to respond when saving changes to a Spark instance group that was 
 
 * Set “Reclaim Grace Period” to “120 seconds” in consumer level for wml-ig-edt as shown below:
 
-<img src="OneAI_install_images/image022.jpg" width="50%">
+<img src="OneAI_install_images/image022.png" width="50%">
 
 #### Step 16. Configure GPU mode to exclusive across all nodes. In command line interface run:
 
