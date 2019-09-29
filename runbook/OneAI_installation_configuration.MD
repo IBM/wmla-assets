@@ -1,3 +1,135 @@
+# IBM Watson Studio Local 2.0 Base Installation
+
+##  Installation/Configuration of Watson Studio Local 2.0 
+
+Download the IBM Watson Studio Local Trial here: https://www-01.ibm.com/marketing/iwm/iwm/web/download.do?source=mrs-ibmdselt&pageType=urx&S_PKG=code
+
+You can automate the Watson Studio Local installation by creating a configuration file named wdp.conf that will complete all of the parameters. Before you run the installation, the file must be in the same directory as the installation package, and the directory must be in the installer path.
+
+##  Installation Requirements
+
+To access the Watson Studio Local install, use https://<hostname>:31843.
+        
+Before you install Watson Studio Local, ensure that your servers meet all of the system requirements.
+
+Watson Studio Local requires at least three virtual machines as master nodes for high availability. The installation remotely configures the rest of the nodes from the first master node. You can use any number of virtual machines as worker nodes. The first three worker nodes take on the storage role in the cluster. If you install a three-node cluster, the master nodes can take on the role of the worker nodes.
+
+You can also use two virtual machines as proxy nodes to provide high availability for the load balancing capability of the cluster. Separate proxy nodes to reduce the workload on the master nodes. If you do not specify proxy nodes, the first two master nodes assume the role of the proxy nodes.
+
+##  Installation by Configuration File
+
+To install Watson Studio Local by configuration file, complete the following steps:
+
+1. SSH into the master node (master-1) of your cluster as root: ssh root@MASTER_1_IP.
+
+2. Download the installation package, Watson Studio base add-on, and all module TAR files to the first master node of your dedicated Watson Studio Local cluster.
+
+3. Move the installation package to the installer files partition you created (you cannot install from any path that is mounted as /), and make the installation package executable by entering chmod +x <installpkg>.
+
+4. In the same installer files partition, create sub-directory modules (for example, /ibm/modules), and move all module TAR files to it. Later, the installer will automatically detect these modules and prompt for confirmation to install them.
+
+   Tip
+
+   To deploy modules after the base installation has already been deployed, copy the TAR files to the /ibm/modules directory, and then go to /ibm/InstallPackage/components and run ./deploy.sh <path-of-addon>.
+        
+5. If you already have a wdp.conf file, put it in the same directory as the installation package. To generate a new wdp.conf template, run the installation with parameter --get-conf-user (for a sudo user) or --get-conf-key (for an SSH key).
+
+   For a six or more node installation, no further parameters are required.
+   
+   For a three, four, or five node wdp.conf template, add the --three-nodes parameter.
+
+6. After wdp.conf is generated, you can customize the parameters. Ensure that every field is completed. Insert the required parameters in the wdp.conf as detailed in the following table:
+
+   Restriction
+
+   In a six-node configuration, you must have only three master nodes. You can have a minimum of three worker nodes, but add as many as you need.
+
+Table 1. wdp.conf required parameters for six-node installation
+
+Field name | Field value
+--- | ---
+virtual_ip_address_1 | The IP address of your first virtual network.
+virtual_ip_address_2 | The IP address of your second virtual network.
+ssh_key | The directory of where your SSH key is located. If you do not know where it is, try looking in the root folder or contact support.
+ssh_port | Your SSH port number. The default is always 22, which can be customized to your preference.
+master_node_1* | The IP address of your first master node.
+master_node_path_1 | The name of the installation path in your first master node.
+master_node_2* | The IP address of your second master node.
+master_node_path_2 | The name of the installation path in your second master node.
+master_node_3* | The IP address of your third master node.
+master_node_path_3 | The name of the installation path in your third master node. Note: You can only have up to three master nodes.
+worker_node_1* | The IP address of your first worker node.
+worker_node_path_1 | The name of the installation path in your first worker node.
+worker_node_2* | The IP address of your second worker node.
+worker_node_path_1 | The name of the installation path in your second worker node.
+worker_node_3* | The IP address of your third worker node. Note: You have as many worker nodes as you'd like and you can give them any name to your preference, but the minimum required for a six-node configuration is three worker nodes.
+nfs_server | Optional: The IP address of the NFS server. Required only if you are doing an NFS set up.
+nfs_dir | Optional: The name of the installation path in your NFS server. Required only if you are doing an NFS set up.
+worker_node_data_1 | Optional: The name of the data path in your first worker node. Required only if you use GlusterFS storage in the Watson Studio Local setup.
+worker_node_data_2 | Optional: The name of the data path in your first worker node. Required only if you use GlusterFS storage in the Watson Studio Local setup.
+worker_node_data_2 | Optional: The name of the data path in your first worker node. Required only if you use GlusterFS storage in the Watson Studio Local setup.
+
+Table 2. wdp.conf required parameters for three-node installation
+
+Field name | Field value
+--- | ---
+virtual_ip_address_1 | The IP address of your first virtual network.
+virtual_ip_address_2 | The IP address of your second virtual network.
+ssh_key | The directory of where your SSH key is located. If you do not know where it is, try looking in the root folder or contact support.
+ssh_port | Your SSH port number. The default is always 22, which can be customized to your preference.
+node_1* | The IP address of your first node.
+node_path_1 | The name of the installation path in your first node.
+node_2* | The IP address of your master node.
+node_path_2 | The name of the installation path in your second node.
+node_3* | The IP address of your master node.
+node_path_3 | The name of the installation path in your third node. Note: You have as many worker nodes as you'd like and you can give them any name to your preference, but the minimum required for a six-node configuration is three worker nodes.
+worker_node_data_1 | Optional: The name of the data path in your first worker node. Required only if you use GlusterFS storage in the Watson Studio Local setup.
+worker_node_data_2 | Optional: The name of the data path in your first worker node. Required only if you use GlusterFS storage in the Watson Studio Local setup.
+worker_node_data_2 | Optional: The name of the data path in your first worker node. Required only if you use GlusterFS storage in the Watson Studio Local setup.
+
+   The names of these nodes do not have to be exactly master_node_1 or worker_node_1 and such. It can be of any name to your preference as long as there are the required number of nodes.
+
+   For more details on optional nodes configuration, see below:
+
+   To add additional nodes, you can append parameters using the following example:
+
+   worker_node_4=x.x.x.x
+   worker_node_path_4=/ibm
+   worker_node_5=x.x.x.x
+   worker_node_path_5=/ibmCopy
+
+   For a cluster with six or more nodes, you can label worker nodes as Watson Machine Learning nodes by adding the following lines to the wdp.conf file:
+
+   worker_node_label_value_1="wml-common"
+   worker_node_label_value_2="wml-common"Copy
+
+   If you want to use proxy nodes to reduce the workload on the master nodes, you must add at least two proxy node entries to the wdp.conf file. For example:
+
+   proxy_node_1=IP_address
+   proxy_node_path_1=installation_partition
+   proxy_node_docker_disk_1=docker_raw_disk
+   proxy_node_2=IP_address
+   proxy_node_path_3=installation_partition
+   proxy_node_docker_disk_2=docker_raw_diskCopy
+
+   If you do not specify proxy nodes, the first two master nodes assume the role of proxy nodes.
+
+7. Verify that your directory structure is correct:
+
+   ```
+   /ibm
+      |--- installationpackage.tar
+      |--- modules
+         |--- watson-studio-base.tar (and other add-ons and extensions)
+      |--- wdp.conf
+   ```
+    
+8. Run the installation package by going into the installer's directory and enter the command ./<installer file name>. The installer detects the wdp.conf file and prompts you whether you want to use this file for the configuration.
+
+9. Agree to the terms and conditions.
+
+The installation runs step-by-step and might take a long time. If an installation step fails, review the log files and contact IBM Software Support. The installation log file is located in the mounted directory that you used for the installer. To avoid unexpected issues, make sure to resolve the issue in the log before you retry or skip the step.
+
 # IBM Watson Machine Learning 2.0 Add-on Installation
 
 Assumption : In order to deploy IBM Watson Machine Learning 2.0 it requires IBM Watson Studio Local 2.0 base installation to be already deployed on the cluster. 
