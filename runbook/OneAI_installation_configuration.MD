@@ -194,8 +194,14 @@ $> sleep 5
 $> egosh service start dlpd
 ```
 
-#### Step 6.  Creation of OS user equivalent for every WSL user  who are going to submit the trainig Job from WSL.  In this tutorial we will use WSL user "wml-user" and create OS user "wml-user"
-`useradd -m -u 20006 wml-user`
+#### Step 6.  Creation of OS users on all hosts.
+a) Create an OS user by name wml-user which will be used to create the SIG.
+Ex:
+useradd -m -u 20005 wml-user
+b) Create an OS user for every WSL user who are going to submit the training jobs from WSL/WML. In this tutorial we will use default WSL/WML user "admin"
+Ex:
+useradd -m -u 20006 admin
+You may create other similar users corresponding to the other WSL users
 
 
 #### Step 7. Ensure that GPU is enabled for deep learning workloads. If you do not have GPU enabled, enable GPU by running one of these scripts on the master host command line interface:
@@ -289,6 +295,8 @@ $> egosh service start dlpd
 
 * Fill in the “User Name”, “Password” and click create
 
+* Create users for each of wml-user and the WSL users defined in Step 6 
+
 #### Step 12. Step Assign the created EGO user consumer role for wml-ig and wml-ig-edt
 
 * Click on “System & Services” > “Users” > “Roles” 
@@ -296,6 +304,8 @@ $> egosh service start dlpd
 * Click on “Consumer User” > “wml-user” > “wml-ig” and “wml-ig-edt” and click “Apply”
 
 <img src="OneAI_install_images/image017.jpg" width="50%">
+
+* Similary assign the role for each of the WSL users created in Step 6
 
 #### Step 13a. Set the variable METRICS_STREAMING=Y in $EGO_CONFDIR/dli/conf/dlpd/dlpd.conf
 
