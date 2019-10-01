@@ -195,13 +195,13 @@ $> egosh service start dlpd
 ```
 
 #### Step 6.  Creation of OS users on all hosts.
-a) Create an OS user by name wml-user which will be used to create the SIG.
-Ex:
-useradd -m -u 20005 wml-user
-b) Create an OS user for every WSL user who are going to submit the training jobs from WSL/WML. In this tutorial we will use default WSL/WML user "admin"
-Ex:
-useradd -m -u 20006 admin
-You may create other similar users corresponding to the other WSL users
+* a) Create an OS user by name wml-user which will be used to create the SIG. 
+* Ex:  `useradd -m -u 20005 wml-user`
+
+* b) Create an OS user for every WSL user who are going to submit the training jobs from WSL/WML. In this tutorial we will use default WSL/WML user "admin"
+* Ex: `useradd -m -u 20006 admin`
+
+* You may create other similar users corresponding to the other WSL users
 
 
 #### Step 7. Ensure that GPU is enabled for deep learning workloads. If you do not have GPU enabled, enable GPU by running one of these scripts on the master host command line interface:
