@@ -194,9 +194,14 @@ $> sleep 5
 $> egosh service start dlpd
 ```
 
-#### Step 6. Create local OS user "wml-user” across all nodes. This will be the instance groups’ execution user. Create local OS user where the name corresponds to the Watson Studio Local User who will submit workload.  Please make 
+#### Step 6. 
+a) Create local OS user "wml-user” on all the hosts of the cluster. This will be the instance groups’ execution user. 
 
 `useradd -m -u 20005 wml-user`
+
+b) Creation of OS user equivalent for every WSL user user who are going to submit the trainig Job from WSL.  In this tutorial we will use WSL default user "admin"
+
+`useradd -m -u 20005 admin`
 
 #### Step 7. Ensure that GPU is enabled for deep learning workloads. If you do not have GPU enabled, enable GPU by running one of these scripts on the master host command line interface:
 
