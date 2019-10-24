@@ -155,21 +155,21 @@ So the below steps outlined are followed based on this assumption.
 <img src="OneAI_install_images/image001.png" width="50%">
 
 
-#  IBM Watson Machine Learning Accelerator 1.2.1 Installation
+#  IBM Watson Machine Learning Accelerator 1.2.0 Installation
 
 ## Steps
 
-#### Step 1. Download IBM Watson Machine Learning Accelerator 1.2.1 Evaluation
+#### Step 1. Download IBM Watson Machine Learning Accelerator 1.2.0 Evaluation
 
 
 * Download the IBM Watson Machine Learning Accelerator Evaluation software from the IBM Software Repository. This is a 4.9 GB download and requires an IBM ID.
 
-#### Step 2. Read and follow "Set up your system" and make sure your system meets all the perquisites before you proceed to install Watson Machine Learning Accelerator 1.2.1. 
+#### Step 2. Read and follow "Set up your system" and make sure your system meets all the perquisites before you proceed to install Watson Machine Learning Accelerator 1.2.0 
 
 * DLI_SHARED_FS is supported in NFS3. You would need to export DLI_SHARED_FS when installing Watson Machine Learning Accelerator 1.2.0.
 * DLI_RESULT_FS and DLI_DATA_FS are supported in NFS4. You would need to export DLI_RESULT_FS and DLI_DATA_FS when installing Watson Machine Learning Accelerator 1.2.1.
 
-#### Step 3. Install Watson Machine Learning Accelerator 1.2.1 using the instructions given in the IBM Knowledge Center. 
+#### Step 3. Install Watson Machine Learning Accelerator 1.2.0 using the instructions given in the IBM Knowledge Center. 
 
 #### Step 4. Download and install manadatory iFix for Watson Machine Learning Accelerator -> https://www-945.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&product=ibm/Other+software/IBM+PowerAI+Enterprise&release=1.2.0&platform=All&function=all
 
@@ -194,9 +194,15 @@ $> sleep 5
 $> egosh service start dlpd
 ```
 
-#### Step 6. Create local OS user "wml-user” across all nodes. This will be the instance groups’ execution user. Create local OS user where the name corresponds to the Watson Studio Local User who will submit workload.  Please make 
+#### Step 6.  Creation of OS users on all hosts.
+* a) Create an OS user by name wml-user which will be used to create the SIG.   
+        * Ex:  `useradd -m -u 20005 wml-user`
 
-`useradd -m -u 20005 wml-user`
+* b) Create an OS user for every WSL user who are going to submit the training jobs from WSL/WML. In this tutorial we will use default WSL/WML user "admin"  
+        * Ex: `useradd -m -u 20006 admin`
+
+* You may create other similar users corresponding to the other WSL users
+
 
 #### Step 7. Ensure that GPU is enabled for deep learning workloads. If you do not have GPU enabled, enable GPU by running one of these scripts on the master host command line interface:
 
@@ -289,6 +295,8 @@ $> egosh service start dlpd
 
 * Fill in the “User Name”, “Password” and click create
 
+* Create users for each of wml-user and the WSL users defined in Step 6 
+
 #### Step 12. Step Assign the created EGO user consumer role for wml-ig and wml-ig-edt
 
 * Click on “System & Services” > “Users” > “Roles” 
@@ -296,6 +304,8 @@ $> egosh service start dlpd
 * Click on “Consumer User” > “wml-user” > “wml-ig” and “wml-ig-edt” and click “Apply”
 
 <img src="OneAI_install_images/image017.jpg" width="50%">
+
+* Similary assign the role for each of the WSL users created in Step 6
 
 #### Step 13a. Set the variable METRICS_STREAMING=Y in $EGO_CONFDIR/dli/conf/dlpd/dlpd.conf
 
