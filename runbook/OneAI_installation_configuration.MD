@@ -8,7 +8,7 @@ You can automate the Watson Studio Local installation by creating a configuratio
 
 ##  Installation Requirements
 
-To access the Watson Studio Local install, use https://<hostname>:31843.
+To access the Watson Studio Local install, use `https://<hostname>:31843`.
         
 Before you install Watson Studio Local, ensure that your servers meet all of the system requirements.
 
