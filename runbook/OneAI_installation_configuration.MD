@@ -28,7 +28,7 @@ To install Watson Studio Local by configuration file, complete the following ste
 
 4. In the same installer files partition, create sub-directory modules (for example, /ibm/modules), and move all module TAR files to it. Later, the installer will automatically detect these modules and prompt for confirmation to install them.
 
-   Tip
+   **Tip**
 
    To deploy modules after the base installation has already been deployed, copy the TAR files to the /ibm/modules directory, and then go to /ibm/InstallPackage/components and run ./deploy.sh <path-of-addon>.
         
@@ -40,7 +40,7 @@ To install Watson Studio Local by configuration file, complete the following ste
 
 6. After wdp.conf is generated, you can customize the parameters. Ensure that every field is completed. Insert the required parameters in the wdp.conf as detailed in the following table:
 
-   Restriction
+   **Restriction**
 
    In a six-node configuration, you must have only three master nodes. You can have a minimum of three worker nodes, but add as many as you need.
 
@@ -93,24 +93,30 @@ worker_node_data_2 | Optional: The name of the data path in your first worker no
 
    To add additional nodes, you can append parameters using the following example:
 
+```
    worker_node_4=x.x.x.x
    worker_node_path_4=/ibm
    worker_node_5=x.x.x.x
    worker_node_path_5=/ibmCopy
+```
 
    For a cluster with six or more nodes, you can label worker nodes as Watson Machine Learning nodes by adding the following lines to the wdp.conf file:
-
+   
+```
    worker_node_label_value_1="wml-common"
    worker_node_label_value_2="wml-common"Copy
+```
 
    If you want to use proxy nodes to reduce the workload on the master nodes, you must add at least two proxy node entries to the wdp.conf file. For example:
 
+```
    proxy_node_1=IP_address
    proxy_node_path_1=installation_partition
    proxy_node_docker_disk_1=docker_raw_disk
    proxy_node_2=IP_address
    proxy_node_path_3=installation_partition
    proxy_node_docker_disk_2=docker_raw_diskCopy
+```
 
    If you do not specify proxy nodes, the first two master nodes assume the role of proxy nodes.
 
@@ -220,7 +226,7 @@ $> egosh service start dlpd
 
 #### Step 8. Create GPU resource group.
 
-* Click on “Resources”> “Resource Planning (Slot)” > “Resource Groups”
+* Click on “Resources” > “Resource Planning (Slot)” > “Resource Groups”
 
 <img src="OneAI_install_images/image003.jpg" width="50%">
 
@@ -371,11 +377,11 @@ Cluster fails to respond when saving changes to a Spark instance group that was 
 
 3. run `$> ./updateWMLClusterdetails.sh <wmla_host> <wmla_ port> <wmla_default_ig> <wmla_default_edt_ig> <wml_external host adress>`
   where:
-  * <wmla _host> – is the ip address that can be accessed from WML cluster in WMLA cluster master node
-  * <wmla_ port> - the port exposed by WMLA for DLI rest API. Usually this is 9243
-  * <wmla_default_ig> - the instance group name created in WMLA for regular jobs. Usually this value is wml-ig
-  * <wmla_default_edt_ig> - ihe instance group created in WMLA for Elastic Distributed Training jobs. Usually this value is wml-ig-edt
-  * <wml_external_host> - The external host name or IP address of WML that can be accessed from WMLA.(This is the same as Watson Studio host name)
+  * `<wmla _host>` – is the ip address that can be accessed from WML cluster in WMLA cluster master node
+  * `<wmla_ port>` - the port exposed by WMLA for DLI rest API. Usually this is 9243
+  * `<wmla_default_ig>` - the instance group name created in WMLA for regular jobs. Usually this value is wml-ig
+  * `<wmla_default_edt_ig>` - ihe instance group created in WMLA for Elastic Distributed Training jobs. Usually this value is wml-ig-edt
+  * `<wml_external_host>` - The external host name or IP address of WML that can be accessed from WMLA.(This is the same as Watson Studio host name)
 
 
       Example:
