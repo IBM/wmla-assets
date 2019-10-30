@@ -442,13 +442,13 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 ## Step 9: Create an instance group for Deep Learning Impact 
 
-1.	Go to “Workload -> Spark -> Spark Instance Groups”:
+1.	Go to “Workload -> Instance Groups”:
 
-<img src="images/image055.png" width="50%">
+<img src="images/image149.png" width="50%">
 
 2.	Click on “New”:
 
-<img src="images/image068.png" width="50%">
+<img src="images/image150.png" width="50%">
 
 3.	Click on “Templates”:
 
@@ -456,7 +456,7 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 4.	Select “Use” for the dli-sig-template template:
 
-<img src="images/image070.png" width="50%">
+<img src="images/image151.png" width="50%">
 
 5.	Fill in the following information:
 *	Instance Group name: DLI-DemoConsumer
