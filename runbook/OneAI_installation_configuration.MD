@@ -155,20 +155,20 @@ In order to deploy IBM Watson Machine Learning 2.0 it requires IBM Watson Studio
 
 #  IBM Watson Machine Learning Accelerator 1.2.0 Installation
 
-#### Step 1. Download IBM Watson Machine Learning Accelerator 1.2.0 Evaluation
+#### Step 1. Download IBM Watson Machine Learning Accelerator 1.2.0 Evaluation.
 
 * Download the IBM Watson Machine Learning Accelerator Evaluation software from the [IBM Software Repository](http://www.ibm.com/links?url=https%3A%2F%2Fepwt-www.mybluemix.net%2Fsoftware%2Fsupport%2Ftrial%2Fcst%2Fprogramwebsite.wss%3FsiteId%3D303%26tabId%3D569%26w%3D1). This is a 4.9 GB download and requires an IBM ID. 
 
-#### Step 2. Read and follow [Set up your system](http://www.ibm.com/support/knowledgecenter/SSFHA8_1.2.0/wmla_setup.html) and make sure your system meets all the perquisites before you proceed to install Watson Machine Learning Accelerator 1.2.0 
+#### Step 2. Read and follow [Set up your system](http://www.ibm.com/support/knowledgecenter/SSFHA8_1.2.0/wmla_setup.html) and make sure your system meets all the perquisites before you proceed to install Watson Machine Learning Accelerator 1.2.0. 
 
 * DLI_SHARED_FS is supported in NFS3. You would need to export DLI_SHARED_FS when installing Watson Machine Learning Accelerator 1.2.0.
 * DLI_RESULT_FS and DLI_DATA_FS are supported in NFS4. You would need to export DLI_RESULT_FS and DLI_DATA_FS when installing Watson Machine Learning Accelerator 1.2.1.
 
-#### Step 3. Install Watson Machine Learning Accelerator 1.2.0 using the instructions provided in the [IBM Knowledge Center](http://www.ibm.com/support/knowledgecenter/SSFHA8_1.2.0/wmla_install.html) 
+#### Step 3. Install Watson Machine Learning Accelerator 1.2.0 using the instructions provided in the [IBM Knowledge Center](http://www.ibm.com/support/knowledgecenter/SSFHA8_1.2.0/wmla_install.html).
 
-#### Step 4. Download and install manadatory iFixes for Watson Machine Learning Accelerator available at [IBM Fix Central](http://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&product=ibm/Other+software/IBM+PowerAI+Enterprise&release=1.2.0&platform=All&function=all)
+#### Step 4. Download and install manadatory iFixes for Watson Machine Learning Accelerator available at [IBM Fix Central](http://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&product=ibm/Other+software/IBM+PowerAI+Enterprise&release=1.2.0&platform=All&function=all).
 
-#### Step 4. Download and install manadatory iFix for Watson Machine Learning Accelerator [here]https://www-945.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&product=ibm/Other+software/IBM+PowerAI+Enterprise&release=1.2.0&platform=All&function=all
+#### Step 5. Configure Watson Machine Learning Accelerator with Waton Studio token authentication.
 
 Get DLI_JWT_SECRET_KEY from Watson Studio Local and save DLI_JWT_SECRET_KEY to a shared file system accessible across all hosts. You must export the DLI_JWT_SECRET_KEY file path when installing Watson Machine Learning Accelerator 1.2.1.
 
@@ -199,11 +199,10 @@ $> egosh service start dlpd
 #### Step 6.  Creation of OS users on all hosts.
 
 1. Create an OS user by name `wml-user` which will be used to create the Spark instance group.   
-        * Ex:  `useradd -m -u 20005 wml-user`
+        * For example:  `useradd -m -u 20005 wml-user`
 
 2. Create an OS user for every WSL user who are going to submit the training jobs from WSL/WML. In this tutorial we will use default WSL/WML user `admin`.  
-        * Ex: `useradd -m -u 20006 admin`
-
+        * For example: `useradd -m -u 20006 admin`
 
 * You can create other similar users corresponding to the other WSL users.
 
@@ -224,72 +223,72 @@ $> egosh service start dlpd
 
 #### Step 8. Create a GPU resource group.
 
-* From the “Resources” menu, select “Resource Planning (Slot)” > “Resource Groups”.
+1. From the “Resources” menu, select “Resource Planning (Slot)” > “Resource Groups”.
 <img src="OneAI_install_images/image003.jpg" width="50%">
 
-* Click “Global Actions” and select “Create a Resource Group”.
+2. Click “Global Actions” and select “Create a Resource Group”.
 <img src="OneAI_install_images/image004.jpg" width="50%">
 
-* Fill in the “Resource group name” and set “Advanced Formula” to `ngpus and then click “Create”.
+3. Fill in the “Resource group name” and set “Advanced Formula” to `ngpus and then click “Create”.
 <img src="OneAI_install_images/image005.jpg" width="50%">
 
-#### Step 9. Create wml-ig.
+#### Step 9. Create the wml-ig Spark instance group.
 
-* From the “Workload” menu, select “Spark” > “Spark Instance Groups”.
+1. From the “Workload” menu, select “Spark” > “Spark Instance Groups”.
 <img src="OneAI_install_images/image006.jpg" width="50%">
 
-* Click “Create a Spark instance Group”.
+2. Click “Create a Spark instance Group”.
 <img src="OneAI_install_images/image007.jpg" width="50%">
 
-* Click “Templates”.
+3. Click “Templates”.
 <img src="OneAI_install_images/image008.jpg" width="50%">
 
-* Select the “wmla-ig-template-2-3-1" templae by clicking "Use”.
+4. Select the “wmla-ig-template-2-3-1" templae by clicking "Use”.
 <img src="OneAI_install_images/image009.jpg" width="50%">
 
-* Fill in “Instance group name” to `wml-ig`, “Spark deployment directory”, “Execution user for instance group” to `wml-user`. Ensure that the directory specified for “Spark deployment directory” is accessible to the `wml-user` user across all hosts.
+5. Fill in “Instance group name” to `wml-ig`, “Spark deployment directory”, “Execution user for instance group” to `wml-user`. Ensure that the directory specified for “Spark deployment directory” is accessible to the `wml-user` user across all hosts.
 <img src="OneAI_install_images/image010.jpg" width="50%">
 
-* Select the GPU resource group that you created in step 8 of this tutorial and click “Create and Deploy Instance Group”.
+6. Select the GPU resource group that you created in step 8 of this tutorial and click “Create and Deploy Instance Group”.
 <img src="OneAI_install_images/image011.jpg" width="50%">
 
 #### Step 10: Create the wml-ig-edt Spark instance group.
 
-* From the “Workload” menu, select “Spark” > “Spark Instance Groups”.
+1. From the “Workload” menu, select “Spark” > “Spark Instance Groups”.
 <img src="OneAI_install_images/image006.jpg" width="50%">
 
-* Click "New".
+2. Click "New".
 <img src="OneAI_install_images/image012.jpg" width="50%">
 
-* Click “Templates”.
+3. Click “Templates”.
 <img src="OneAI_install_images/image008.jpg" width="50%">
 
-* Select the “wmla-ig-edt-template-2-3-1" template by clicking "Use”.
+4. Select the “wmla-ig-edt-template-2-3-1" template by clicking "Use”.
 <img src="OneAI_install_images/image013.jpg" width="50%">
 
-* Fill in “Instance group name” to `wml-ig-edt`, “Spark deployment directory”, “Execution user for instance group” to `wml-user`. Ensure that the directory specified for “Spark deployment directory” is accessible to the `wml-user` across all hosts. You must ensure that the parent directory `/opt/wmla-ig` exists before `wml-user` has write access to this parent directory.
+5. Fill in “Instance group name” to `wml-ig-edt`, “Spark deployment directory”, “Execution user for instance group” to `wml-user`. Ensure that the directory specified for “Spark deployment directory” is accessible to the `wml-user` across all hosts. You must ensure that the parent directory `/opt/wmla-ig` exists before `wml-user` has write access to this parent directory.
 <img src="OneAI_install_images/image014.jpg" width="50%">
 
-* Select the GPU resource group that you created in step 8 of this tutorial and click “Create and Deploy Instance Group”.
+6. Select the GPU resource group that you created in step 8 of this tutorial and click “Create and Deploy Instance Group”.
 <img src="OneAI_install_images/image011.jpg" width="50%">
 
 #### Step 11. Create an EGO user corresponding to all OS users created in step 6 of this tutorial.
 
-* From the “System & Services” menu, select “Users” > “Accounts”. 
+1. From the “System & Services” menu, select “Users” > “Accounts”. 
 <img src="OneAI_install_images/image015.jpg" width="50%">
 
-* Click “Global Actions” and select “Create New User Account”.
+2. Click “Global Actions” and select “Create New User Account”.
 <img src="OneAI_install_images/image016.jpg" width="50%">
 
-* Fill in the “User Name”, “Password” and click "Create".
+3. Fill in the “User Name”, “Password” and click "Create".
 
-* Create users for the wml-user and each of the WSL users defined in Step 6.
+4. Create users for the wml-user and each of the WSL users defined in Step 6.
 
 #### Step 12. Assign the created EGO user consumer role for wml-ig and wml-ig-edt.
 
-* From the “System & Services” menu, select “Users” > “Roles”. 
+1. From the “System & Services” menu, select “Users” > “Roles”. 
 
-* Click on “Consumer User” > “wml-user” > “wml-ig” and “wml-ig-edt” and click “Apply”.
+2. Click on “Consumer User” > “wml-user” > “wml-ig” and “wml-ig-edt” and click “Apply”.
 
 <img src="OneAI_install_images/image017.jpg" width="50%">
 
@@ -308,12 +307,12 @@ $> egosh service start dlpd
     egosh ego shutdown
     egosh ego start all
     ```
-#### Step 14. Enable the following so that for non-EDT jobs, if a job allocates 4 GPUs then it allocates the whole host exclusively. Configure wml-ig and wml-ig-edt GPU resource plan.
+#### Step 14. Enable the following so that for non-elastic distributed training jobs, if a job allocates 4 GPUs then it allocates the whole host exclusively. Configure wml-ig and wml-ig-edt GPU resource plan.
  
-* Click on “Resource”> “Resource Group Planning (Slot)” > “Resource Plan”
+1.  From the “Resources” menu, select “Resource Group Planning (Slot)” > “Resource Plan”.
 <img src="OneAI_install_images/image018.jpg" width="50%">
 
-* Configure resource plan for wml-ig and wml-ig-edt as following:
+2. Configure resource plan for wml-ig and wml-ig-edt as following:
 <img src="OneAI_install_images/image019.png" width="50%">
 
 Note that the following [known issue](http://www.ibm.com/support/knowledgecenter/en/SSFHA8_1.2.0/release_note_s/known_issues_limitations.html) exists:
@@ -329,25 +328,29 @@ Cluster fails to respond when saving changes to a Spark instance group that was 
 
 #### Step 15. Set “Reclaim Grace Period” for wml-ig and wml-ig-edt.
 
-* Click on “Resources”> “Consumers”.
+1. From the “Resources” menu, click “Consumers”.
 <img src="OneAI_install_images/image020.jpg" width="50%">
 
-* Set “Reclaim Grace Period” to “596 hours” in consumer level for wml-ig and for each child consumer belonging to wml-ig as shown below:
+2. Set “Reclaim Grace Period” to “596 hours” in consumer level for wml-ig and for each child consumer belonging to wml-ig as shown below:
 <img src="OneAI_install_images/image021.jpg" width="50%">
 
-* Set “Reclaim Grace Period” to “120 seconds” in consumer level for wml-ig-edt as shown below:
+3. Set “Reclaim Grace Period” to “120 seconds” in consumer level for wml-ig-edt as shown below:
 <img src="OneAI_install_images/image022.png" width="50%">
 
 #### Step 16. Configure GPU mode to exclusive across all nodes. In command line interface run:
 
-* `nvidia-smi -c 1` to set GPU mode to exclusive process mode
-* `nvidia-smi` command to ensure GPU mode is set to exclusive process mode
-* Restart EGO.
+1. Set GPU mode to exclusive process mode.
+`nvidia-smi -c 1`
+
+2. Ensure GPU mode is set to exclusive process mode.
+`nvidia-smi`
+
+3. Restart ego.
 <img src="OneAI_install_images/nvidia-smi.png" width="50%">
 
 #### Step 17:   Connect Watson Machine Learning with Watson Machine Learning Accelerator.
 
-1. Access  Watson Machine Learning host (via SSH) on the master host.
+1. Access the Watson Machine Learning host (via SSH) on the master host.
 
 2. Go to the wml directory.
 `$> cd /ibm/InstallPackage/components/modules/wml`
@@ -362,11 +365,12 @@ Cluster fails to respond when saving changes to a Spark instance group that was 
   * `<wml_external_host>` - the external host name or IP address of WML that can be accessed from WMLA. (This is the same as Watson Studio host name)
 
 
-Example:
-      ```
-      /updateWMLClusterdetails.sh 10.15.112.32 9243 wml-ig wml-ig-edt 169.224.121.54
-      ```
-      or:
-      ```
-      ./updateWMLClusterdetails.sh some-wmla-host.ibm.com 9243 wml-ig wml-ig-edt some-ws-host.ibm.com
-      ```
+Example 1:
+```
+/updateWMLClusterdetails.sh 10.15.112.32 9243 wml-ig wml-ig-edt 169.224.121.54
+```
+
+Example 2:
+```
+./updateWMLClusterdetails.sh some-wmla-host.ibm.com 9243 wml-ig wml-ig-edt some-ws-host.ibm.com
+```
