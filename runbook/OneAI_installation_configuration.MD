@@ -20,29 +20,25 @@ You can also use two virtual machines as proxy nodes to provide high availabilit
 
 To install Watson Studio Local by configuration file, complete the following steps:
 
-1. SSH into the master node (master-1) of your cluster as root: ssh root@MASTER_1_IP.
+1. SSH into the master node (`master-1`) of your cluster as root with `ssh root@MASTER_1_IP`.
 
 2. Download the installation package, Watson Studio base add-on, and all module TAR files to the first master node of your dedicated Watson Studio Local cluster.
 
-3. Move the installation package to the installer files partition you created (you cannot install from any path that is mounted as /), and make the installation package executable by entering chmod +x <installpkg>.
+3. Move the installation package to the installer files partition you created (you cannot install from any path that is mounted as `/`), and make the installation package executable by entering `chmod +x <installpkg>`.
 
-4. In the same installer files partition, create sub-directory modules (for example, /ibm/modules), and move all module TAR files to it. Later, the installer will automatically detect these modules and prompt for confirmation to install them.
+4. In the same installer files partition, create sub-directory modules (for example, `/ibm/modules`), and move all module TAR files to it. Later, the installer will automatically detect these modules and prompt for confirmation to install them.
 
-   **Tip**
-
-   To deploy modules after the base installation has already been deployed, copy the TAR files to the /ibm/modules directory, and then go to /ibm/InstallPackage/components and run ./deploy.sh <path-of-addon>.
+   **Tip**: To deploy modules after the base installation has already been deployed, copy the TAR files to the `/ibm/modules directory`, and then go to `/ibm/InstallPackage/components` and run `./deploy.sh <path-of-addon>`.
         
-5. If you already have a wdp.conf file, put it in the same directory as the installation package. To generate a new wdp.conf template, run the installation with parameter --get-conf-user (for a sudo user) or --get-conf-key (for an SSH key).
+5. If you already have a `wdp.conf` file, put it in the same directory as the installation package. To generate a new `wdp.conf` template, run the installation with parameter `--get-conf-user` (for a sudo user) or `--get-conf-key` (for an SSH key).
 
    For a six or more node installation, no further parameters are required.
    
-   For a three, four, or five node wdp.conf template, add the --three-nodes parameter.
+   For a three, four, or five node `wdp.conf` template, add the `--three-nodes parameter`.
 
-6. After wdp.conf is generated, you can customize the parameters. Ensure that every field is completed. Insert the required parameters in the wdp.conf as detailed in the following table:
+6. After `wdp.conf` is generated, you can customize the parameters. Ensure that every field is completed. Insert the required parameters in the `wdp.conf` as detailed in the following table:
 
-   **Restriction**
-
-   In a six-node configuration, you must have only three master nodes. You can have a minimum of three worker nodes, but add as many as you need.
+   **Restriction**: In a six-node configuration, you must have only three master nodes. You can have a minimum of three worker nodes, but add as many as you need.
 
 Table 1. wdp.conf required parameters for six-node installation
 
@@ -93,30 +89,27 @@ worker_node_data_2 | Optional: The name of the data path in your first worker no
 
    To add additional nodes, you can append parameters using the following example:
 
-```
-   worker_node_4=x.x.x.x
-   worker_node_path_4=/ibm
-   worker_node_5=x.x.x.x
-   worker_node_path_5=/ibmCopy
-```
+
+    worker_node_4=x.x.x.x
+    worker_node_path_4=/ibm
+    worker_node_5=x.x.x.x
+    worker_node_path_5=/ibmCopy
+
 
    For a cluster with six or more nodes, you can label worker nodes as Watson Machine Learning nodes by adding the following lines to the wdp.conf file:
    
-```
-   worker_node_label_value_1="wml-common"
-   worker_node_label_value_2="wml-common"Copy
-```
+    worker_node_label_value_1="wml-common"
+    worker_node_label_value_2="wml-common"Copy
+
 
    If you want to use proxy nodes to reduce the workload on the master nodes, you must add at least two proxy node entries to the wdp.conf file. For example:
 
-```
-   proxy_node_1=IP_address
-   proxy_node_path_1=installation_partition
-   proxy_node_docker_disk_1=docker_raw_disk
-   proxy_node_2=IP_address
-   proxy_node_path_3=installation_partition
-   proxy_node_docker_disk_2=docker_raw_diskCopy
-```
+    proxy_node_1=IP_address
+    proxy_node_path_1=installation_partition
+    proxy_node_docker_disk_1=docker_raw_disk
+    proxy_node_2=IP_address
+    proxy_node_path_3=installation_partition
+    proxy_node_docker_disk_2=docker_raw_diskCopy
 
    If you do not specify proxy nodes, the first two master nodes assume the role of proxy nodes.
 
@@ -138,19 +131,18 @@ The installation runs step-by-step and might take a long time. If an installatio
 
 # IBM Watson Machine Learning 2.0 Add-on Installation
 
-Assumption : In order to deploy IBM Watson Machine Learning 2.0 it requires IBM Watson Studio Local 2.0 base installation to be already deployed on the cluster. 
-So the below steps outlined are followed based on this assumption.
+In order to deploy IBM Watson Machine Learning 2.0 it requires IBM Watson Studio Local 2.0 base installation to be already deployed on the cluster. Steps below are based on this assumption.
 
 ##  Installation/Configuration of Watson Machine Learning 2.0 
 
-1. Download the IBM Watson Machine Learning add-on Evaluation software (wml_module.tar) from the <IBM Software Repository>. This downloadable package is around 16GB in size and requires IBM ID to download.
+1. Download the IBM Watson Machine Learning add-on Evaluation software (`wml_module.tar`) from the <IBM Software Repository>. This downloadable package is around 16GB in size and requires IBM ID to download.
 
-2. You can download the Watson Machine Learning software add-on package to the /ibm/InstallPackage/modules directory. On successful download the file exists as /ibm/InstallPackage/modules/wml_module.tar  
+2. You can download the Watson Machine Learning software add-on package to the `/ibm/InstallPackage/modules` directory. On successful download the file exists as `/ibm/InstallPackage/modules/wml_module.tar`  
 
 3. Now we are all set deploy the IBM Watson Machine Learning add-on package. Go to /ibm/InstallPackage/components directory and execute the below command
 
-        cd /ibm/InstallPackage/components
-        ./deploy.sh /ibm/InstallPackage/modules/ wml_module.tar
+       cd /ibm/InstallPackage/components
+       ./deploy.sh /ibm/InstallPackage/modules/ wml_module.tar
    It asks for License acceptance and once you accept the license terms the above deployment might take around 30 minutes to complete.
 
 4. Post successful IBM Watson Machine Learning add-on package, execute following command to verify if the add-on package deployment was successful 
@@ -176,7 +168,7 @@ So the below steps outlined are followed based on this assumption.
 
 #### Step 4. Download and install manadatory iFixes for Watson Machine Learning Accelerator available at [IBM Fix Central](http://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&product=ibm/Other+software/IBM+PowerAI+Enterprise&release=1.2.0&platform=All&function=all)
 
-#### Step 5. Configure Watson Machine Learning Accelerator with Watson Studio token authentication 
+#### Step 4. Download and install manadatory iFix for Watson Machine Learning Accelerator [here]https://www-945.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&product=ibm/Other+software/IBM+PowerAI+Enterprise&release=1.2.0&platform=All&function=all
 
 Get DLI_JWT_SECRET_KEY from Watson Studio Local and save DLI_JWT_SECRET_KEY to a shared file system accessible across all hosts. You must export the DLI_JWT_SECRET_KEY file path when installing Watson Machine Learning Accelerator 1.2.1.
 
@@ -205,11 +197,13 @@ $> egosh service start dlpd
 ```
 
 #### Step 6.  Creation of OS users on all hosts.
+
 1. Create an OS user by name `wml-user` which will be used to create the Spark instance group.   
         * Ex:  `useradd -m -u 20005 wml-user`
 
 2. Create an OS user for every WSL user who are going to submit the training jobs from WSL/WML. In this tutorial we will use default WSL/WML user `admin`.  
         * Ex: `useradd -m -u 20006 admin`
+
 
 * You can create other similar users corresponding to the other WSL users.
 
@@ -366,6 +360,7 @@ Cluster fails to respond when saving changes to a Spark instance group that was 
   * `<wmla_default_ig>` - the instance group name created in WMLA for single and distributed jobs. Normally this is set to wml-ig
   * `<wmla_default_edt_ig>` - the instance group created in WMLA for elastic distributed training jobs. Normally this is set to wml-ig-edt
   * `<wml_external_host>` - the external host name or IP address of WML that can be accessed from WMLA. (This is the same as Watson Studio host name)
+
 
 Example:
       ```
