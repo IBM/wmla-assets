@@ -452,11 +452,11 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 3.	Click on “Templates”:
 
-<img src="images/image69.png" width="50%">
+<img src="images/Image156.png" width="50%">
 
 4.	Select “Use” for the dli-sig-template template:
 
-<img src="images/image151.png" width="50%">
+<img src="images/image 151.png" width="50%">
 
 5.	Fill in the following information:
 *	Instance Group name: DLI-DemoConsumer
