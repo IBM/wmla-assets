@@ -378,21 +378,21 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 ## Step 8: Create an instance group for Deep Learning Impact with Elastic Distributed Search (EDT)
 
-1.	Go to “Workload -> Spark -> Spark Instance Groups”:
+1.	Go to “Workload -> Instance Groups”:
 
-<img src="images/image055.png" width="50%">
+<img src="images/image149.png" width="50%">
 
 2.	Click on “New”:
 
-<img src="images/image068.png" width="50%">
+<img src="images/image150.png" width="50%">
 
 3.	Click on “Templates”:
 
-<img src="images/image69.png" width="50%">
+<img src="images/Image156.png" width="50%">
 
-4.	Select “Use” for the dli-sig-template-2-2-0 template:
+4.	Select “Use” for the dli-sig-template-2-3-3 template:
 
-<img src="images/image070.png" width="50%">
+<img src="images/image 151.png" width="50%">
 
 5.	Fill in the following information:
 *	Instance Group name: DLI-EDT-DemoConsumer
@@ -405,11 +405,11 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 7.	In the “search” field, search for Java, and then fill in the JAVA_HOME environment variable with a proper directory that holds a java system of yours, for example: /usr/lib/jvm/jre-1.8.0
 
-<img src="images/image072.png" width="50%">
+<img src="images/Image155.png" width="50%">
 
 8.	Then look for “SPARK_EGO_APP_SCHEDULE_POLICY” and change it to “fairshare”. 
 
-<img src="images/image073.png" width="50%">
+<img src="images/Image153.png" width="50%">
 
 9.	Click on “Save” as shown above.
 
@@ -469,7 +469,7 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 7.	In the “search” field, search for Java, and then fill in the JAVA_HOME environment variable with a proper directory that holds a java system of yours, for example: /usr/lib/jvm/jre-1.8.0
 
-<img src="images/image072.png" width="50%">
+<img src="images/Image155.png" width="50%">
 
 8.	Click on “Save” as shown above.
 
