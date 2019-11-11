@@ -216,9 +216,9 @@ This guide also contains the tests that Lab Services performs in order to declar
 1.	Download The following file to your workstation:
 *	https://repo.continuum.io/archive/Anaconda3-2019.03-Linux-ppc64le.sh
 
-2.	Go to “Workload -> Spark -> Anaconda Management”.
+2.	Go to “Resources-> Frameworks -> Anaconda Management”.
 
-<img src="images/image041.png" width="50%">
+<img src="images/image157.png" width="50%">
 
 3.	Click on “Add”:
 
@@ -231,7 +231,7 @@ This guide also contains the tests that Lab Services performs in order to declar
 *	Python version: 3
 *	Operating system: Linux on Power 64-bit little endian (LE)
 
-<img src="images/image043.png" width="50%">
+<img src="images/image158.png" width="50%">
 
 5.	Click on “Add”.
 
@@ -241,7 +241,7 @@ This guide also contains the tests that Lab Services performs in order to declar
 
 7.	Now select the distribution you just created and click on “Deploy”:
 
-<img src="images/image044.png" width="50%">
+<img src="images/image159.png" width="50%">
 
 8.	Fill in the information required:
 *	Instance name: Anaconda3-DemoConsumer-PowerAI
