@@ -1,0 +1,89 @@
+<!--  
+copyright 2019 ibm international business machines corp.
+
+licensed under the apache license, version 2.0 (the "license");
+you may not use this file except in compliance with the license.
+you may obtain a copy of the license at
+
+         http://www.apache.org/licenses/license-2.0
+
+unless required by applicable law or agreed to in writing, software
+distributed under the license is distributed on an "as is" basis,
+without warranties or conditions of any kind, either express or
+implied.
+see the license for the specific language governing permissions and
+limitations under the license. -->
+
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta id="theme-color" name="theme-color" content="#fff">
+<base target="_blank">
+
+
+<title>Demo</title>
+
+<style>
+h1 {
+  margin: 0 0 24px 0;
+}
+select {
+  width: 150px;
+}
+video {
+  margin: 10px 0 0 0;
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="container">
+  <!-- Menus -->
+  <div class="select" style="display: inline-block">
+    <label for="videoSource">Video source: </label><select id="videoSource"></select>
+  </div>
+  <div class="select" style="display: inline-block">
+      <label for="mode">mode: </label>
+      <select id="mode">
+          <option value="0">Select mode:</option>
+          <option value=1>Live!</option>
+          <option value=2>Buffer</option>
+      </select>
+  </div>
+  <div style="display: inline-block">
+      <button class="capture-button" id="capture">Capture video</button> 
+      <button class="gpu-stats" id="GPU">Get GPU stats</button>
+  </div>
+
+  <!-- Want some space between menus and content, simplest way I found -->
+  <div style="height:2vh"></div>
+  
+  <!-- Display divs -->
+  <div style="display: inline-block">
+    <video autoplay muted playsinline></video>
+  </div>
+
+  <div style="display: inline-block">
+      <img src="">
+      <canvas style="display:none;"></canvas>
+  </div>
+  
+  <div class="chart-container" style="position: relative; height:480px; width:99%; display: inline-block;">
+	   <canvas id="GPUGraph"></canvas>
+  </div>
+   
+  <!-- Scripts. -->
+  <script src="config.js"></script> 
+  <script src="js/pqueue.js"></script>
+  <script async src="js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js" integrity="sha256-o8aByMEvaNTcBsw94EfRLbBrJBI+c3mjna/j4LrfyJ8=" crossorigin="anonymous"></script>
+  <script src="js/graph.js"></script>
+  
+</div>
+</body>
+</html>
+
