@@ -1,12 +1,17 @@
-# IBM Watson Studio Local 2.0 Base Installation
+# Installing IBM Watson Studio Local 2.0, IBM Watson Machine Learning 2.0 and IBM Watson Machine Learning Accelerator 1.2.0
 
-##  Installation/Configuration of Watson Studio Local 2.0 
+Install an integrated environment that includes IBM Watson Studio Local 2.0, IBM Watson Machine Learning 2.0 and IBM Watson Machine Learning Accelerator 1.2.0. Refer to [IBM Knowledge Center](http://www.ibm.com/support/knowledgecenter/SSFHA8_1.2.0/wmla_wsl_wml_integration.html) for framework support information.
+
+
+## IBM Watson Studio Local 2.0 Base Installation
+
+###  Installation/Configuration of Watson Studio Local 2.0 
 
 Download the IBM Watson Studio Local Trial here: https://www-01.ibm.com/marketing/iwm/iwm/web/download.do?source=mrs-ibmdselt&pageType=urx&S_PKG=code
 
 You can automate the Watson Studio Local installation by creating a configuration file named wdp.conf that will complete all of the parameters. Before you run the installation, the file must be in the same directory as the installation package, and the directory must be in the installer path.
 
-##  Installation Requirements
+###  Installation Requirements
 
 To access the Watson Studio Local install, use `https://<hostname>:31843`.
         
@@ -16,7 +21,7 @@ Watson Studio Local requires at least three virtual machines as master nodes for
 
 You can also use two virtual machines as proxy nodes to provide high availability for the load balancing capability of the cluster. Separate proxy nodes to reduce the workload on the master nodes. If you do not specify proxy nodes, the first two master nodes assume the role of the proxy nodes.
 
-##  Installation by Configuration File
+###  Installation by Configuration File
 
 To install Watson Studio Local by configuration file, complete the following steps:
 
@@ -129,11 +134,11 @@ worker_node_data_2 | Optional: The name of the data path in your first worker no
 
 The installation runs step-by-step and might take a long time. If an installation step fails, review the log files and contact IBM Software Support. The installation log file is located in the mounted directory that you used for the installer. To avoid unexpected issues, make sure to resolve the issue in the log before you retry or skip the step.
 
-# IBM Watson Machine Learning 2.0 Add-on Installation
+## IBM Watson Machine Learning 2.0 Add-on Installation
 
 In order to deploy IBM Watson Machine Learning 2.0 it requires IBM Watson Studio Local 2.0 base installation to be already deployed on the cluster. Steps below are based on this assumption.
 
-##  Installation/Configuration of Watson Machine Learning 2.0 
+###  Installation/Configuration of Watson Machine Learning 2.0 
 
 1. Download the IBM Watson Machine Learning add-on Evaluation software (`wml_module.tar`) from the <IBM Software Repository>. This downloadable package is around 16GB in size and requires IBM ID to download.
 
@@ -153,7 +158,7 @@ In order to deploy IBM Watson Machine Learning 2.0 it requires IBM Watson Studio
 <img src="OneAI_install_images/image001.png" width="50%">
 
 
-#  IBM Watson Machine Learning Accelerator 1.2.0 Installation
+##  IBM Watson Machine Learning Accelerator 1.2.0 Installation
 
 #### Step 1. Download IBM Watson Machine Learning Accelerator 1.2.0 Evaluation.
 
