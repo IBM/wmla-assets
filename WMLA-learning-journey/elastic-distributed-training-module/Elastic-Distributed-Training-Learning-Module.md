@@ -17,7 +17,7 @@ EDT enables multiple Data Scientists sharing GPUs in dynamic fashion, driving da
 
 
 ## Description
-This is the first module of Watson ML Learning Journery.  In this module we wil use a [Jupyter Notebook] (https://github.com/IBM/wmla-assets/blob/master/WMLA-learning-journey/elastic-distributed-training-module/elastic_distributed_training_demonstration.ipynb) to walk through the process of taking an PyTorch model from community,  making the code changes to distribute the training using Elastic Distributed Training.     When you have completed this code pattern, you will understand how to:
+This is the first module of Watson ML Learning Journery.  In this module we wil use a [Jupyter Notebook](https://github.com/IBM/wmla-assets/blob/master/WMLA-learning-journey/elastic-distributed-training-module/elastic_distributed_training_demonstration.ipynb) to walk through the process of taking an PyTorch model from community,  making the code changes to distribute the training using Elastic Distributed Training.     When you have completed this code pattern, you will understand how to:
 
 - Train the PyTorch Model with Elastic Distributed Training
 - Monitor running job status and how to debug any issues
