@@ -38,7 +38,7 @@ Are you interested to find out more details of Watson ML Accelerator.   The foll
 
 &nbsp;
 
-Now you have seen all key capabilities :).  Are you ready to get hands-on experience?   Lets get started with the next learning module of "Elastic Distributed Training" -> <new code pattern or blog link>
+Now you have seen all key capabilities :).  Are you ready to get hands-on experience?   Lets get started with the next learning module of ["Elastic Distributed Training"](https://github.com/IBM/wmla-assets/blob/master/WMLA-learning-journey/elastic-distributed-training-module/Elastic-Distributed-Training-Learning-Module.md)
 
 &nbsp;
 
