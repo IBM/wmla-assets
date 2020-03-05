@@ -38,12 +38,17 @@ Are you interested to find out more details of Watson ML Accelerator.   The foll
 
 &nbsp;
 
-Now you have seen all key capabilities :).  Are you ready to get hands-on experience?   Lets get started with the next learning module of ["Elastic Distributed Training"](https://github.com/IBM/wmla-assets/blob/master/WMLA-learning-journey/elastic-distributed-training-module/Elastic-Distributed-Training-Learning-Module.md)
+Now you have seen all key capabilities :).  Are you ready to get hands-on experience with our learning module series.   In near future we will introduce learning module per our key capabilities, including:
+
+- Elastic Distribute Training
+- Automated Hyperparamter Optimitization
+- Accelerated ML library - SnapML
+- Elastic Distributed Inference
+
+These modules are independent and self-contained where you can learn on your own schedule.
+
+Lets get started with the first learning module of ["Elastic Distributed Training"](https://github.com/IBM/wmla-assets/blob/master/WMLA-learning-journey/elastic-distributed-training-module/Elastic-Distributed-Training-Learning-Module.md)
 
 &nbsp;
-
-This is the first of our learning module series.     In upcoming months we will introduce a learning module per our key capabilities.   These modules are independent and self-contained where you can learn on your own schedule.
-
-
 
 
