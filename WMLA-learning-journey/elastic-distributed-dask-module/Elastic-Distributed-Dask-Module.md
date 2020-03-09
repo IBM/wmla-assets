@@ -29,7 +29,9 @@ In this learning module you will understand how to:
 ### Now your Elastic Distributed Dask Application is in "Started" state, copy following url from the UI console 'Outputs' section:
 -  dask_scheduler_address
 -  dask_scheduler_dashboard_address
-<!-- ![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/Dask_1_image.png)
+<!-- ![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/Dask_1_image.png) -->
+
+
 
 ### Start Dask Diagnostic Dashboard by copying 'dask_scheduler_dashboard_address' to any browser
 
