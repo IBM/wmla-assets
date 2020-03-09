@@ -12,3 +12,30 @@ Elastic Distributed Dask of Watson Machine Learning Accelerator supports dynamic
 
 &nbsp;
 &nbsp;
+
+## Description
+In this learning module you will understand how to:
+- Install and Deploy Elastic Distributed Dask Cluster 
+- Start Elastic Distributed Dask Cluster with 1 GPU
+- Experience auto scaling up of Elastic Distributed Dask Cluster by executing notebook to distribute xgboost model training with multiple Dask-CUDA-workers (worker per GPU)
+- Experience auto scaling down of Elastic Distributed Dask Cluster
+
+
+&nbsp;
+&nbsp;
+### Install and Deploy Elastic Distributed Dask Application by executing this [instruction](https://us-south.git.cloud.ibm.com/ibmcws-application-instance-samples/dask-ego)
+&nbsp;
+
+### Now your Elastic Distributed Dask Application is in "Started" state, copy following url from the UI console 'Outputs' section:
+-  dask_scheduler_address
+-  dask_scheduler_dashboard_address
+<!-- ![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/Dask_1_image.png)
+
+### Start Dask Diagnostic Dashboard by copying 'dask_scheduler_dashboard_address' to any browser
+
+### Add Jupyter notebook in Spectrum Conductor Instance Group -> https://www.ibm.com/support/knowledgecenter/SSZU2E_2.4.1/managing_notebooks/notebook_add.html?view=kc
+
+### Start Notebook in an Instance Group -> https://www.ibm.com/support/knowledgecenter/SSZU2E_2.4.1/managing_instances/notebooks_start.html
+
+###
+
