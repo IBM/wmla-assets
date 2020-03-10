@@ -23,10 +23,11 @@ In this learning module you will understand how to:
 
 &nbsp;
 &nbsp;
-#### Install and Deploy Elastic Distributed Dask Application by executing this [instruction](https://us-south.git.cloud.ibm.com/ibmcws-application-instance-samples/dask-ego)
+
+1. Install and Deploy Elastic Distributed Dask Application by executing this [instruction](https://us-south.git.cloud.ibm.com/ibmcws-application-instance-samples/dask-ego)
 &nbsp;
 
-#### Now your Elastic Distributed Dask Application is in "Started" state, copy following url from the UI console 'Outputs' section:
+2. Now your Elastic Distributed Dask Application is in "Started" state, copy following url from the UI console 'Outputs' section:
 -  dask_scheduler_address
 -  dask_scheduler_dashboard_address
 
@@ -37,13 +38,28 @@ In this learning module you will understand how to:
 
 ![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/Dask_1_image.png)
 
+&nbsp;
+&nbsp;
+
+3. Start Dask Diagnostic Dashboard by copying 'dask_scheduler_dashboard_address' to any browser,  observe there is single dask cuda worker starting up ONLY.
+
+![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/Dask_2_image.png)
+
+&nbsp;
+&nbsp;
 
 
 
-#### Start Dask Diagnostic Dashboard by copying 'dask_scheduler_dashboard_address' to any browser
+4. Add Jupyter notebook in Spectrum Conductor Instance Group -> https://www.ibm.com/support/knowledgecenter/SSZU2E_2.4.1/managing_notebooks/notebook_add.html?view=kc
 
-#### Add Jupyter notebook in Spectrum Conductor Instance Group -> https://www.ibm.com/support/knowledgecenter/SSZU2E_2.4.1/managing_notebooks/notebook_add.html?view=kc
+&nbsp;
+&nbsp;
 
-#### Start Notebook in an Instance Group -> https://www.ibm.com/support/knowledgecenter/SSZU2E_2.4.1/managing_instances/notebooks_start.html
+5. Start Notebook in an Instance Group -> https://www.ibm.com/support/knowledgecenter/SSZU2E_2.4.1/managing_instances/notebooks_start.html
 
+
+6. Download notebook [dask_xgb_training.ipynb] from repo and upload it to Conductor Jupyter server
+![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/Dask_3_image.png)
+
+7.  Execute the notebook
 
