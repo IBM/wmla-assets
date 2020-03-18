@@ -46,43 +46,7 @@ Note that the code sections below show a comparison between the "before" and "ED
 &nbsp;
 &nbsp;
 <!-- ![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/1_model_update.png) -->
-
-<pre style="font-size: 10px; color:white; background-color:black">
-import os                                                                       import os
-import copy                                                                     import copy
-
-<span style="color:lime;">                                                                              &gt; # EDT changes - additional libraries</span>
-<span style="color:lime;">                                                                              &gt;</span>
-<span style="color:lime;">                                                                              &gt; import argparse</span>
-<span style="color:lime;">                                                                              &gt; import sys</span>
-<span style="color:lime;">                                                                              &gt; from os import environ</span>
-<span style="color:lime;">                                                                              &gt; import json</span>
-<span style="color:lime;">                                                                              &gt; import torch.nn.functional as F</span>
-<span style="color:lime;">                                                                              &gt;</span>
-<span style="color:lime;">                                                                              &gt; # EDT changes - setting up enviroment variables. Note the additional helper s</span>
-<span style="color:lime;">                                                                              &gt; # for EDT: edtcallback.py, emetrics.py and elog.py. These need to sit in the </span>
-<span style="color:lime;">                                                                              &gt; # as this code. Sample versions can be downloaded from http://ibm.biz/WMLA-sa</span>
-<span style="color:lime;">                                                                              &gt;</span>
-<span style="color:lime;">                                                                              &gt; path=os.path.join(os.getenv(&quot;FABRIC_HOME&quot;), &quot;libs&quot;, &quot;fabric.zip&quot;)</span>
-<span style="color:lime;">                                                                              &gt; print(path)</span>
-<span style="color:lime;">                                                                              &gt; sys.path.insert(0,path)</span>
-<span style="color:lime;">                                                                              &gt; from fabric_model import FabricModel</span>
-<span style="color:lime;">                                                                              &gt; from edtcallback import EDTLoggerCallback</span>
-<span style="color:lime;">                                                                              &gt;</span>
-<span style="color:lime;">                                                                              &gt; dataDir = environ.get(&quot;DATA_DIR&quot;)</span>
-<span style="color:lime;">                                                                              &gt; if dataDir is not None:</span>
-<span style="color:lime;">                                                                              &gt;     print(&quot;dataDir is: %s&quot;%dataDir)</span>
-<span style="color:lime;">                                                                              &gt; else:</span>
-<span style="color:lime;">                                                                              &gt;     print(&quot;Warning: not found DATA_DIR from os env!&quot;)</span>
-<span style="color:lime;">                                                                              &gt;</span>
-<span style="color:lime;">                                                                              &gt; model_path = os.environ[&quot;RESULT_DIR&quot;]+&quot;/model/saved_model&quot;</span>
-<span style="color:lime;">                                                                              &gt; tb_directory = os.environ[&quot;LOG_DIR&quot;]+&quot;/tb&quot;</span>
-<span style="color:lime;">                                                                              &gt; print (&quot;model_path: %s&quot; %model_path)</span>
-<span style="color:lime;">                                                                              &gt; print (&quot;tb_directory: %s&quot; %tb_directory)</span>
-<span style="color:lime;">                                                                              &gt;</span>
-# Data augmentation and normalization for training                              # Data augmentation and normalization for training
-# Just normalization for validation                                             # Just normalization for validation
-</pre>
+![image1](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/elastic-distributed-training-module/shared-images/screenshot1.png)
 &nbsp;
 &nbsp;
 
@@ -93,56 +57,8 @@ import copy                                                                     
 &nbsp;
 <!-- ![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/2_model_update.png)
 ![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/3_model_update.png) -->
+![image2](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/elastic-distributed-training-module/shared-images/screenshot2.png)
 
-<pre style="font-size: 10px; color:white; background-color:black">
-# Data augmentation and normalization for training                              # Data augmentation and normalization for training
-# Just normalization for validation                                             # Just normalization for validation
-<span style="color:red;">data_transforms = {                                                           &lt;</span>
-<span style="color:red;">    'train': transforms.Compose([                                             &lt;</span>
-<span style="color:red;">        transforms.RandomResizedCrop(224),                                    &lt;</span>
-<span style="color:red;">        transforms.RandomHorizontalFlip(),                                    &lt;</span>
-<span style="color:red;">        transforms.ToTensor(),                                                &lt;</span>
-<span style="color:red;">        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])    &lt;</span>
-<span style="color:red;">    ]),                                                                       &lt;</span>
-<span style="color:red;">    'val': transforms.Compose([                                               &lt;</span>
-<span style="color:red;">        transforms.Resize(256),                                               &lt;</span>
-<span style="color:red;">        transforms.CenterCrop(224),                                           &lt;</span>
-<span style="color:red;">        transforms.ToTensor(),                                                &lt;</span>
-<span style="color:red;">        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])    &lt;</span>
-<span style="color:red;">    ]),                                                                       &lt;</span>
-<span style="color:red;">}                                                                             &lt;</span>
-
-<span style="color:red;">data_dir = '/home/username/hymenoptera_data'                                  &lt;</span>
-<span style="color:red;">image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x),          &lt;</span>
-<span style="color:red;">                                          data_transforms[x])                 &lt;</span>
-<span style="color:red;">                  for x in ['train', 'val']}                                  &lt;</span>
-<span style="color:red;">dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=4 &lt;</span>
-<span style="color:red;">                                             shuffle=True, num_workers=4)     &lt;</span>
-<span style="color:red;">              for x in ['train', 'val']}                                      &lt;</span>
-<span style="color:red;">dataset_sizes = {x: len(image_datasets[x]) for x in ['train', 'val']}         &lt;</span>
-<span style="color:red;">class_names = image_datasets['train'].classes                                 &lt;</span>
-
-<span style="color:lime;">                                                                              &gt; # EDT changes - replace the data loading functions with ones that return a tu</span>
-<span style="color:lime;">                                                                              &gt; # two items of type torch.utils.data.Dataset</span>
-<span style="color:lime;">                                                                              &gt; def getDatasets():</span>
-<span style="color:lime;">                                                                              &gt;     data_transforms = {</span>
-<span style="color:lime;">                                                                              &gt;         'train': transforms.Compose([</span>
-<span style="color:lime;">                                                                              &gt;             transforms.RandomResizedCrop(224),</span>
-<span style="color:lime;">                                                                              &gt;             transforms.RandomHorizontalFlip(),</span>
-<span style="color:lime;">                                                                              &gt;             transforms.ToTensor(),</span>
-<span style="color:lime;">                                                                              &gt;             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]</span>
-<span style="color:lime;">                                                                              &gt;         ]),</span>
-<span style="color:lime;">                                                                              &gt;         'val': transforms.Compose([</span>
-<span style="color:lime;">                                                                              &gt;             transforms.Resize(256),</span>
-<span style="color:lime;">                                                                              &gt;             transforms.CenterCrop(224),</span>
-<span style="color:lime;">                                                                              &gt;             transforms.ToTensor(),</span>
-<span style="color:lime;">                                                                              &gt;             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]</span>
-<span style="color:lime;">                                                                              &gt;         ]),</span>
-<span style="color:lime;">                                                                              &gt;     }</span>
-<span style="color:lime;">                                                                              &gt;     </span>
-<span style="color:lime;">                                                                              &gt;     return (datasets.ImageFolder(os.path.join(dataDir, 'train'), data_transfo</span>
-<span style="color:lime;">                                                                              &gt;             datasets.ImageFolder(os.path.join(dataDir, 'val'), data_transform</span>
-</pre>
 
 
 &nbsp;
@@ -157,29 +73,8 @@ You could also potentially specify parameters in the API call and pass these par
 &nbsp;
 &nbsp;
 <!-- ![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/4_model_update.png) -->
+![image3](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/elastic-distributed-training-module/shared-images/screenshot3.png)
 
-<pre style="font-size: 10px; color:white; background-color:black">
-
-<span style="color:lime;">                                                                              &gt; # EDT changes - define main function and parse parameters for training</span>
-<span style="color:lime;">                                                                              &gt;</span>
-<span style="color:lime;">                                                                              &gt; def main():</span>
-<span style="color:lime;">                                                                              &gt;     </span>
-<span style="color:lime;">                                                                              &gt;     parser = argparse.ArgumentParser(description='PyTorch MNIST Example')</span>
-<span style="color:lime;">                                                                              &gt;     parser.add_argument('--batchsize', type=int, default=64, metavar='N',</span>
-<span style="color:lime;">                                                                              &gt;                         help='input batch size for training (default: 64)')</span>
-<span style="color:lime;">                                                                              &gt;     parser.add_argument('--numWorker', type=int, default=100, metavar='N',</span>
-<span style="color:lime;">                                                                              &gt;                         help='maxWorker')</span>
-<span style="color:lime;">                                                                              &gt;     parser.add_argument('--epochs', type=int, default=5, metavar='N',</span>
-<span style="color:lime;">                                                                              &gt;                         help='input epochs for training (default: 64)')</span>
-<span style="color:lime;">                                                                              &gt;</span>
-<span style="color:lime;">                                                                              &gt;     args, unknow = parser.parse_known_args()</span>
-<span style="color:lime;">                                                                              &gt;  </span>
-<span style="color:lime;">                                                                              &gt;     print('args: ', args)</span>
-<span style="color:lime;">                                                                              &gt;     print('numWorker args:', args.numWorker) </span>
-<span style="color:lime;">                                                                              &gt;     print('batch_size args:', args.batchsize)</span>
-<span style="color:lime;">                                                                              &gt;     print('epochs args:', args.epochs)</span>
-<span style="color:lime;">                                                                              &gt;</span>
-</pre>
 
 &nbsp;
 &nbsp;
@@ -191,21 +86,8 @@ You could also potentially specify parameters in the API call and pass these par
 &nbsp;
 &nbsp;
 <!-- ![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/5_model_update.png) -->
+![image4](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/elastic-distributed-training-module/shared-images/screenshot4.png)
 
-<pre style="font-size: 10px; color:white; background-color:black">
-
-<span style="color:lime;">                                                                              &gt; # EDT changes - Replace the training and testing loops with EDT equivalents</span>
-<span style="color:lime;">                                                                              &gt;</span>
-<span style="color:lime;">                                                                              &gt; # model_conv = train_model(model_conv, criterion, optimizer_conv,</span>
-<span style="color:lime;">                                                                              &gt; #                          exp_lr_scheduler, num_epochs=25)</span>
-
-<span style="color:aqua;">model_conv = train_model(model_conv, criterion, optimizer_conv,               |     edt_m = FabricModel(model_conv, getDatasets, F.nll_loss, optimizer_conv, </span>
-<span style="color:aqua;">                         exp_lr_scheduler, num_epochs=25)                     |     edt_m.train(args.epochs, args.batchsize, args.numWorker,checkpoint_freq=5</span>
-
-<span style="color:lime;">                                                                              &gt; if __name__ == '__main__':</span>
-<span style="color:lime;">                                                                              &gt;     print('sys.argv: ', sys.argv)</span>
-<span style="color:lime;">                                                                              &gt;     main()</span>
-</pre>
 
 &nbsp;
 &nbsp;
