@@ -1,4 +1,5 @@
     "- [The big picture](#The-big-picture)\n", - Kelvin
+    <KL> where could Kelvin get the description of the use case and add it as part of Big Picture? </KL>
 	
     "- [Plan for resources]: 1) Create a resource group for CPUs and another for GPUs\n",
 	"- 2) Create a consumer for the EDI service\n",
@@ -8,13 +9,17 @@
     "- [Making workload code and dataset available]: 1) Move data to the WMLA cluster\n",
 	"- 2) Connect to github and pull the workload to the WMLA local directory\n",
        - Theresax - tensorrt example,
+       
+       -<KL> what would be the size of dataset?  could we use git clone or wget to download the dataset?  </KL>
 
-    "- [Set up the custom conda env in WMLA]: 1) install annaconda\n",
+    "- [Set up the custom conda env in WMLA]: 1) install annaconda\n",   
 	"- 2) add WML CE 1.6.2 conda channel\n",
 	"- 3) create an conda environment using python 7 and WML CE 1.6.2\n",
 	"- 4) activate the conda environment then test the inferencing code\n",
 	- check API enterface from EDI swagger docs work in progress: http://paie-util02.aus.stglabs.ibm.com:32020/dlim/v1/docs/
 	  using notebook what auth level
+	 
+	- <KL> we could leverage Anaconda Management to deploy conda env (with a yaml file) across multiple hosts </KL>
 
     "- [Add kernel.py to the workload directory, and update it with inferencing logic]: (#see example)\n",
              - where is the template? documentation link  https://www.ibm.com/support/knowledgecenter/SSFHA8_1.2.1/us/ias-create-inference-service-kernel-file.html
