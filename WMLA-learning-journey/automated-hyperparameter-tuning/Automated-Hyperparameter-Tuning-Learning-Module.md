@@ -41,6 +41,47 @@ Note that the code sections below show a comparison between the "before" and "HP
 
 &nbsp;
 &nbsp;
-<!-- ![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/2_model_update.png)
-![alt text](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/shared-images/3_model_update.png) -->
 ![image2](https://raw.githubusercontent.com/IBM/wmla-assets/zhuangxy-patch-1/WMLA-learning-journey/automated-hyperparameter-tuning/shared_images/hpo_update_model_2.png)
+&nbsp;
+&nbsp;
+
+2.  Write the tuning result into `val_dict_list.json` under RESULT_DIR. WMLA HPO will read this file for each tuning job to get the metric values.
+
+&nbsp;
+&nbsp;
+2.1  First Define a test_metrics list to store all metric values.
+&nbsp;
+![image2](https://raw.githubusercontent.com/IBM/wmla-assets/zhuangxy-patch-1/WMLA-learning-journey/automated-hyperparameter-tuning/shared_images/hpo_update_model_3.png)
+&nbsp;
+
+&nbsp;
+2.2  During the training process, add the metric values to the test_metrics list. Please note that the metric names should be specified when submitting the HPO task, and be consitent with the code here.
+
+&nbsp;
+For example, the HPO task submit request, `loss` will be used as the objective metric the tuning will try to minimize the `loss`:
+```
+'algoDef': # Define the parameters for search algorithms  
+{
+    # Name of the search algorithm, one of Random, Bayesian, Tpe, Hyperband  
+    'algorithm': 'Random',   
+    # Name of the target metric that we are trying to optimize when searching hyper-parameters.
+    # It is the same metric name that the model update part 2 trying to dump.
+    'objectiveMetric' : 'loss',
+    # Strategy as how to optimize the hyper-parameters, minimize means to find better hyper-parameters to
+    # make the above objectiveMetric as small as possible, maximize means the opposite.
+    'objective' : 'minimize',
+    ...
+}
+```
+&nbsp;
+The code change:
+&nbsp;
+![image2](https://raw.githubusercontent.com/IBM/wmla-assets/zhuangxy-patch-1/WMLA-learning-journey/automated-hyperparameter-tuning/shared_images/hpo_update_model_4.png)
+&nbsp;
+
+&nbsp;
+2.3  After the training complete, write the metric list into the `val_dict_list.json` file.
+&nbsp;
+![image2](https://raw.githubusercontent.com/IBM/wmla-assets/zhuangxy-patch-1/WMLA-learning-journey/automated-hyperparameter-tuning/shared_images/hpo_update_model_5.png)
+&nbsp;
+&nbsp;
