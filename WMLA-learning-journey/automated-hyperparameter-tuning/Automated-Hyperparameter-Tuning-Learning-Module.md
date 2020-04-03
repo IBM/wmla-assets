@@ -26,4 +26,13 @@ Learn how to:
 
 
 ## Changes to your code
-TODO
+
+Note that the code sections below show a comparison between the "before" and "HPO enabled" versions of the code using `diff`.
+
+1. Get the WMLA cluster RESULT_DIR and LOG_DIR for the hpo training job. The RESULT_DIR can be used for final model saving, and the LOG_DIR can be used for user logs and monitoring.
+
+&nbsp;
+&nbsp;
+![image1](https://raw.githubusercontent.com/IBM/wmla-assets/master/WMLA-learning-journey/automated-hyperparameter-tuning/shared_images/hpo_update_model_1.png)
+&nbsp;
+&nbsp;
