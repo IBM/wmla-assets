@@ -1,1 +1,1 @@
-# wmla-assets
+# wmla-assets and instructioons for iscep !
