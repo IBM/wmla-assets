@@ -85,3 +85,5 @@ The code change:
 ![image2](https://raw.githubusercontent.com/IBM/wmla-assets/zhuangxy-patch-1/WMLA-learning-journey/automated-hyperparameter-tuning/shared_images/hpo_update_model_5.png)
 &nbsp;
 &nbsp;
+
+# Test commit by Simon
