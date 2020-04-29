@@ -1,27 +1,33 @@
 
 
 ## Summary
-TODO
 
+One of the first steps in developing a new AI model is to define the characterization of the training cycle. The variables which describe these elements of the model configuration are called hyperparameters.
+
+For the same model, hyperparameters may be varied based on the training data set to achieve the optimal training result.
+
+Watson ML Accelerator Auto Hyper-parameter Tuning feature helps reducing the number of experimental iterations and accelerate arriving at the optimal parameters.    It automates hyper-parameter search with  defined ranges of searching space and running these searches in parallel across available resources in the cluster,  with Data Scientist's choice of search algorithm including Random, Tree-based Parzen Estimator, Bayesian or Hyperband, or even bringing in their own Algorithm.      The search engine returns the most promising combination of hyper-parameters to the data scientist.
+
+Afterwards, data scientists can kick off training with the optimal values of hyperparameters found during this automated tuning.
 
 
 ## Description
-TODO
+In this module we will use multiple notebooks to walk through the process of taking the an PyTorch model from the community, making the needed code changes and identifying optimal hyper-parameter with Watson ML Accelerator Hyperparameter Optimization, including:
 
+-  Introduction of Watson ML Accelerator Hyperparameter Optimization -> https://github.com/IBM/wmla-assets/blob/master/HPO-demonstration/WMLA-HPO-state.ipynb
+-  How to define custom search space -> https://github.com/IBM/wmla-assets/blob/master/HPO-demonstration/WMLA-HPO-Custom-Experiment.ipynb
+-  How to bring Your Own Algorithm -> https://github.com/IBM/wmla-assets/blob/master/HPO-demonstration/WMLA-HPO-Plugin-Search-Algorithm.ipynb
+-  Distribute Hyperparameter Optimization tasks with Elastic Distributed Training -> https://github.com/IBM/wmla-assets/blob/master/HPO-demonstration/HPO-EDT/WMLA-HPO-Hyperband-EDT-external.ipynb
 
 
 ## Instructions
 
 The detailed steps for this tutorial can be found in the associated xx.  
-
 Learn how to:
-
 - Make changes to your code
-- Make your dataset available
 - Set up API end point and log on
-- Submit job via API
-- Monitor running job
-- Retrieve output and saved models
+- Submit HPO job via API
+- Monitor running HPO job
 - Debug any issues
 
 
