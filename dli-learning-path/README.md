@@ -4,9 +4,9 @@
 **This is Placeholder Table ONLY, goal is to have non-image-classification sample, suggestion is welcome**
 | Framework/Interface| DLI UI | DLI RestAPI | BYOF RestAPI|
 |------------------- | :-------:|:--------------:| --|
-|Image Classification Resnet (GPU)       |X  | X  |	|
+|Image Classification PyTorch Resnet (GPU)       |X  | X  |	|
 |Time Series Keras LSTM - TF as backend (GPU)| X	| | 	
-|Image Classification Resnet (CPU)  |	|	|	|
+|Image Classification PyTroch Resnet (CPU)  |	|	|	|
 |Time Series Keras LSTM - TF as backend (CPU)| 	| | 
 	
 
