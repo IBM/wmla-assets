@@ -1,7 +1,7 @@
 
 
 ## Supported-Scenarios (To-Be-Discussed):
-** This is Placeholder Table ONLY **
+** This is Placeholder Table ONLY, goal is to have non-image-classification sample, suggestion is welcome **
 | Framework/Interface| DLI UI | DLI RestAPI | BYOF RestAPI|
 |------------------- | :-------:|:--------------:| --|
 |Image Classification Resnet (GPU)       |X  | X  |	|
