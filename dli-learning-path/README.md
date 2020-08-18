@@ -83,7 +83,8 @@ To start a training run with the sample model, complete the following steps:
 3. input the required fields and complete "Start Training".
 
 &nbsp;
-[TODO: provide the pre-trained model download link, in ibm cloud maybe?]
+[TODO: provide the pre-trained model download link, in ibm cloud maybe?] 
+&nbsp;
 If you want to start your training based on a pretrained model, you could: 
 1. download the example pre-trained model and place it on server (eg. /dlidata/resnet/checkpoint)
 2. Specify the location of a folder containing weight files when submitting training
@@ -103,6 +104,10 @@ Inspect the training status with below steps when the job is running or finished
 2. Select the model and click the Training tab to view all training jobs.
 3. Click the training jobs you want to inspec and observe the train/test accuracy/loss for each epochs
 
+&nbsp;
+![img_loss](images/image_loss.png)![img_acc](images/image_acc.png)
+&nbsp;
+&nbsp;
 
 -   [Create an inference model](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Create-an-inference-model)
 
@@ -120,13 +125,13 @@ To test an inference model, complete the following steps:
 4. After the inference job is finished, click on the job to see prediction results.
 
 &nbsp;
-![img_submit_train](images/image_inference_result.png)
+![img_inference](images/image_inference_result.png)
 &nbsp;
 &nbsp;
 
 The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes. The label value 0-9 are mapping to ['airplan', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 &nbsp;
-![img_submit_train](images/image_cifar10.png)
+![img_cifar10](images/image_cifar10.png)
 &nbsp;
 &nbsp;
 
