@@ -39,7 +39,7 @@ Adopt this format for UI workflow: -> [https://github.com/IBM/wmla-learning-path
 
 **Steps with Screen Shots,  expects to include content such as what's the model doing or how to analyze results**
 
--   [Import dataset](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Import-dataset)
+###   [Import dataset](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Import-dataset)
 
 1. Download the [CIFAR-10 python version](https://www.cs.toronto.edu/~kriz/cifar.html).
 2. Once downloaded, prepare the dataset by following these steps:
@@ -58,11 +58,57 @@ Adopt this format for UI workflow: -> [https://github.com/IBM/wmla-learning-path
 &nbsp;
 &nbsp;
 
--   Build the model
+###   Build the model
 
-How to update open source model with DLI library
+Before upload an model to the WMLA platform, you need to modify your model with DLI programming APIs, which enables you to manage the model settings via the WMLA GUI (eg. datasource, optimizer, lr policy, epoch, batchsize, etc.) 
 
--   [Upload the model](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Build-the-model)
+To access the DLI programming API doc, complete the following steps:
+1. From the cluster management console, navigate to Workload > Deep Learning.
+2. In the upper right, move the mouse to the question mark
+3. Cick "Deep Learning Python API"
+4. For pytorch model, click "pth_parameter_mgr" to view full available programming API list.
+
+&nbsp;
+Here's steps to update raw pytoch model into a WMLA model:
+1. import the WMLA python API for pytorch
+```python
+import pth_parameter_mgr
+```
+
+&nbsp;
+2. replace harcoded model configuration with corresponding APIs, the API will load user defined settings durning the runtime. For example:
+
+To read train/test dataset that we created in step 1:
+```python
+train_data_dir = pth_parameter_mgr.getTrainData(False)   # set false if you only want to return the root directory instead of a full file list
+test_data_dir = pth_parameter_mgr.getTestData(False)
+
+train_dataset = torchvision.datasets.CIFAR10(root=train_data_dir, train=True, download=False, transform = transform_train)
+test_dataset = torchvision.datasets.CIFAR10(root=test_data_dir, train=False, download=False, transform = transform_test)
+```
+
+To get data batch size:
+```python
+train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=pth_parameter_mgr.getTrainBatchSize(), shuffle=True, **kwargs)
+test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=pth_parameter_mgr.getTestBatchSize(), shuffle=True, **kwargs)
+```
+
+To get epoch:
+```python
+epochs = pth_parameter_mgr.getEpoch()
+```
+
+To get optimizer:
+```python
+optimizer = pth_parameter_mgr.getOptimizer(model)
+```
+
+To get learning rate:
+```python
+scheduler = pth_parameter_mgr.getLearningRate(optimizer)
+```
+
+###   [Upload the model](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Build-the-model)
 
 To upload the sample model, complete the following steps to upload all the model files to the server.:
 
@@ -71,11 +117,11 @@ To upload the sample model, complete the following steps to upload all the model
 3. Click Add Location and input the required fields, including: PyTorch as the framework and the upload location of the model files.
 4. Click Next and input the required fields for the model. IMPORTANT: All training engines are available with this model so you can select any of the training engine options.
 
--   [Tune Hyper-parameter](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Tune-hyper-parameter)
+###   [Tune Hyper-parameter](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Tune-hyper-parameter)
 
 shall we need this section?
 
--   [Run Training](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Run-training)
+###   [Run Training](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Run-training)
 
 To start a training run with the sample model, complete the following steps:
 1. From the cluster management console, navigate to Workload > Deep Learning.
@@ -85,6 +131,7 @@ To start a training run with the sample model, complete the following steps:
 &nbsp;
 [TODO: provide the pre-trained model download link, in ibm cloud maybe?] 
 &nbsp;
+
 If you want to start your training based on a pretrained model, you could: 
 1. download the example pre-trained model and place it on server (eg. /dlidata/resnet/checkpoint)
 2. Specify the location of a folder containing weight files when submitting training
@@ -97,7 +144,7 @@ Or:
 &nbsp;
 &nbsp;
 
--   [Inspect Training Run](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Inspect-training-run)
+###   [Inspect Training Run](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Inspect-training-run)
 
 Inspect the training status with below steps when the job is running or finished:
 1. From the cluster management console, navigate to Workload > Deep Learning.
@@ -109,14 +156,14 @@ Inspect the training status with below steps when the job is running or finished
 &nbsp;
 &nbsp;
 
--   [Create an inference model](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Create-an-inference-model)
+###   [Create an inference model](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Create-an-inference-model)
 
 To start an inference job with the trained sample model, complete the following steps:
 1. From the cluster management console, navigate to Workload > Deep Learning.
 2. Navigate to the Models tab and click on the sample model that you trained.
 3. Select the Training tab, and select the finished training run that you want to use as an inference model and click Create Inference Model.
 
--   [Test it out](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Test-it-out)
+###   [Test it out](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Test-it-out)
 
 To test an inference model, complete the following steps:
 1. From the cluster management console, navigate to Workload > Deep Learning.
