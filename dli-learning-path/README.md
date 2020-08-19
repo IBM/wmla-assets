@@ -31,7 +31,7 @@ In this asset, you will learn how to:
 - Watson Machine Learning Accelerator is  installed & configured.    Please refer to [Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSFHA8_1.2.2/wmla_install.html) for further details.
 - Upload following assets to your Watson Machine Learning Accelerator cluster:
   - [CIFAR-10 python version](https://www.cs.toronto.edu/~kriz/cifar.html)
-  - [PyTorch Resnet Model]
+  - [PyTorch Resnet Model](https://github.com/IBM/wmla-assets/raw/master/dli-learning-path/datasets/pytorch_resnet.zip)
   - **any artifacts/assets link**
 
 ## Instructions
