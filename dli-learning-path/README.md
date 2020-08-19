@@ -69,14 +69,27 @@ To access the DLI programming API doc, complete the following steps:
 4. For pytorch model, click "pth_parameter_mgr" to view full available programming API list.
 
 &nbsp;
-Here's steps to update raw pytoch model into a WMLA model:
-1. import the WMLA python API for pytorch
+Here's steps to update raw pytoch model into a WMLA model, note that you could refer to ```main_raw.py``` and ```main.py``` as before and after:
+1. Import the WMLA python API for pytorch
 ```python
 import pth_parameter_mgr
 ```
 
+2. Parse the parameters, which is passed by WMLA at runtime:
+```python
+def main(model_type, pretrained = False):
+    parser = argparse.ArgumentParser(description='PyTorch Cifar10 Example')
+    parser.add_argument('--train_dir', type=str, default='', help='input the path of model checkpoint file path')
+    parser.add_argument('--weights', type=str, default='', help='input the path of initial weight file')
+
+    args, unknown = parser.parse_known_args()
+    ......
+```
+
+Now you can use ```args.train_dir``` in your code to save model checkpoints and results, the trainning result fils can be downloaded from GUI later if you want. use ```args.weights``` to load pretrained model as your training start point, the initial weight files can be specified or uploaded when submmiting jobs from GUI. See section "Run Training" for details.
+
 &nbsp;
-2. replace harcoded model configuration with corresponding APIs, the API will load user defined settings durning the runtime. For example:
+3. Replace harcoded model configuration with corresponding APIs, the API will load user defined settings durning the runtime. For example:
 
 To read train/test dataset that we created in step 1:
 ```python
@@ -107,6 +120,48 @@ To get learning rate:
 ```python
 scheduler = pth_parameter_mgr.getLearningRate(optimizer)
 ```
+
+4. To support upload pretrained weight file when submitting training, add below code:
+
+```python
+def getWeightFile(args):    
+    initial_weight_dir_str = args.weights.strip() 
+
+    if not initial_weight_dir_str:
+        return ""
+
+    if not os.path.exists(initial_weight_dir_str):
+        return ""
+
+    input_weight_dir = os.path.expanduser(initial_weight_dir_str)
+    allfiles = glob.iglob(input_weight_dir + '/*.*')
+    weightfiles = [wt_f for wt_f in allfiles if wt_f.endswith(".pth")]
+
+    weightfile = ""
+
+    for wtfile in weightfiles:
+        if wtfile.startswith("model_epoch_final"):
+            return wtfile
+
+        weightfile = wtfile
+
+    return weightfile
+    
+weightfile = getWeightFile(args)
+    if weightfile:
+        print ("Initial weight file is " + weightfile)
+        model.load_state_dict(torch.load(weightfile, map_location=lambda storage, loc: storage))
+```
+
+5. To inspect Training progress (etc, loss/acc) from GUI during the training, add ouputs for DLinsights service to retrieve (See section "Inspect Training Run" for details). For example:
+```python
+print ("Iteration " + str(completed_batch) + ": tag train_accuracy, simple_value " + str(correct*1.0/total))
+print ("Iteration " + str(completed_batch) + ": tag train_loss, simple_value " + str(train_loss*1.0/(batch_idx+1)))
+
+print ("Iteration " + str(completed_batch) + ": tag test_accuracy, simple_value " + str(test_acc/100.0))
+print ("Iteration " + str(completed_batch) + ": tag test_loss, simple_value " + str(test_loss))
+```
+
 
 ###   [Upload the model](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Build-the-model)
 
