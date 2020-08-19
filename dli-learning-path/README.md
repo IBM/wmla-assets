@@ -89,7 +89,7 @@ def main(model_type, pretrained = False):
 Now you can use ```args.train_dir``` in your code to save model checkpoints and results, the trainning result fils can be downloaded from GUI later if you want. use ```args.weights``` to load pretrained model as your training start point, the initial weight files can be specified or uploaded when submmiting jobs from GUI. See section "Run Training" for details.
 
 &nbsp;
-3. Replace harcoded model configuration with corresponding APIs, the API will load user defined settings durning the runtime. For example:
+3. Replace hard-coded model configuration with corresponding APIs, the API will load user defined settings durning the runtime. For example:
 
 To read train/test dataset that we created in step 1:
 ```python
