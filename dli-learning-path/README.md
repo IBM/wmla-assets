@@ -86,7 +86,11 @@ def main(model_type, pretrained = False):
     ......
 ```
 
-Now you can use ```args.train_dir``` in your code to save model checkpoints and results, the trainning result fils can be downloaded from GUI later if you want. use ```args.weights``` to load pretrained model as your training start point, the initial weight files can be specified or uploaded when submmiting jobs from GUI. See section "Run Training" for details.
+Now you can use ```args.train_dir``` in your code to save model checkpoints and results, the trainning result fils can be downloaded from GUI later if you want. use ```args.weights``` to load pretrained model as your training start point, the initial weight files can be specified or uploaded when submmiting jobs from GUI. See section "Run Training" for details. For example, you could save final training result as below:
+
+```python
+torch.save(model.state_dict(), "args.train_dir + "/model_epoch_final.pth")
+```
 
 &nbsp;
 3. Replace hard-coded model configuration with corresponding APIs, the API will load user defined settings durning the runtime. For example:
