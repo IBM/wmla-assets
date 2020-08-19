@@ -30,19 +30,15 @@ In this asset, you will learn how to:
 ## Pre-requisites
 - Watson Machine Learning Accelerator is  installed & configured.    Please refer to [Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSFHA8_1.2.2/wmla_install.html) for further details.
 - Upload following assets to your Watson Machine Learning Accelerator cluster:
-  - dataset url
-  - model url
+  - [CIFAR-10 python version](https://www.cs.toronto.edu/~kriz/cifar.html)
+  - [PyTorch Resnet Model]
   - **any artifacts/assets link**
 
 ## Instructions
-Adopt this format for UI workflow: -> [https://github.com/IBM/wmla-learning-path/blob/master/tutorials-ui/01_classify_images_tensorflow.ipynb](https://github.com/IBM/wmla-learning-path/blob/master/tutorials-ui/01_classify_images_tensorflow.ipynb)
 
-**Steps with Screen Shots,  expects to include content such as what's the model doing or how to analyze results**
-
-###   [Import dataset](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Import-dataset)
-
-1. Download the [CIFAR-10 python version](https://www.cs.toronto.edu/~kriz/cifar.html).
-2. Once downloaded, prepare the dataset by following these steps:
+###   [Import dataset]
+1. Upload the [CIFAR-10 python version](https://www.cs.toronto.edu/~kriz/cifar.html) to your Watson Machine Learning Accelerator cluster.
+2. Once upload, prepare the dataset by following these steps:
 3. Untar the downloaded dataset. This will yield a folder called "cifar-10-batches-py".
 4. Create two new directories: one called "train", and the other called "test".
 5. Copy the cifar-10-batches-py directory to both the train and test folders created in the previous step.
