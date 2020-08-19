@@ -199,7 +199,7 @@ Or:
 &nbsp;
 &nbsp;
 
-###   [Inspect Training Run](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Inspect-training-run)
+###   [Inspect Training Run]
 
 Inspect the training status with below steps when the job is running or finished:
 1. From the cluster management console, navigate to Workload > Deep Learning.
@@ -211,14 +211,14 @@ Inspect the training status with below steps when the job is running or finished
 &nbsp;
 &nbsp;
 
-###   [Create an inference model](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Create-an-inference-model)
+###   [Create an inference model]
 
 To start an inference job with the trained sample model, complete the following steps:
 1. From the cluster management console, navigate to Workload > Deep Learning.
 2. Navigate to the Models tab and click on the sample model that you trained.
 3. Select the Training tab, and select the finished training run that you want to use as an inference model and click Create Inference Model.
 
-###   [Test it out](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Test-it-out)
+###   [Test it out]
 
 To test an inference model, complete the following steps:
 1. From the cluster management console, navigate to Workload > Deep Learning.
@@ -237,4 +237,3 @@ The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes. The la
 &nbsp;
 &nbsp;
 
-## Conclusion
