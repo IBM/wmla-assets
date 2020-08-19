@@ -78,7 +78,7 @@ import pth_parameter_mgr
 2. Parse the parameters, which is passed by WMLA at runtime:
 ```python
 def main(model_type, pretrained = False):
-    parser = argparse.ArgumentParser(description='PyTorch Cifar10 Example')
+    parser = argparse.ArgumentParser(description='PyTorch Resnet Cifar10 Example')
     parser.add_argument('--train_dir', type=str, default='', help='input the path of model checkpoint file path')
     parser.add_argument('--weights', type=str, default='', help='input the path of initial weight file')
 
