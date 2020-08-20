@@ -219,15 +219,26 @@ Or:
 Inspect the training status with below steps when the job is running or finished:
 1. From the cluster management console, navigate to Workload > Deep Learning.
 2. Select the model and click the Training tab to view all training jobs.
-3. Click the training jobs you want to inspec and observe the train/test accuracy/loss for each epochs
+3. Click the training job you want to inspec and observe the train/test accuracy/loss for each epochs
+
+
 For example: use pretrained model and default optimizer and learning rate policy settings, set epoch=5, lr=0.001, the training will finish in about 10 mins, and the trining process looks like below.
 
 &nbsp;
 ![img_loss](images/image_loss.png)![img_acc](images/image_acc.png)
 &nbsp;
 
-Note: Iteration here means the number of batches, so Iteration = Epoch * Dataset_Size / Batch_Size
+*Note: Iteration here means the number of batches, so Iteration = Epoch * Dataset_Size / Batch_Size
 &nbsp;
+
+If the training job fails, follow below steps to see the training logs for debug:
+Inspect the training status with below steps when the job is running or finished:
+1. From the cluster management console, navigate to Workload > Deep Learning.
+2. Select the model and click the Training tab to view all training jobs.
+3. Click the training job, and then click the spark application link used for training, it will jump to the spark application details page
+4. Click Drivers and Executors tab, in the Executors list, click the failed executor
+5. Download the stderr log file to check model running logs.
+
 
 
 ###   [Create an inference model]
@@ -262,3 +273,54 @@ The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes. The la
 &nbsp;
 &nbsp;
 
+
+
+## Extended Learning: How to train resnet model on cifar10 from scratch
+
+We could leverage the pytorch official pretrained model on imagenet as our base. Imagenet is a dataset with 1000 classes, we need to transfer it into a 10 clssification task. 
+
+1. Pass ```pretrained = True``` to main function, this will enable the pytorch resnet (for ImageNet) download of pretrained model when loading it:
+```python
+if __name__ == '__main__':
+    '''
+    Supported Resnet models:
+    * ResNet-18
+    main("resnet18")
+    * ResNet-34
+    main("resnet34")
+    * ResNet-50
+    main("resnet50")
+    * ResNet-101
+    main("resnet101")
+    * ResNet-152
+    main("resnet152")
+    '''
+    main("resnet18", pretrained = True)
+    # main("resnet18")
+```
+
+2. Modify the model initializaton code, change the output class number of last FC layer to 10. Freeze all the layers except the last FC layer, this will allow us to train only the output layer:
+
+```python       
+    for param in model.parameters():
+        param.requires_grad = False  # set False if you only want to train the last layer using pretrained model
+    
+    # Replace the last fully-connected layer
+    # Parameters of newly constructed modules have requires_grad=True by default
+    model.fc = nn.Linear(512, 10)
+ ```
+ 
+ 3. Use default optimizer and learning rate policy settings, set epoch=50 and run the training. the accucacy will increase to about 81%, save the training result for next step.
+ 
+ 4. Unfreeze all the model layers, use model saved in step 3 as pretrained model, use default optimizer and learning rate policy settings, and continue to run about 5-10 epochs, the training accuracy will continue to increase to about 96%.
+ 
+```python       
+    for param in model.parameters():
+        param.requires_grad = True  # set False if you only want to train the last layer using pretrained model
+    
+    # Replace the last fully-connected layer
+    # Parameters of newly constructed modules have requires_grad=True by default
+    model.fc = nn.Linear(512, 10)
+ ```
+ 
+ 5. Now you have a well trained pytorch resnet model on cifar10 for further usage.
