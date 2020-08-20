@@ -32,7 +32,7 @@ In this asset, you will learn how to:
 - Upload following assets to your Watson Machine Learning Accelerator cluster:
   - [CIFAR-10 python version](https://www.cs.toronto.edu/~kriz/cifar.html)
   - [PyTorch Resnet Model](https://github.com/IBM/wmla-assets/raw/master/dli-learning-path/datasets/pytorch_resnet.zip)
-  - **any artifacts/assets link**
+  - [Resnet Introduction](https://arxiv.org/abs/1512.03385)
 
 ## Instructions
 
@@ -162,6 +162,8 @@ print ("Iteration " + str(completed_batch) + ": tag test_accuracy, simple_value 
 print ("Iteration " + str(completed_batch) + ": tag test_loss, simple_value " + str(test_loss))
 ```
 
+For more advanced usage 
+
 
 ###   [Upload the model](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Build-the-model)
 
@@ -205,11 +207,14 @@ Inspect the training status with below steps when the job is running or finished
 1. From the cluster management console, navigate to Workload > Deep Learning.
 2. Select the model and click the Training tab to view all training jobs.
 3. Click the training jobs you want to inspec and observe the train/test accuracy/loss for each epochs
+For example: use pretrained model and default optimizer and learning rate policy settings, set epoch=5, lr=0.001, the training will finish in about 10 mins, and the trining process looks like below.
 
 &nbsp;
 ![img_loss](images/image_loss.png)![img_acc](images/image_acc.png)
 &nbsp;
+Note: Iteration here means the number of batches, so Iteration = Epoch * Dataset_Size / Batch_Size
 &nbsp;
+
 
 ###   [Create an inference model]
 
@@ -217,6 +222,12 @@ To start an inference job with the trained sample model, complete the following 
 1. From the cluster management console, navigate to Workload > Deep Learning.
 2. Navigate to the Models tab and click on the sample model that you trained.
 3. Select the Training tab, and select the finished training run that you want to use as an inference model and click Create Inference Model.
+
+Or you could follow below steps to download the training results you saved to ```args.train_dir``` via GUI, and deploy the model as you want:
+1. From the cluster management console, navigate to Workload > Deep Learning.
+2. Navigate to the Models tab and click on the sample model that you trained.
+3. Select the Training tab, and select the finished training, click "Weight Files" to dowload the training results.
+
 
 ###   [Test it out]
 
