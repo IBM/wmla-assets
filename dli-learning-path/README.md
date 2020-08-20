@@ -268,6 +268,8 @@ To test an inference model, complete the following steps:
 &nbsp;
 
 The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes. The label value 0-9 are mapping to ['airplan', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+
+
 &nbsp;
 ![img_cifar10](images/image_cifar10.png)
 &nbsp;
