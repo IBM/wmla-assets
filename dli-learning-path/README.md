@@ -167,12 +167,25 @@ For more advanced usage
 
 ###   [Upload the model](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Build-the-model)
 
-To upload the sample model, complete the following steps to upload all the model files to the server.:
+To upload the sample model files to server, complete the following steps:
 
 1. From the cluster management console, navigate to Workload > Deep Learning.
 2. Navigate to the Models tab and click New.
 3. Click Add Location and input the required fields, including: PyTorch as the framework and the upload location of the model files.
 4. Click Next and input the required fields for the model. IMPORTANT: All training engines are available with this model so you can select any of the training engine options.
+
+To modify model files, complete the following steps:
+1. From the cluster management console, navigate to Workload > Deep Learning.
+2. Navigate to the Models tab and select the model you want to modify.
+3. Click Edit and the click the Network File tab.
+4. Select the file you to do the modification
+5. Click Save File
+
+&nbsp;
+![img_modify_model](images/image_modify_model.png)
+&nbsp;
+&nbsp;
+
 
 ###   [Tune Hyper-parameter](https://render.githubusercontent.com/view/ipynb?commit=1910deb04f14faf327eb983b6e56b24f25ae046b&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f49424d2f776d6c612d6c6561726e696e672d706174682f313931306465623034663134666166333237656239383362366535366232346632356165303436622f7475746f7269616c732d75692f30315f636c6173736966795f696d616765735f74656e736f72666c6f772e6970796e62&nwo=IBM%2Fwmla-learning-path&path=tutorials-ui%2F01_classify_images_tensorflow.ipynb&repository_id=258578830&repository_type=Repository#Tune-hyper-parameter)
 
@@ -212,6 +225,7 @@ For example: use pretrained model and default optimizer and learning rate policy
 &nbsp;
 ![img_loss](images/image_loss.png)![img_acc](images/image_acc.png)
 &nbsp;
+
 Note: Iteration here means the number of batches, so Iteration = Epoch * Dataset_Size / Batch_Size
 &nbsp;
 
