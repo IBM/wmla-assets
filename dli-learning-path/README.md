@@ -172,7 +172,7 @@ To upload the sample model files to server, complete the following steps:
 1. From the cluster management console, navigate to Workload > Deep Learning.
 2. Navigate to the Models tab and click New.
 3. Click Add Location and input the required fields, including: PyTorch as the framework and the upload location of the model files.
-4. Click Next and input the required fields for the model. IMPORTANT: All training engines are available with this model so you can select any of the training engine options.
+4. Click Next and input the required fields for the model. select "Single node training" as the Training engine.
 
 To modify model files, complete the following steps:
 1. From the cluster management console, navigate to Workload > Deep Learning.
