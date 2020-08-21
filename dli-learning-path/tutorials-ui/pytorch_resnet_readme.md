@@ -31,7 +31,7 @@ In this asset, you will learn how to:
 - Watson Machine Learning Accelerator is  installed & configured.    Please refer to [Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSFHA8_1.2.2/wmla_install.html) for further details.
 - Upload following assets to your Watson Machine Learning Accelerator cluster:
   - [CIFAR-10 python version](https://www.cs.toronto.edu/~kriz/cifar.html)
-  - [PyTorch Resnet Model](https://github.com/IBM/wmla-assets/raw/master/dli-learning-path/datasets/pytorch_resnet.zip)
+  - [PyTorch Resnet Model and Pretrained Model](https://github.com/IBM/wmla-assets/raw/master/dli-learning-path/datasets/pytorch_resnet.zip)
   - [Resnet Introduction](https://arxiv.org/abs/1512.03385)
 
 ## Instructions
@@ -197,7 +197,6 @@ To start a training run with the sample model, complete the following steps:
 3. input the required fields and complete "Start Training".
 
 &nbsp;
-[TODO: provide the pre-trained model download link, in ibm cloud maybe?] 
 &nbsp;
 
 If you want to start your training based on a pretrained model, you could: 
@@ -223,7 +222,7 @@ Inspect the training status with below steps when the job is running or finished
 For example: use pretrained model and default optimizer and learning rate policy settings, set epoch=5, lr=0.001, the training will finish in about 10 mins, and the trining process looks like below.
 
 &nbsp;
-![img_loss](../shared-images/image_loss.png)![img_acc](images/image_acc.png)
+![img_loss](../shared-images/image_loss.png)![img_acc](../shared-images/image_acc.png)
 &nbsp;
 
 *Note: Iteration here means the number of batches, so Iteration = Epoch * Dataset_Size / Batch_Size
