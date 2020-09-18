@@ -50,7 +50,7 @@ In this asset, you will learn how to:
 11. Select the dataset name and the Spark instance group for this dataset and click Create.
 
 &nbsp;
-![img_create_dataset](../../../shared-images/image_create_dataset.png)
+![img_create_dataset](../../shared-images/image_create_dataset.png)
 &nbsp;
 &nbsp;
 
