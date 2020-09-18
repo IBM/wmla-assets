@@ -50,7 +50,7 @@ In this asset, you will learn how to:
 11. Select the dataset name and the Spark instance group for this dataset and click Create.
 
 &nbsp;
-![img_create_dataset](../shared-images/image_create_dataset.png)
+![img_create_dataset](../../../shared-images/image_create_dataset.png)
 &nbsp;
 &nbsp;
 
@@ -182,7 +182,7 @@ To modify model files, complete the following steps:
 5. Click Save File
 
 &nbsp;
-![img_modify_model](../shared-images/image_modify_model.png)
+![img_modify_model](../../shared-images/image_modify_model.png)
 &nbsp;
 &nbsp;
 
@@ -207,7 +207,7 @@ Or:
 2. Click "Browse" and select the weight file when submmitting training 
 
 &nbsp;
-![img_submit_train](../shared-images/image_sumbit_training.png)
+![img_submit_train](../../shared-images/image_sumbit_training.png)
 &nbsp;
 &nbsp;
 
@@ -222,7 +222,7 @@ Inspect the training status with below steps when the job is running or finished
 For example: use pretrained model and default optimizer and learning rate policy settings, set epoch=5, lr=0.001, the training will finish in about 10 mins, and the trining process looks like below.
 
 &nbsp;
-![img_loss](../shared-images/image_loss.png)![img_acc](../shared-images/image_acc.png)
+![img_loss](../../shared-images/image_loss.png)![img_acc](../../shared-images/image_acc.png)
 &nbsp;
 
 *Note: Iteration here means the number of batches, so Iteration = Epoch * Dataset_Size / Batch_Size
@@ -260,7 +260,7 @@ To test an inference model, complete the following steps:
 4. After the inference job is finished, click on the job to see prediction results.
 
 &nbsp;
-![img_inference](../shared-images/image_inference_result.png)
+![img_inference](../../shared-images/image_inference_result.png)
 &nbsp;
 &nbsp;
 
@@ -268,7 +268,7 @@ The CIFAR-10 dataset consists of 60000 32x32 colour shared-images in 10 classes.
 
 
 &nbsp;
-![img_cifar10](../shared-images/image_cifar10.png)
+![img_cifar10](../../shared-images/image_cifar10.png)
 &nbsp;
 &nbsp;
 
