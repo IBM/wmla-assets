@@ -1,0 +1,8 @@
+{
+        "weight_path":"./",
+        "schema_version":"1",
+        "name":"resnet18-pytorch",
+        "runtime":"dlipy36-wmlce170",
+        "kernel_path":"kernel.py",
+        "model_path":"./"
+}
