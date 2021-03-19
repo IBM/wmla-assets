@@ -3,7 +3,7 @@ channels:
 - @opence-channel@
 - defaults
 dependencies:
-- defaults::python==3.7.9
+- defaults::python==3.7.10
 - pip
 # Open-CE required framework
 - tensorflow-cpu==2.4.1
