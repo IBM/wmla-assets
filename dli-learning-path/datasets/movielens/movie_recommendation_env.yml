@@ -1,4 +1,4 @@
-name: rapids-0.18-Mar15
+name: rapids-0.18-movie-recommendation
 channels:
   - rapidsai
   - nvidia
