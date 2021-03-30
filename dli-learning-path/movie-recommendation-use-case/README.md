@@ -75,11 +75,12 @@ conda deactivate
 
 ## List of files
 
-File name and description: 
-datasets/ml-latest-small.zip
-dataset/README.md
-notebook/Movie Recommendation Engine - CPU vs GPU.ipynb
-notebook/Movie-Recommendation-Engine-CPUvsGPU-with-results.ipynb
-movie_recommendation_env.yml
-wmla_pod_working.yaml 
-README.md
+| File name | Description |
+| --- | --- |
+| datasets/ml-latest-small.zip | Dataset used by the movie recommendation use case |
+| dataset/README.md | Details about the dataset used by the movide recommendation use case |
+| notebook/Movie Recommendation Engine - CPU vs GPU.ipynb | Description |
+| notebook/Movie-Recommendation-Engine-CPUvsGPU-with-results.ipynb | Description |
+| movie_recommendation_env.yml | yml file used to create conda environment |
+| wmla_pod_working.yaml  | yaml file used to create temporary pod |
+| README.md | Details about movie recomendation use case |
