@@ -78,8 +78,8 @@ conda deactivate
 | --- | --- |
 | dataset/ml-latest-small.zip | Dataset used by the movie recommendation use case |
 | dataset/README.md | Details about the dataset used by the movie recommendation use case |
-| notebook/Movie Recommendation Engine - CPU vs GPU.ipynb | Description |
-| notebook/Movie-Recommendation-Engine-CPUvsGPU-with-results.ipynb | Description |
+| notebook/Movie Recommendation Engine - CPU vs GPU.ipynb | Movie recommendation notebook without any results |
+| notebook/Movie-Recommendation-Engine-CPUvsGPU-with-results.ipynb | Movie recommendation notebook prepopulated with results |
 | movie_recommendation_env.yml | yml file used to create conda environment |
 | wmla_pod_working.yaml  | yaml file used to create temporary pod |
 | README.md | Details about movie recommendation use case |
