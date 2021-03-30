@@ -12,6 +12,7 @@ To build a movie recommendation system, you will need to:
 
 
 
+
 ## Create a custom conda environment
 
 To create a custome conda environment, complete the followin steps:
@@ -70,3 +71,15 @@ NOTE: To deactive the conda environment, run:
 ```
 conda deactivate
 ```
+
+
+## List of files
+
+File name and description: 
+datasets/ml-latest-small.zip
+dataset/README.md
+notebook/Movie Recommendation Engine - CPU vs GPU.ipynb
+notebook/Movie-Recommendation-Engine-CPUvsGPU-with-results.ipynb
+movie_recommendation_env.yml
+wmla_pod_working.yaml 
+README.md
