@@ -17,10 +17,13 @@ To build a movie recommendation system, you will need to:
 
 To create a custome conda environment, complete the following steps:
 
-1. Create a temporary pod using the [wmla_pod_working.yaml](https://raw.githubusercontent.com/IBM/wmla-assets/master/dli-learning-path/dli-learning-path/movie-recommendation-use-case/dataset/wmla_pod_working.yaml) file. For additional details on sharing an NFS mount across two persistent volume claims, see: https://docs.openshift.com/container-platform/3.5/install_config/storage_examples/shared_storage.html.
+1. Create a temporary pod using the [wmla_pod_working.yaml](https://raw.githubusercontent.com/IBM/wmla-assets/master/dli-learning-path/dli-learning-path/movie-recommendation-use-case/dataset/wmla_pod_working.yaml) file. For additional details, see: https://docs.openshift.com/container-platform/3.5/install_config/storage_examples/shared_storage.html.
  
 
 a. Switch to the WML Accelerator namespace.
+```
+oc project wml-accelerator
+```
 
 b. Create the temporary pod:
 ```
