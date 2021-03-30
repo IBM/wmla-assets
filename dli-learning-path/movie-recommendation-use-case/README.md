@@ -17,8 +17,7 @@ To build a movie recommendation system, you will need to:
 
 To create a custome conda environment, complete the following steps:
 
-1. Create a temporary pod using the [wmla_pod_working.yaml](https://raw.githubusercontent.com/IBM/wmla-assets/master/dli-learning-path/datasets/movielens/wmla_pod_working.yaml) file. For additional details on sharing an NFS mount across two persistent volume claims, see: https://docs.openshift.com/container-platform/3.5/install_config/storage_examples/shared_storage.html.
- 
+1. Create a temporary pod using the [wmla_pod_working.yaml](https://raw.githubusercontent.com/IBM/wmla-assets/master/dli-learning-path/dli-learning-path/movie-recommendation-use-case/dataset/wmla_pod_working.yaml) file. For additional details on sharing an NFS mount across two persistent volume claims, see: https://docs.openshift.com/container-platform/3.5/install_config/storage_examples/shared_storage.html.
  
 
 a. Switch to the WML Accelerator namespace.
@@ -42,7 +41,7 @@ bash-4.2#
 bash-4.2# cd /opt/anaconda3/
 ```
 
-2.   Download the [movie_recommendation_env.yml](https://raw.githubusercontent.com/IBM/wmla-assets/master/dli-learning-path/datasets/movielens/movie_recommendation_env.yml) file.
+2.   Download the [movie_recommendation_env.yml](https://raw.githubusercontent.com/IBM/wmla-assets/master/dli-learning-path/movie-recommendation-use-case/movie_recommendation_env.yml) file.
 
 ```
 (base) bash-4.2# conda install wget
@@ -77,7 +76,7 @@ conda deactivate
 
 | File name | Description |
 | --- | --- |
-| datasets/ml-latest-small.zip | Dataset used by the movie recommendation use case |
+| dataset/ml-latest-small.zip | Dataset used by the movie recommendation use case |
 | dataset/README.md | Details about the dataset used by the movie recommendation use case |
 | notebook/Movie Recommendation Engine - CPU vs GPU.ipynb | Description |
 | notebook/Movie-Recommendation-Engine-CPUvsGPU-with-results.ipynb | Description |
