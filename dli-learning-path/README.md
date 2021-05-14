@@ -40,8 +40,8 @@ In this asset, you will learn how to:
 1. Upload the [CIFAR-10 python version](https://www.cs.toronto.edu/~kriz/cifar.html) to your Watson Machine Learning Accelerator cluster.
 2. Once upload, prepare the dataset by following these steps:
 3. Untar the downloaded dataset. This will yield a folder called "cifar-10-batches-py".
-4. Create two new directories: one called "train", and the other called "test".
-5. Copy the cifar-10-batches-py directory to both the train and test folders created in the previous step.
+4. Create three new directories called "train", "test", and "val"
+5. Copy the cifar-10-batches-py directory to the train, test and val folders created in the previous step.
 6. Import the dataset to be used with the model. Do the following:
 7. From the cluster management console, navigate to Workload > Deep Learning.
 8. Select the Dataset tab and click New.
