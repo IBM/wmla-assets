@@ -1,6 +1,6 @@
-# Build a movie recommendation system with and without GPU in Cloud Pak for Data
+# use scikit learning, cuML and xgboost with Watson Machine Learning Accelerator
 
-The material in this folder supports the movie recommendation use case.  See the full article:  [Build a movie recommendation system with and without GPU](http://)
+The material in this folder supports the scikit learning use case and cuML use case.  
 
 To build a movie recommendation system, you will need to:
 
@@ -17,7 +17,7 @@ To build a movie recommendation system, you will need to:
 
 To create a custome conda environment, complete the following steps:
 
-1. Create a temporary pod using the [wmla_pod_working.yaml](https://raw.githubusercontent.com/IBM/wmla-assets/movielens-restructure/dli-learning-path/movie-recommendation-use-case/wmla_pod_working.yaml) file. For additional details, see: https://docs.openshift.com/container-platform/3.5/install_config/storage_examples/shared_storage.html.
+1. Create a temporary pod using the [wmla_pod_working.yaml](https://raw.githubusercontent.com/IBM/wmla-assets/_________/wmla_pod_working.yaml) file. For additional details, see: https://docs.openshift.com/container-platform/3.5/install_config/storage_examples/shared_storage.html.
  
 
 a. Switch to the WML Accelerator namespace.
@@ -39,34 +39,26 @@ wmla-working-pod                                    1/1     Running   0         
 
 d.  Log on to the pod.
 ```
-oc exec -it wmla-working-pod  bash
+oc exec -it wmla-working-pod -- bash
 bash-4.2# 
 bash-4.2# cd /opt/anaconda3/
 ```
 
-2.   Download the [movie_recommendation_env.yml](https://raw.githubusercontent.com/IBM/wmla-assets/movielens-restructure/dli-learning-path/movie-recommendation-use-case/wmla_pod_working.yaml) file.
-
-```
-(base) bash-4.2# conda install wget
-```
-```
-(base) bash-4.2# wget https://raw.githubusercontent.com/IBM/wmla-assets/master/dli-learning-path/datasets/movielens/movie_recommendation_env.yml
-```
-
-3.  Create a conda environment using the movie_recommendation_env.yml file.
+2.  Create a conda environment using the movie_recommendation_env.yml file.
 
 a. Create the conda environment.
 ```
-(base) bash-4.2# conda env create -f movie_recommendation_env.yml 
+(base) bash-4.2# conda create -n rapids-21.06 -c rapidsai -c nvidia -c conda-forge \
+    rapids=21.06 python=3.7 cudatoolkit=11.0
 
- Uninstalling numpy-1.20.1:
-      Successfully uninstalled numpy-1.20.1
-Successfully installed absl-py-0.12.0 astunparse-1.6.3 cachetools-4.2.1 chardet-4.0.0 gast-0.3.3 google-auth-1.27.1 google-auth-oauthlib-0.4.3 google-pasta-0.2.0 grpcio-1.36.1 h5py-2.10.0 idna-2.10 importlib-metadata-3.7.3 keras-preprocessing-1.1.2 markdown-3.3.4 numpy-1.18.5 oauthlib-3.1.0 opt-einsum-3.3.0 pyasn1-0.4.8 pyasn1-modules-0.2.8 requests-2.25.1 requests-oauthlib-1.3.0 rsa-4.7.2 scipy-1.4.1 tensorboard-2.4.1 tensorboard-plugin-wit-1.8.0 tensorflow-estimator-2.3.0 tensorflow-gpu-2.3.0 termcolor-1.1.0 urllib3-1.26.3 werkzeug-1.0.1 wrapt-1.12.1 zipp-3.4.1
+
+(base) bash-4.2# conda install -c rapidsai -c nvidia -c conda-forge -n rapids-21.06 rapids=21.06
+
 ```
 
 b. Activate the conda environment:
 ```
-conda activate rapids-0.18-movie-recommendation
+conda activate rapids-21.06 
 ```
 
 NOTE: To deactivate the conda environment, run:
@@ -79,10 +71,10 @@ conda deactivate
 
 | File name | Description |
 | --- | --- |
-| dataset/ml-latest-small.zip | Dataset used by the movie recommendation use case |
-| dataset/README.md | Details about the dataset used by the movie recommendation use case |
-| notebook/Movie Recommendation Engine - CPU vs GPU.ipynb | Movie recommendation notebook without any results |
-| notebook/Movie-Recommendation-Engine-CPUvsGPU-with-results.ipynb | Movie recommendation notebook prepopulated with results |
-| movie_recommendation_env.yml | yml file used to create conda environment |
+| dataset/ml-latest-small.zip | Dataset used by the scikit learning, cuML and xgboost use case |
 | wmla_pod_working.yaml  | yaml file used to create temporary pod |
-| README.md | Details about movie recommendation use case |
+| notebook/cuML-KMeans-on-wmla.ipynb | Sample to run KMeans on WMLA |
+| notebook/cuML-LinearRegression-on-wmla.ipynb | Sample to run Linear Regression on WMLA |
+| notebook/cuML-RandomForest-on-wmla.ipynb | Sample to run Random Forest on WMLA |
+| notebook/xgboost-on-wmla.ipynb | Sample to run XGBoost on WMLA |
+| README.md | Details about scikit learning and cuML use case |
