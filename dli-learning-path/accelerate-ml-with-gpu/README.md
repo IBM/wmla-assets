@@ -8,7 +8,7 @@ to run these samples you need to:
 
 2. Create custom conda environments, refer to the steps below.
 
-3. enlarge the wmla working pod's memory, refer to the steps below.
+3. Enlarge the wmla working pod's memory, refer to the steps below.
 
 
 
@@ -16,38 +16,35 @@ to run these samples you need to:
 
 To create a custome conda environment, complete the following steps:
 
-1. Create a temporary pod using the [wmla_pod_working.yaml](https://raw.githubusercontent.com/IBM/wmla-assets/_________/wmla_pod_working.yaml) file. 
-For additional details, see: https://docs.openshift.com/container-platform/3.5/install_config/storage_examples/shared_storage.html.
+1. Create a temporary pod using wmla_pod_working.yaml
+   (https://raw.githubusercontent.com/IBM/wmla-assets/dli-learning-path/accelerate-ml-with-gpu/wmla_pod_working.yaml). 
 
 a. Switch to the WML Accelerator namespace.
 ```
-oc project wml-accelerator
+oc project <wml-accelerator-ns>
 ```
 
 b. Create the temporary pod:
 ```
 oc create -f wmla_pod_working.yaml
-pod/wmla-working-pod created
 ```
 
 c. Verify that the pod is in Running state.
 ```
 oc get po |grep wmla-working-pod
-wmla-working-pod                                    1/1     Running   0          2m50s
 ```
 
 d.  Log on to the pod.
 ```
 oc exec -it wmla-working-pod -- bash
-bash-4.2# 
-bash-4.2# cd /opt/anaconda3/
+bash-4.2# source /opt/anaconda3/etc/profile.d/conda.sh
 ```
 
 2. Create a conda environment for cuML.
 
 a. Create the conda environment for cuML:
 ```
-(base) bash-4.2# conda create -n rapids-21.06 -c rapidsai -c nvidia -c conda-forge \
+bash-4.2# conda create -n rapids-21.06 -c rapidsai -c nvidia -c conda-forge \
     rapids=21.06 python=3.7 cudatoolkit=11.0
 
 ```
@@ -80,7 +77,7 @@ NOTE: To deactivate the conda environment, run:
 conda deactivate
 ```
 
-b. Activate the conda environment:
+c. install necessary python packages:
 ```
 pip install snapml
 pip install pandas
@@ -91,39 +88,36 @@ pip install pandas
 1. logon to the wmla dlpd pod
 a. Switch to the WML Accelerator namespace.
 ```
-oc project wml-accelerator
+oc project <wml-accelerator-ns>
 ```
 
 b. find the wmla-dlpd pod.
 ```
 oc get po |grep wmla-dlpd
-wmla-dlpd-866cc9d8d-cfc8m              2/2     Running   0          7h26m
 ```
 
 d.  Log on to the pod.
 ```
 oc exec -it <wmla-dlpd-pod-name> -c dlpd -- bash
-bash-4.2# 
-bash-4.2# cd /opt/anaconda3/
 ```
 2. enlarge the value of TASK12N memory in dlpd.conf
 a. find the file dlpd.conf and check its parameters
 ```
-grep MSD_TASK12N_MEMORY /var/shareDir/dli/conf/dlpd/dlpd.conf
+bash-4.2# grep MSD_TASK12N_MEMORY /var/shareDir/dli/conf/dlpd/dlpd.conf
     "MSD_TASK12N_MEMORY": "4G",
     "MSD_TASK12N_MEMORY_EDT": "8G",
     "MSD_TASK12N_MEMORY_LIMIT_EDT": "16G",
 ```
 b. modify the value of parameters MSD_TASK12N_MEMORY
 ```
-vim /var/shareDir/dli/conf/dlpd/dlpd.conf
+bash-4.2# vim /var/shareDir/dli/conf/dlpd/dlpd.conf
     "MSD_TASK12N_MEMORY": "32G",
     "MSD_TASK12N_MEMORY_EDT": "32G",
     "MSD_TASK12N_MEMORY_LIMIT_EDT": "32G",
 ```
 c. exit the pod
 ```
-exit
+bash-4.2# exit
 ```
 3. restart wmla-dlpd pod to make parameter take effect.
 a. delete original wmla-dlpd pod
