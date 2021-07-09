@@ -7,7 +7,7 @@ spec:
       - command:
         - sleep
         - "9999999"
-        image: registry.access.redhat.com/ubi7/ubi-minimal:7.6
+        image: rhel7/rhel:latest
         name: ubi
         resources:
           requests:
