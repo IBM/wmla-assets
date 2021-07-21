@@ -1,20 +1,17 @@
-# use scikit learning and cuML with Watson Machine Learning Accelerator
+# use scikit learning，cuML，snapML with Watson Machine Learning Accelerator
 
-The material in this folder supports the scikit-learn/cuML/snapML use case.  
+The material in this folder supports the scikit-learn/cuML/snapML use cases.  
 
-to run these samples you need to:
+To run these samples you need to:
 
 1. Install Watson Machine Learning Accelerator on Cloud Pak for Data 
 
 2. Create custom conda environments, refer to the steps below.
 
-3. Enlarge the wmla working pod's memory, refer to the steps below.
-
-
 
 ## Create a custom conda environment
 
-To create a custome conda environment, complete the following steps:
+To create custome conda environments, complete the following steps:
 
 1. Create a temporary pod using wmla_pod_working.yaml
    (https://raw.githubusercontent.com/IBM/wmla-assets/dli-learning-path/accelerate-ml-with-gpu/wmla_pod_working.yaml). 
@@ -42,46 +39,44 @@ bash-4.2# source /opt/anaconda3/etc/profile.d/conda.sh
 
 2. Create a conda environment for cuML.
 
-a. Create the conda environment for cuML:
 ```
 bash-4.2# conda create -n rapids-21.06 -c rapidsai -c nvidia -c conda-forge \
     rapids=21.06 python=3.7 cudatoolkit=11.0
 
 ```
 
-b. Activate the conda environment:
+3. Activate the conda environment:
 ```
 conda activate rapids-21.06 
 ```
 
-NOTE: To deactivate the conda environment, run:
+4. Deactivate the conda environment, run:
 ```
 conda deactivate
 ```
 
-3. Create a conda environment for snapML.
-
-a. Create the conda environment for snapML:
-```
-(base) bash-4.2# conda create -n snapml-py3.7 python=3.7 snapml=1.7.6
+5. Create a conda environment for snapML.
 
 ```
+(base) bash-4.2# conda create -n snapml-py3.7 python=3.7 
 
-b. Activate the conda environment:
+```
+6. Activate the conda environment:
 ```
 conda activate snapml-py3.7
 ```
 
-NOTE: To deactivate the conda environment, run:
+7. install necessary python packages:
+```
+pip install snapml==1.7.7rc0
+pip install pandas
+```
+
+8. Deactivate the conda environment, run:
 ```
 conda deactivate
 ```
 
-c. install necessary python packages:
-```
-pip install snapml
-pip install pandas
-```
 
 ## enlarge the wmla working pod's memory
 
