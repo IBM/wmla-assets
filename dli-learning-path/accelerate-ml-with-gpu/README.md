@@ -1,4 +1,4 @@
-# use scikit learning，cuML，snapML with Watson Machine Learning Accelerator
+# Apply use case of scikit learning，cuML，snapML with Watson Machine Learning Accelerator
 
 The material in this folder supports the scikit-learn/cuML/snapML use cases.  
 
