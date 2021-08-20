@@ -2,13 +2,11 @@
 
 The material in this folder supports the scikit-learn/cuML/snapML use cases.  
 
-To run these samples you need have already:
+To run these samples you must:
 
-1. Install Watson Machine Learning Accelerator on Cloud Pak for Data 
+1. Install Watson Machine Learning Accelerator on Cloud Pak for Data, see (https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=iwmla-installing-watson-machine-learning-accelerator).
 
-and then:
-
-2. Create custom anaconda environments(please complete the following steps below).
+2. After  Watson Machine Learning Accelerator is installed, create a custom Anaconda environment using the intructions below.
 
 
 ## Create custom anaconda environments
