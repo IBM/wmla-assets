@@ -1,4 +1,4 @@
-# Apply use case of scikit learning，cuML，snapML with Watson Machine Learning Accelerator
+# Apply use case of scikit learning，cuML，snap ML with Watson Machine Learning Accelerator
 
 The material in this folder supports the scikit-learn/cuML/snapML use cases.  
 
@@ -75,6 +75,23 @@ pip install pandas
 ```
 conda deactivate
 ```
+
+## Add the notebook sample
+
+To create the notebook file in IBM Cloud Pak for Data: 
+
+1.	From your project, click **Add to Project** > **Notebook**.
+2.	On the **New Notebook** page, click the From **URL method** to use to create your notebook. 
+![add-git-sample](https://user-images.githubusercontent.com/29407430/133499710-84b0b8e2-63ed-4d59-bfc6-82bf86e6400f.jpg)
+
+From the provided samples, input the URL:
+
+For Linear Regression (Generated Data), use: https://github.com/IBM/wmla-assets/blob/master/dli-learning-path/accelerate-ml-with-gpu/notebook/LinearRegression-on-skLearn-cuML-snapML-GeneData.ipynb
+For Linear Regression (Price Data), use: https://github.com/IBM/wmla-assets/blob/master/dli-learning-path/accelerate-ml-with-gpu/notebook/LinearRegression-on-skLearn-cuML-snapML-PriceData.ipynb
+For Random Forest, use:	https://github.com/IBM/wmla-assets/blob/master/dli-learning-path/accelerate-ml-with-gpu/notebook/RandomForest-on-skLearn-cuML-snapML.ipynb
+For XGBoost/SnapBoost, use:	https://github.com/IBM/wmla-assets/blob/master/dli-learning-path/accelerate-ml-with-gpu/notebook/XGBoost-on-skLearn-cuML-snapML.ipynb
+
+3. Click **Create Notebook**. The notebook opens in edit mode and is locked by you. 
 
 ## List of files
 
