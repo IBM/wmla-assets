@@ -8,6 +8,8 @@ To run these samples you must:
 
 2. After  Watson Machine Learning Accelerator is installed, create a custom Anaconda environment using the intructions below.
 
+3. Add the notebook sample to Cloud Pak for Data using the insturctions below.
+
 
 ## Create custom anaconda environments
 
@@ -87,8 +89,11 @@ To create the notebook file in IBM Cloud Pak for Data:
 From the provided samples, input the URL:
 
 For Linear Regression (Generated Data), use: https://github.com/IBM/wmla-assets/blob/master/dli-learning-path/accelerate-ml-with-gpu/notebook/LinearRegression-on-skLearn-cuML-snapML-GeneData.ipynb
+
 For Linear Regression (Price Data), use: https://github.com/IBM/wmla-assets/blob/master/dli-learning-path/accelerate-ml-with-gpu/notebook/LinearRegression-on-skLearn-cuML-snapML-PriceData.ipynb
+
 For Random Forest, use:	https://github.com/IBM/wmla-assets/blob/master/dli-learning-path/accelerate-ml-with-gpu/notebook/RandomForest-on-skLearn-cuML-snapML.ipynb
+
 For XGBoost/SnapBoost, use:	https://github.com/IBM/wmla-assets/blob/master/dli-learning-path/accelerate-ml-with-gpu/notebook/XGBoost-on-skLearn-cuML-snapML.ipynb
 
 3. Click **Create Notebook**. The notebook opens in edit mode and is locked by you. 
@@ -97,7 +102,6 @@ For XGBoost/SnapBoost, use:	https://github.com/IBM/wmla-assets/blob/master/dli-l
 
 | File name | Description |
 | --- | --- |
-
 | README.md | Details about how to setup the environment |
 | wmla_pod_working.yaml  | yaml file to create a working pod for package installation|
 | notebook/KMeans-on-skLearn-cuML.ipynb | Sample to run KMeans on WMLA |
