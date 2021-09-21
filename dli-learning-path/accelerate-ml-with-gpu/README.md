@@ -97,6 +97,7 @@ For Random Forest, use:	https://github.com/IBM/wmla-assets/blob/master/dli-learn
 For XGBoost/SnapBoost, use:	https://github.com/IBM/wmla-assets/blob/master/dli-learning-path/accelerate-ml-with-gpu/notebook/XGBoost-on-skLearn-cuML-snapML.ipynb
 
 3. Click **Create Notebook**. The notebook opens in edit mode and is locked by you. 
+4. To run the notebook, click **Run**. 
 
 ## List of files
 
