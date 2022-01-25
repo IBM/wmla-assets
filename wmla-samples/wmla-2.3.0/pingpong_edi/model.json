@@ -1,0 +1,8 @@
+{
+    "name" : "pingpong",
+    "tag" : "test",
+    "weight_path" : "N/A",
+    "runtime" : "python",
+    "kernel_path" : "kernel.py",
+    "schema_version" : "1"
+}
