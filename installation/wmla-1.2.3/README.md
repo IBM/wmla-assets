@@ -7,4 +7,5 @@ For more information, see: http://www.ibm.com/support/knowledgecenter/SSFHA8_1.2
 # History
 * 03/19/21: Support for Python was updated from 3.7.9 to Python 3.7.10
 * 07/21/21: Rename existing conda_wmla.zip to conda_wmla_py37.zip. Add new installer conda_wmla_py38.zip for Python 3.8.10
+* 02/10/22: Pin dlinsights env's setuptools to 52.0.0 to resolve conflict
           
