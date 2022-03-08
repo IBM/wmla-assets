@@ -25,6 +25,7 @@ os.makedirs(data_dir, exist_ok=True)
 
 output_model_path = os.path.join(result_dir, "model", "trained_model.pt")
 
+
 class Average(object):
     def __init__(self):
         self.sum = 0
@@ -134,7 +135,7 @@ class Net(nn.Module):
 def get_dataloader(root, batch_size):
     transform = transforms.Compose(
         [transforms.ToTensor(),
-         transforms.Normalize((0.1307, ), (0.3081, ))])
+         transforms.Normalize((0.1307,), (0.3081,))])
 
     train_set = datasets.MNIST(
         root, train=True, transform=transform, download=True)
@@ -157,14 +158,19 @@ def get_dataloader(root, batch_size):
 def run(args):
     use_cuda = not args.no_cuda
     device = torch.device('cuda' if use_cuda else 'cpu')
-    #device = torch.device(0 if use_cuda else 'cpu')
 
-    net = Net().to(device)
     if use_cuda:
         print("Using DistributedDataParallel")
+        print("Let's use {} gpus per worker".format(str(torch.cuda.device_count())))
+        if torch.cuda.device_count() > 1:
+            net = nn.DataParallel(Net()).to(device)
+        else:
+            net = Net().to(device)
+
         net = nn.parallel.DistributedDataParallel(net)
     else:
         print("Using DistributedDataParallelCPU")
+        net = Net().to(device)
         net = nn.parallel.DistributedDataParallelCPU(net)
 
     optimizer = torch.optim.Adam(net.parameters(), lr=args.lr)
@@ -177,7 +183,7 @@ def run(args):
     trainer.fit(args.epochs)
 
     duration = (time.time() - start_time) / 60
-    print("Train finished. Time cost: %.2f minutes" % (duration))
+    print("Train finished. Time cost: %.2f minutes" % duration)
 
     if int(os.environ['RANK']) == 0:
         # All processes should see same parameters as they all start from same
@@ -186,17 +192,19 @@ def run(args):
         torch.save(net.state_dict(), output_model_path)
         print("Model saved in path: %s" % output_model_path)
 
+
 def init_process(args):
     print('tcp://' + os.environ['MASTER_ADDR'] + ':' + os.environ['MASTER_PORT'])
     print("WORLD_SIZE=" + os.environ['WORLD_SIZE'] + ", RANK=" + os.environ['RANK'])
-    #print(os.environ['GLOO_SOCKET_IFNAME'])
+    # print(os.environ['GLOO_SOCKET_IFNAME'])
+
     distributed.init_process_group(
         backend=args.backend,
-        #init_method=args.init_method,
+        # init_method=args.init_method,
         init_method='tcp://' + os.environ['MASTER_ADDR'] + ':' + os.environ['MASTER_PORT'],
-        #rank=args.rank,
+        # rank=args.rank,
         rank=int(os.environ['RANK']),
-        #world_size=args.world_size)
+        # world_size=args.world_size)
         world_size=int(os.environ['WORLD_SIZE']))
 
 
@@ -207,12 +215,12 @@ def main():
         type=str,
         default='nccl',
         help='Name of the backend to use.')
-    parser.add_argument('--epochs', type=int, default=20)
+    parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--no-cuda', action='store_true')
     parser.add_argument('--lr', type=float, default=1e-3)
     parser.add_argument('--root', type=str, default=data_dir)
     parser.add_argument('--batch-size', type=int, default=128)
-    #parser.add_argument('--train_dir', type=str, default='')
+    # parser.add_argument('--train_dir', type=str, default='')
     parser.add_argument('--train_checkpoint_dir', type=str, default='')
     parser.add_argument('--train_model_save_dir', type=str, default='')
     parser.add_argument('--train_log_dir', type=str, default='')

@@ -18,13 +18,18 @@ import os
 
 from fabric_model import FabricModel
 from edtcallback import EDTLoggerCallback
+from edtcallback import EDTTrainCallback
 
 data_dir = os.environ.get("DATA_DIR", "/tmp")
 result_dir = os.environ.get("RESULT_DIR", "/tmp")
 print("data_dir=%s, result_dir=%s" % (data_dir, result_dir))
 os.makedirs(data_dir, exist_ok=True)
 
-MAX_NUM_WORKERS=16
+output_model_path = os.path.join(result_dir, "model")
+os.makedirs(output_model_path, exist_ok=True)
+
+MAX_NUM_WORKERS = 16
+
 
 class Net(nn.Module):
     def __init__(self):
@@ -38,7 +43,7 @@ class Net(nn.Module):
         x = F.relu(self.conv1(x))
         x = F.relu(self.conv2(x))
         x = F.max_pool2d(x, 2)
-        x = F.dropout(x, p =0.25, training=self.training)
+        x = F.dropout(x, p=0.25, training=self.training)
         x = x.view(x.size(0), -1)
         x = F.relu(self.fc1(x))
         x = F.dropout(x, p=0.5, training=self.training)
@@ -46,14 +51,15 @@ class Net(nn.Module):
         return x
 
 
-def getDatasets():
+def get_datasets():
     return (datasets.MNIST(data_dir, train=True, download=True, transform=transforms.Compose([
-                           transforms.ToTensor()
-                       ])),
+        transforms.ToTensor()
+    ])),
             datasets.MNIST(data_dir, train=False, transform=transforms.Compose([
-                           transforms.ToTensor()
-                       ]))
+                transforms.ToTensor()
+            ]))
             )
+
 
 def main():
     # Training settings
@@ -80,8 +86,10 @@ def main():
     model = Net()
     optimizer = optim.Adadelta(model.parameters(), lr=args.lr, rho=0.95)
 
-    edt_m = FabricModel(model, getDatasets, F.cross_entropy, optimizer, driver_logger=EDTLoggerCallback())
+    edt_m = FabricModel(model, get_datasets, F.cross_entropy, optimizer, driver_logger=EDTLoggerCallback(),
+                        user_callback=[EDTTrainCallback(output_model_path)])
     edt_m.train(args.epochs, args.batch_size, MAX_NUM_WORKERS)
+
 
 if __name__ == '__main__':
     main()

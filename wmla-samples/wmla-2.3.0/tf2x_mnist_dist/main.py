@@ -14,16 +14,21 @@
 
 from __future__ import print_function
 import argparse
+import sys
 import os
 import json
 import time
+import atexit
 from pathlib import PurePath
 import mycallback as MyCallback
 
-import tensorflow_datasets as tfds
 import tensorflow as tf
 
-tfds.disable_progress_bar()
+try:
+    import tensorflow_datasets
+except ModuleNotFoundError:
+    import subprocess
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "tensorflow-datasets"])
 
 BUFFER_SIZE = 10000
 
@@ -44,7 +49,6 @@ os.makedirs(model_path, exist_ok=True)
 
 print("data_dir=%s, result_dir=%s" % (data_dir, result_dir))
 
-
 def make_datasets_unbatched():
     # Scaling MNIST data from (0, 255] to (0., 1.]
     def scale(image, label):
@@ -52,6 +56,8 @@ def make_datasets_unbatched():
         image /= 255
         return image, label
 
+    import tensorflow_datasets as tfds
+    tfds.disable_progress_bar()
     datasets, info = tfds.load(name='mnist', data_dir=data_dir, download=True, with_info=True, as_supervised=True)
     mnist_train = datasets['train'].map(scale, num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(
         BUFFER_SIZE)
@@ -94,28 +100,12 @@ def write_filepath(filepath, task_type, task_id):
     return os.path.join(dirpath, base)
 
 
-def main():
-    parser = argparse.ArgumentParser(description='Tensorflow MNIST Example')
-    parser.add_argument('--batch-size', type=int, default=128, metavar='N',
-                        help='input batch size for training (default: 128)')
-    parser.add_argument('--epochs', type=int, default=10, metavar='N',
-                        help='number of epochs to train (default: 10)')
-    parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
-                        help='learning rate (default: 0.01)')
-    parser.add_argument('--no-cuda', action='store_true', default=False,
-                        help='disables CUDA training')
-
-    # args = parser.parse_args()
-    # wmla distribute mode will also pass --worker_hosts, --task_id and --job_name
-    args, unknown = parser.parse_known_args()
-    print(args)
-    print(unknown)
-
+def train(args):
     use_cuda = not args.no_cuda
 
     tf_config = os.environ.get("TF_CONFIG")
     if tf_config:
-        # {"cluster": {"worker": ["dlw10.aus.stglabs.ibm.com:46001", "dlw10.aus.sMultiWorkerMirroredStrategytglabs.ibm.com:37927"]}, "task": {"index": 1, "type": "worker"}}
+        # {"cluster": {"worker": ["dlw10.aus.stglabs.ibm.com:46001", "dlw10.aus.stglabs.ibm.com:37927"]}, "task": {"index": 1, "type": "worker"}}
         print("TF_CONFIG is founded")
         print(tf_config)
         tf_config_json = json.loads(tf_config)
@@ -132,6 +122,11 @@ def main():
 
     print("Let's use {} workers. is_chief = {}".format(str(num_workers), str(is_chief)))
 
+    if use_cuda:
+        gpus = tf.config.experimental.list_physical_devices(device_type='GPU')
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+
     if num_workers > 1:
         # strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
         strategy = tf.distribute.MultiWorkerMirroredStrategy()
@@ -146,10 +141,14 @@ def main():
         options = tf.data.Options()
         options.experimental_distribute.auto_shard_policy = tf.data.experimental.AutoShardPolicy.DATA  # AutoShardPolicy.OFF can work too.
         train_datasets = train_datasets.with_options(options)
+        eval_dataset = eval_dataset.with_options(options)
     else:
         if use_cuda:
             strategy = tf.distribute.MirroredStrategy()
             print("Let's use {} gpus".format(str(strategy.num_replicas_in_sync)))
+
+            # https://github.com/tensorflow/tensorflow/issues/50487
+            atexit.register(strategy._extended._collective_ops._pool.close)  # type: ignore
 
             global_batch_size = args.batch_size * strategy.num_replicas_in_sync
             mnist_train, mnist_test = make_datasets_unbatched()
@@ -199,5 +198,58 @@ def main():
     print("Model saved in path: %s" % write_model_path)
 
 
+def main():
+    parser = argparse.ArgumentParser(description='Tensorflow MNIST Example')
+    parser.add_argument('--batch-size', type=int, default=128, metavar='N',
+                        help='input batch size for training (default: 128)')
+    parser.add_argument('--epochs', type=int, default=10, metavar='N',
+                        help='number of epochs to train (default: 10)')
+    parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
+                        help='learning rate (default: 0.01)')
+    parser.add_argument('--no-cuda', action='store_true', default=False,
+                        help='disables CUDA training')
+
+    # args = parser.parse_args()
+    # wmla distribute mode will also pass --worker_hosts, --task_id and --job_name
+    args, unknown = parser.parse_known_args()
+    print(sys.path)
+    print("known arguments: ", args)
+    print("unknown arguments", unknown)
+    print("tensorflow version: %s" % tf.__version__)
+
+    try:
+        # for 2.4.0 and above
+        import tensorflow.distribute
+        train(args)
+    except:
+        tf_config = os.environ.get("TF_CONFIG")
+        if tf_config:
+            # {"cluster": {"worker": ["dlw10.aus.stglabs.ibm.com:46001", "dlw10.aus.stglabs.ibm.com:37927"]}, "task": {"index": 1, "type": "worker"}}
+            print("TF_CONFIG is founded")
+            print(tf_config)
+            tf_config_json = json.loads(tf_config)
+            num_workers = len(tf_config_json['cluster']['worker'])
+        else:
+            print("TF_CONFIG is not founded")
+            num_workers = 1
+
+        #if num_workers > 1:
+        if tf_config:
+            import deprecated_distributed
+            print("deprecated distributed train")
+            deprecated_distributed.train(args)
+        else:
+            import deprecated_single
+            print("deprecated single train")
+            deprecated_single.train(args)
+
+
 if __name__ == '__main__':
-    main()
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt:
+        print('Interrupted')
+        try:
+            sys.exit(0)
+        except SystemExit:
+            os._exit(0)

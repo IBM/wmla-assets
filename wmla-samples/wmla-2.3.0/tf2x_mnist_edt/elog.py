@@ -9,9 +9,10 @@ import time
 import os
 from pathlib import PurePath
 
+
 class ELog(object):
 
-    def __init__(self,subId,f):
+    def __init__(self, subId, f):
         if "TRAINING_ID" in os.environ:
             self.trainingId = os.environ["TRAINING_ID"]
         elif "DLI_EXECID" in os.environ:
@@ -38,34 +39,34 @@ class ELog(object):
 
         if subId is not None:
             folder = str(PurePath(folder, subId))
-        
+
         if not os.path.exists(folder):
             os.makedirs(folder)
 
         f = open(str(PurePath(folder, "stdout")), "a")
-        return ELog(subId,f)
+        return ELog(subId, f)
 
-    def recordText(self,text):
+    def recordText(self, text):
         timestr = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-        timestr = "["+ timestr + "]"
+        timestr = "[" + timestr + "]"
         if self.f:
             self.f.write(timestr + " " + text + "\n")
             self.f.flush()
 
-    def recordTrain(self,title,iteration,global_steps,loss,accuracy,worker):
+    def recordTrain(self, title, iteration, global_steps, loss, accuracy, worker):
         text = title
         text = text + ",	Timestamp: " + str(int(round(time.time() * 1000)))
         text = text + ",	Global steps: " + str(global_steps)
         text = text + ",	Iteration: " + str(iteration)
-        text = text + ",	Loss: " + str(float('%.5f' % loss) )
-        text = text + ",	Accuracy: " + str(float('%.5f' % accuracy) )
+        text = text + ",	Loss: " + str(float('%.5f' % loss))
+        text = text + ",	Accuracy: " + str(float('%.5f' % accuracy))
         self.recordText(text)
 
-    def recordTest(self,title,loss,accuracy,worker):
+    def recordTest(self, title, loss, accuracy, worker):
         text = title
         text = text + ",	Timestamp: " + str(int(round(time.time() * 1000)))
-        text = text + ",	Loss: " + str(float('%.5f' % loss) )
-        text = text + ",	Accuracy: " + str(float('%.5f' % accuracy) )
+        text = text + ",	Loss: " + str(float('%.5f' % loss))
+        text = text + ",	Accuracy: " + str(float('%.5f' % accuracy))
         self.recordText(text)
 
     def close(self):

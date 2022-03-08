@@ -18,7 +18,8 @@ from __future__ import print_function
 import os
 import argparse
 from pathlib import PurePath
-os.environ["CUDA_VISIBLE_DEVICES"]=""
+
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 import tensorflow as tf
 from fabric_model import FabricModel
@@ -66,16 +67,17 @@ y_test = tf.keras.utils.to_categorical(y_test, num_classes)
 
 
 def get_dataset():
-    print ("In mnist_cnn get_dataset")
+    print("In mnist_cnn get_dataset")
     train_datagen = tf.keras.preprocessing.image.ImageDataGenerator()
     test_datagen = tf.keras.preprocessing.image.ImageDataGenerator()
-    return(train_datagen.flow(x_train, y_train, batch_size=args.batch_size),
-           test_datagen.flow(x_test,  y_test,  batch_size=args.batch_size))
+    return (train_datagen.flow(x_train, y_train, batch_size=args.batch_size),
+            test_datagen.flow(x_test, y_test, batch_size=args.batch_size))
+
 
 model = tf.keras.models.Sequential()
 model.add(tf.keras.layers.Conv2D(32, kernel_size=(3, 3),
-                 activation='relu',
-                 input_shape=input_shape))
+                                 activation='relu',
+                                 input_shape=input_shape))
 model.add(tf.keras.layers.Conv2D(64, (3, 3), activation='relu'))
 model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
 model.add(tf.keras.layers.Dropout(0.25))

@@ -14,13 +14,21 @@
 
 from __future__ import print_function
 import argparse
+import sys
 import os
 import json
 import time
+import atexit
 from pathlib import PurePath
 import mycallback as MyCallback
 
 import tensorflow as tf
+
+try:
+    import tensorflow_datasets
+except ModuleNotFoundError:
+    import subprocess
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "tensorflow-datasets"])
 
 BUFFER_SIZE = 10000
 
@@ -40,7 +48,6 @@ model_path = str(PurePath(result_dir, "model"))
 os.makedirs(model_path, exist_ok=True)
 
 print("data_dir=%s, result_dir=%s" % (data_dir, result_dir))
-
 
 def make_datasets_unbatched():
     # Scaling MNIST data from (0, 255] to (0., 1.]
@@ -115,6 +122,11 @@ def train(args):
 
     print("Let's use {} workers. is_chief = {}".format(str(num_workers), str(is_chief)))
 
+    if use_cuda:
+        gpus = tf.config.experimental.list_physical_devices(device_type='GPU')
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+
     if num_workers > 1:
         # strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
         strategy = tf.distribute.MultiWorkerMirroredStrategy()
@@ -129,10 +141,14 @@ def train(args):
         options = tf.data.Options()
         options.experimental_distribute.auto_shard_policy = tf.data.experimental.AutoShardPolicy.DATA  # AutoShardPolicy.OFF can work too.
         train_datasets = train_datasets.with_options(options)
+        eval_dataset = eval_dataset.with_options(options)
     else:
         if use_cuda:
             strategy = tf.distribute.MirroredStrategy()
             print("Let's use {} gpus".format(str(strategy.num_replicas_in_sync)))
+
+            # https://github.com/tensorflow/tensorflow/issues/50487
+            atexit.register(strategy._extended._collective_ops._pool.close)  # type: ignore
 
             global_batch_size = args.batch_size * strategy.num_replicas_in_sync
             mnist_train, mnist_test = make_datasets_unbatched()
@@ -196,10 +212,10 @@ def main():
     # args = parser.parse_args()
     # wmla distribute mode will also pass --worker_hosts, --task_id and --job_name
     args, unknown = parser.parse_known_args()
-    print(args)
-    print(unknown)
-
-    print(tf.__version__)
+    print(sys.path)
+    print("known arguments: ", args)
+    print("unknown arguments", unknown)
+    print("tensorflow version: %s" % tf.__version__)
 
     try:
         # for 2.4.0 and above
@@ -229,4 +245,11 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt:
+        print('Interrupted')
+        try:
+            sys.exit(0)
+        except SystemExit:
+            os._exit(0)
