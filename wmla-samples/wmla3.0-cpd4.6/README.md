@@ -11,3 +11,7 @@ This sample extends the mnist_convnet example by showing:
 
 We made minor modifications to the downloaded Tensorflow code. The original code is saved in .org extension. In addition, the number of epochs is reduced to reduce the training time.
 
+## tf2x_mnist
+This sample shows how to run a training job with **multiple workers and multiple devices** with **Tensorflow distributed MultiWorkerMirroredStrategy** (multi-node multi-device synchronous training). In addition, it also shows the following:
+  - emetrics used by Watson Machine Learning (WML)
+  - passing parameters to the python code
