@@ -1,0 +1,56 @@
+-
+  paths:
+    - "@ELK_HARVEST_LOCATION@/*.*.*/app-*/*/stderr*"
+    - "@ELASTIC_HARVEST_LOCATION@/*.*/app-*/*.@EGOSC_INSTANCE_HOST@/stderr*"
+  include_lines: ['type=GAUGE, name=(.*)\x2eexecutor\x2ethreadpool\x2e(completeTasks|activeTasks|completeCpuTasks|completeGpuTasks|activeCpuTasks|activeGpuTasks), value=', 'Executor: \x5Btask\x5D \x5B(finished|failed|killed)\x5D', '(WARN|ERROR)', '^(SLF4J|org\x2eapache\x2espark\x2eSparkException):','Iteration.*', '(.*Train net output.*)|(.*Test net output.*)','.*LSY.*iter.*','.*Forward].*','.*Backward].*hist.*','.*Top\s*\d+.*', '.*Total iterations.*']
+  multiline:
+      pattern: '(.*Train net output.*)|(.*Test net output.*)'
+      negate: false
+      match: after
+      timeout: 60s 
+  fields:
+      timezone: "@TIMEZONE@"
+      service: spark-executor-log
+  ignore_older: 24h
+  clean_inactive: 25h
+  scan_frequency: 30s
+-
+  paths:
+    - "@ELK_HARVEST_LOCATION@/*.*.*/driver-*/stderr*"
+    - "@ELASTIC_HARVEST_LOCATION@/*.*/driver-*.@EGOSC_INSTANCE_HOST@/stderr*"
+  include_lines: ['TaskSetManager: \x5Btask\x5D \x5Bfailed\x5D', '(WARN|ERROR)', '^(SLF4J|org\x2eapache\x2espark\x2eSparkException):', '.*Timestamp.*Iteration.*', '.*Total iterations.*']   
+  fields:
+      timezone: "@TIMEZONE@"
+      service: spark-driver-log
+  ignore_older: 24h
+  clean_inactive: 25h
+-
+  paths:
+    - "@ELK_HARVEST_LOCATION@/*-*/log/*.@EGOSC_INSTANCE_HOST@/*.txt"
+  multiline:
+      pattern: '^\{'
+      negate: false
+      match: before
+      max_lines: 2000
+      timeout: 1s
+  fields:
+      service: training-metrics
+      timezone: "UTC"
+  ignore_older: 10m
+  clean_inactive: 11m
+  scan_frequency: 3s
+-
+  paths:
+    - "@ELK_HARVEST_LOCATION@/*-*/log/*.@EGOSC_INSTANCE_HOST@/stderr"
+  multiline:
+      pattern: '^Traceback|^[[:space:]]+'
+      negate: false
+      match: before
+      max_lines: 2000
+      timeout: 1s
+  fields:
+      document_type: training-log
+      timezone: "UTC"
+  ignore_older: 10m
+  clean_inactive: 11m
+  scan_frequency: 3s
