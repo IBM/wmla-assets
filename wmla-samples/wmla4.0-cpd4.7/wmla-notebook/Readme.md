@@ -11,8 +11,8 @@ yum install jq
 - Run the script, eg:
 ```
 bash install_wmla_notebook_runtime.sh
-bash install_wmla_notebook_runtime.sh -x <user> -c <cpd_host>
-bash install_wmla_notebook_runtime.sh -x <user> -x <password> -c <cpd_host>
+bash install_wmla_notebook_runtime.sh -u <user> -c <cpd_host>
+bash install_wmla_notebook_runtime.sh -u <user> -x <password> -c <cpd_host>
 bash install_wmla_notebook_runtime.sh -h
 ```
 
