@@ -25,7 +25,7 @@ yum install jq
 - Run the script, eg:
 ```
 bash install_wmla_jupyterlab_runtime.sh
-bash install_wmla_jupyterlab_runtime.sh -x <user> -c <cpd_host>
-bash install_wmla_jupyterlab_runtime.sh -x <user> -x <password> -c <cpd_host>
+bash install_wmla_jupyterlab_runtime.sh -u <user> -c <cpd_host>
+bash install_wmla_jupyterlab_runtime.sh -u <user> -x <password> -c <cpd_host>
 bash install_wmla_jupyterlab_runtime.sh -h
 ```
