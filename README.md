@@ -1,2 +1,2 @@
 # wmla-assets
-examples of using different versions of WMLA APIs 
+The command line tools, import/export components, and examples of using different versions of WML-A.
