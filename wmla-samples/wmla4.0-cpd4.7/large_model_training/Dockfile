@@ -1,0 +1,7 @@
+From cp.icr.io/cp/cpd/wml-accelerator-runtime:v4.2.0-rt23.1-py3.10
+
+ENV LIBRARY_PATH=/opt/anaconda3/envs/dlipy3/lib:$LIBRARY_PATH
+
+RUN source activate dlipy3 && \
+    microdnf -y install gcc-c++ && \
+    pip install deepspeed==0.9.5 transformers==4.30.2 datasets==2.13.1 accelerate==0.20.3
