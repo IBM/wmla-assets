@@ -1,0 +1,1 @@
+{"weight_path":"model","schema_version":"1","framework":"TensorFlow","name":"tf-cifar10","runtime":"dlipy3","tag":"cifar10 images","kernel_path":"kernel.py"}
